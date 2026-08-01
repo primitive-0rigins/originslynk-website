@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 
 <Base
   title="Trust & safety"
-  description="How OriginsLynk handles access, credentials, isolation, monitoring, backups, and offboarding — and what we deliberately do not claim."
+  description="OriginsLynk safeguards for human approval, account access, testing, managed monitoring, backups, integration assessment, and offboarding."
 >
   <section class="section-cream page-hero">
     <div class="container container-narrow">
@@ -27,10 +27,10 @@ import Base from '../layouts/Base.astro';
           file. A person decides what happens next.
         </p>
         <p class="muted" style="margin-top: var(--space-4)">
-          Nothing we build sends an email, publishes a post, moves money, or deletes a
-          record on its own. If a workflow would need to, that is a separate conversation
-          with its own design and your explicit written approval — never a setting we
-          quietly enable.
+          Consequential messages, record changes, financial activity, publication, and
+          deletion remain human-approved unless a specific workflow authorization defines
+          a different review process in writing. That boundary is designed and tested—not
+          quietly enabled after launch.
         </p>
       </div>
     </div>
@@ -66,6 +66,24 @@ import Base from '../layouts/Base.astro';
           </p>
         </article>
 
+        <article>
+          <h3>Tested before production use</h3>
+          <p>
+            Agreed workflows are exercised with representative or sanitized inputs before
+            production use. Expected results, approval points, and known failure paths are
+            reviewed during stabilization.
+          </p>
+        </article>
+
+        <article>
+          <h3>Retries and duplicate actions are limited</h3>
+          <p>
+            Where an action can be retried, the workflow uses defined retry limits and
+            duplicate-action protection when the connected system supports it. Exceptions
+            are routed to a person instead of repeating indefinitely.
+          </p>
+        </article>
+
         <article id="data-handling">
           <h3>Credentials are handled separately</h3>
           <p>
@@ -76,11 +94,11 @@ import Base from '../layouts/Base.astro';
         </article>
 
         <article>
-          <h3>Monitored, with alerts pointed at us</h3>
+          <h3>Managed systems monitor supported conditions</h3>
           <p>
-            Health checks, failure alerts, and a dead-man's switch on the backup job. The
-            alerts reach us first. You should hear about a problem from a person, not
-            discover it from silence.
+            Automated health checks and failure alerts are configured for supported
+            conditions. OriginsLynk investigates detected failures during the business-hours
+            support periods defined in the service agreement.
           </p>
         </article>
 
@@ -99,6 +117,15 @@ import Base from '../layouts/Base.astro';
             Access is granted from your own accounts, which means you can withdraw it from
             your own accounts, immediately, without asking us and without waiting for a
             business day.
+          </p>
+        </article>
+
+        <article>
+          <h3>Integrations are assessed before commitment</h3>
+          <p>
+            Official interfaces, supported connectors, and documented authorization methods
+            are preferred. Unstable, undocumented, unusually complex, or higher-risk
+            connections may be declined, treated as experimental, or quoted separately.
           </p>
         </article>
 
@@ -130,7 +157,7 @@ import Base from '../layouts/Base.astro';
         </p>
         <p class="small muted" style="margin-top: var(--space-3)">
           If you are not comfortable with that — and it is reasonable not to be — the
-          Personal AI Assistant runs on your own machine and never has this property.
+          Personal AI Agent Setup is client-directed and does not include a managed appliance.
         </p>
       </div>
 
@@ -147,11 +174,19 @@ import Base from '../layouts/Base.astro';
       <div class="disclosure">
         <h3>AI gets things wrong</h3>
         <p>
-          The models we configure will occasionally misread context, state something
-          confidently that is incorrect, or produce a draft that misses the point. This is
-          exactly why the approval step exists and why nothing sends itself. Part of what
-          we train you on is recognizing when output is wrong — including how to check a
-          claim before you act on it.
+          AI-generated content and decisions may be incomplete or incorrect. Clients remain
+          responsible for reviewing outputs and approving consequential business actions
+          unless a written workflow authorization establishes a different review process.
+          Training includes how to check important claims before acting on them.
+        </p>
+      </div>
+
+      <div class="disclosure">
+        <h3>Availability and compatibility have limits</h3>
+        <p>
+          OriginsLynk does not guarantee uninterrupted service, error-free output, or
+          compatibility with every third-party platform. Results depend on the client's
+          workflow, source data, integrations, account access, and third-party services.
         </p>
       </div>
 

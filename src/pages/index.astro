@@ -4,7 +4,7 @@ import Diagram from '../components/Diagram.astro';
 import WorkflowArtifact from '../components/WorkflowArtifact.astro';
 import ApplianceVisual from '../components/ApplianceVisual.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import { assistantRoleSystem, managedAutomation, personalAssistantStarter } from '../data/services';
+import { managedAutomation, personalAgentSetup, roleAutomationSystem } from '../data/services';
 
 const commitments = [
   ['Human-guided', 'Important results stay visible to you.'],
@@ -31,16 +31,16 @@ const reviewEvidence = [
 
 <Base
   title="OriginsLynk"
-  description="Make repetitive work take less of your week with supervised AI assistance and managed automation built around the tools you already use."
+  description="Role-specific AI agents, reusable workflows, and managed automation systems built around real business work—with people in control."
 >
   <section class="hero section-cream">
     <div class="container hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Practical systems for real work</p>
-        <h1>Less repetitive work. <span>More of your week back.</span></h1>
+        <h1>Practical AI systems built around <span>the way you actually work.</span></h1>
         <p class="lede">
-          OriginsLynk builds role-specific assistance and managed workflows around the
-          tools you already use—while keeping consequential decisions and approvals with you.
+          OriginsLynk configures role-specific AI agents, reusable workflows, and managed
+          automation systems that reduce repetitive work while keeping people in control.
         </p>
         <div class="btn-row">
           <a href="/contact" class="btn btn-primary" data-analytics-event="consultation_click" data-analytics-location="home_hero">Request a workflow review</a>
@@ -125,13 +125,13 @@ const reviewEvidence = [
     <div class="container">
       <div class="section-head section-head-center">
         <p class="eyebrow">Three ways to start</p>
-        <h2>Choose who operates the system.</h2>
-        <p class="muted">Begin with a workspace you run, expand around one role, or move proven recurring work into a managed environment.</p>
+        <h2>You direct it → You operate it → We maintain it.</h2>
+        <p class="muted">Each level adds implementation depth and operational responsibility without taking consequential decisions away from you.</p>
       </div>
       <div class="service-ladder">
-        <ServiceCard service={personalAssistantStarter} label="Start here" featured />
-        <ServiceCard service={assistantRoleSystem} label="Build around one role" />
-        <ServiceCard service={managedAutomation} label="Managed for you" />
+        <ServiceCard service={personalAgentSetup} label="You direct it" featured />
+        <ServiceCard service={roleAutomationSystem} label="You operate it" />
+        <ServiceCard service={managedAutomation} label="We maintain it" />
       </div>
 
       <aside class="care-strip" aria-label="Appliance Care Plan">
@@ -142,7 +142,7 @@ const reviewEvidence = [
           <p class="eyebrow">Appliance Care Plan</p>
           <h3>$250 <span>/ month</span></h3>
         </div>
-        <p>Hardware rental, monitoring, updates, configuration backup checks, reporting, break/fix support, and up to 60 minutes of minor adjustments.</p>
+        <p>Appliance rental, automated monitoring, backup verification, routine maintenance, failure investigation, reporting, business-hours support, and up to 30 minutes of minor adjustments.</p>
         <a href="/pricing#care-plan" class="btn btn-secondary">See plan boundaries</a>
       </aside>
     </div>
@@ -185,13 +185,13 @@ const reviewEvidence = [
         <h2>A dedicated home for work that should keep running.</h2>
         <p class="lede">For proven recurring workflows, OriginsLynk provides and maintains a separate, low-profile device for your business.</p>
         <ul class="appliance-list">
-          <li>OriginsLynk-owned hardware selected for the workload and rented as part of the service</li>
-          <li>Separate environment, credentials, and settings for each client</li>
-          <li>Monitoring, configuration backup checks, and maintenance</li>
-          <li>Six configured workflows, with no more than two actively running automations</li>
+          <li>An OriginsLynk-owned appliance dedicated to one client and placed at the client's location</li>
+          <li>An isolated environment with separate credentials and settings</li>
+          <li>Automated monitoring, backup verification, failure investigation, and routine maintenance</li>
+          <li>The client supplies power, internet, account authorization, and reasonable physical access</li>
           <li>Human approval points where consequences matter</li>
         </ul>
-        <a href="/services#managed-automation" class="btn btn-secondary">See managed service details</a>
+        <a href="/services#managed-appliance" class="btn btn-secondary">See managed service details</a>
       </div>
       <ApplianceVisual />
     </div>

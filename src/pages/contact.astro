@@ -9,7 +9,7 @@ const configured = endpoint.length > 0;
 
 <Base
   title="Request a workflow review"
-  description="Tell OriginsLynk which repetitive task consumes the most time, which tools are involved, and what result would make the work worthwhile."
+  description="Request an OriginsLynk discovery consultation about a repetitive business task, current software, operating boundaries, and the appropriate service tier."
 >
   <section class="section-cream contact-section">
     <div class="container form-layout">
@@ -31,9 +31,9 @@ const configured = endpoint.length > 0;
         <div class="form-boundary">
           <p><strong>Keep sensitive information out of this form.</strong></p>
           <p>
-            Do not submit passwords, access codes, private keys, financial account numbers,
-            medical information, or private client records. Account access is handled
-            separately after a project is approved.
+            Do not submit passwords, API keys, private client records, financial account
+            details, health information, or other sensitive credentials through this form.
+            Account access is handled separately after a project is approved.
           </p>
           <a href="/trust#data-handling">How OriginsLynk handles access and information →</a>
         </div>
@@ -62,7 +62,7 @@ const configured = endpoint.length > 0;
             <legend><span>01</span> About you</legend>
             <div class="field-grid">
               <div class="field">
-                <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+                <label for="name">Full name <span class="req" aria-hidden="true">*</span></label>
                 <input type="text" id="name" name="name" required autocomplete="name" maxlength="100" />
               </div>
 
@@ -72,8 +72,18 @@ const configured = endpoint.length > 0;
               </div>
 
               <div class="field">
-                <label for="organization">Business or organization <span class="optional">(optional)</span></label>
-                <input type="text" id="organization" name="organization" autocomplete="organization" maxlength="140" />
+                <label for="phone">Phone <span class="optional">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="40" />
+              </div>
+
+              <div class="field">
+                <label for="organization">Business name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="organization" name="organization" required autocomplete="organization" maxlength="140" />
+              </div>
+
+              <div class="field">
+                <label for="industry">Industry <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="industry" name="industry" required maxlength="120" placeholder="Professional services, construction, retail…" />
               </div>
 
               <div class="field">
@@ -94,21 +104,59 @@ const configured = endpoint.length > 0;
           <fieldset>
             <legend><span>02</span> The work to improve</legend>
             <div class="field">
-              <label for="problem">What repeats most? <span class="req" aria-hidden="true">*</span></label>
-              <p class="hint" id="problem-hint">Describe the first task you would hand off in plain language.</p>
+              <label for="problem">Main repetitive task or workflow <span class="req" aria-hidden="true">*</span></label>
+              <p class="hint" id="problem-hint">Describe the steps and friction in plain language without including private records.</p>
               <textarea id="problem" name="problem" rows="5" required maxlength="1200" aria-describedby="problem-hint"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="tools">Current software or accounts involved <span class="req" aria-hidden="true">*</span></label>
+              <p class="hint" id="tools-hint">List product categories or account names only—never passwords, keys, or access codes.</p>
+              <textarea id="tools" name="tools" rows="3" required maxlength="500" aria-describedby="tools-hint"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="hours">Approximate hours spent each week <span class="req" aria-hidden="true">*</span></label>
+              <select id="hours" name="hours" required>
+                <option value="">Select a range</option>
+                <option value="Less than 2 hours">Less than 2 hours</option>
+                <option value="2–5 hours">2–5 hours</option>
+                <option value="6–10 hours">6–10 hours</option>
+                <option value="11–20 hours">11–20 hours</option>
+                <option value="More than 20 hours">More than 20 hours</option>
+              </select>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend><span>03</span> Where to start</legend>
+            <legend><span>03</span> Safeguards and scheduling</legend>
+            <div class="field">
+              <label for="sensitivity">Does this work involve sensitive or regulated information? <span class="req" aria-hidden="true">*</span></label>
+              <select id="sensitivity" name="sensitivity" required>
+                <option value="">Select one</option>
+                <option value="No sensitive or regulated information known">No sensitive or regulated information known</option>
+                <option value="Sensitive or confidential business information">Sensitive or confidential business information</option>
+                <option value="Financial information">Financial information</option>
+                <option value="Health information">Health information</option>
+                <option value="Legal information">Legal information</option>
+                <option value="Other regulated or high-risk information">Other regulated or high-risk information</option>
+                <option value="Not sure">Not sure</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="timeline">Preferred consultation time <span class="req" aria-hidden="true">*</span></label>
+              <p class="hint" id="timeline-hint">Give a few days or time windows and include your time zone.</p>
+              <input type="text" id="timeline" name="timeline" required maxlength="160" aria-describedby="timeline-hint" placeholder="Weekday mornings, Eastern time" />
+            </div>
+
             <div class="field">
               <label for="service">Service you are considering <span class="optional">(optional)</span></label>
               <select id="service" name="service">
                 <option value="">Not sure yet</option>
-                <option value="personal-ai-assistant-starter">$750 Personal AI Assistant Setup</option>
-                <option value="assistant-role-system">$1,200 AI Workflow System</option>
-                <option value="managed-automation">From $2,800 Managed Automation Appliance</option>
+                <option value="personal-ai-agent-setup">$750 Personal AI Agent Setup</option>
+                <option value="role-automation-system">$1,200 Role Automation System</option>
+                <option value="managed-automation-appliance">Managed Automation Appliance from $2,800 plus $250/month</option>
               </select>
             </div>
           </fieldset>
@@ -116,9 +164,10 @@ const configured = endpoint.length > 0;
           <div class="consent-field">
             <input type="checkbox" id="consent" name="consent" value="yes" required />
             <label for="consent">
-              OriginsLynk may use this information only to respond to my request.
+              I consent to OriginsLynk contacting me about this request and using the
+              submitted information as described in the Privacy Policy.
               <span class="req" aria-hidden="true">*</span>
-              <a href="/privacy">Read the privacy notice.</a>
+              <a href="/privacy">Read the Privacy Policy.</a>
             </label>
           </div>
 

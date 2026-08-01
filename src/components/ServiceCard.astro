@@ -9,23 +9,18 @@ interface Props {
 }
 
 const { service, label, featured = false, details = false }: Props = Astro.props;
-const responsibility = service.id === 'personal-ai-assistant-starter'
-  ? 'You operate it.'
-  : service.id === 'assistant-role-system'
-    ? 'We build it. You run it.'
-    : 'We operate it. You benefit.';
 const visibleIncludes = details ? service.includes : service.includes.slice(0, 3);
 ---
 
 <article class:list={['service-card', { featured, managed: service.managed }]} id={service.id} data-service={service.id}>
   <div class={`service-visual visual-${service.id}`} aria-hidden="true">
-    {service.id === 'personal-ai-assistant-starter' && (
+    {service.id === 'personal-ai-agent-setup' && (
       <div class="workstation"><span class="screen"><i></i><i></i><i></i></span><span class="stand"></span></div>
     )}
-    {service.id === 'assistant-role-system' && (
+    {service.id === 'role-automation-system' && (
       <div class="connections"><span></span><span></span><span></span><span></span></div>
     )}
-    {service.id === 'managed-automation' && (
+    {service.id === 'managed-automation-appliance' && (
       <div class="mini-device"><span>OL</span><i></i></div>
     )}
   </div>
@@ -40,6 +35,8 @@ const visibleIncludes = details ? service.includes : service.includes.slice(0, 3
       <>
         <p class="service-subhead">Best for</p>
         <p>{service.bestFor}</p>
+        <p class="service-subhead">What OriginsLynk builds</p>
+        <p>{service.builds}</p>
       </>
     )}
 
@@ -47,15 +44,29 @@ const visibleIncludes = details ? service.includes : service.includes.slice(0, 3
       {visibleIncludes.map((item) => <li>{item}</li>)}
     </ul>
 
-    <p class="responsibility">{responsibility}</p>
+    <p class="responsibility">{service.shortLabel}</p>
 
     {details && (
-      <div class="exclusions">
-        <p class="service-subhead">Does not include</p>
-        <ul class="crosslist">
-          {service.excludes.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
+      <>
+        <div class="responsibility-details">
+          <p class="service-subhead">What you operate</p>
+          <ul class="card-list">
+            {service.clientResponsibilities.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="responsibility-details">
+          <p class="service-subhead">What OriginsLynk remains responsible for</p>
+          <ul class="card-list">
+            {service.originsLynkResponsibilities.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="exclusions">
+          <p class="service-subhead">Does not include</p>
+          <ul class="crosslist">
+            {service.excludes.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </>
     )}
 
     <a
@@ -94,6 +105,9 @@ const visibleIncludes = details ? service.includes : service.includes.slice(0, 3
   .managed .card-list li::before { border-color: #a9c29f; }
   .responsibility { margin-top: var(--space-6); padding-top: var(--space-4); border-top: var(--border-thin) solid var(--rule); color: var(--ink); font-weight: 720; font-size: var(--text-sm); }
   .managed .responsibility { border-color: var(--rule-inverse); }
+  .responsibility-details { margin-top: var(--space-5); }
+  .responsibility-details .service-subhead { margin-top: 0; }
+  .responsibility-details .card-list { margin-top: var(--space-3); }
   .exclusions { margin-top: var(--space-5); padding: var(--space-4); background: var(--ground-sunken); border-radius: var(--radius); }
   .exclusions .service-subhead { margin-top: 0; }
   .managed .exclusions { background: rgba(255,255,255,.055); }

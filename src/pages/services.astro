@@ -1,237 +1,170 @@
 ---
 import Base from '../layouts/Base.astro';
+import ApplianceVisual from '../components/ApplianceVisual.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import {
-  assistantRoleSystem,
-  managedAutomation,
-  personalAssistantStarter,
-} from '../data/services';
+import { managedAutomation, personalAgentSetup, roleAutomationSystem } from '../data/services';
 
-const roles = [
-  {
-    role: 'Marketing director',
-    items: [
-      'Campaign brief intake and asset-request routing',
-      'Content calendar preparation',
-      'Performance-summary drafts',
-      'Missing asset and approval tracking',
-    ],
-  },
-  {
-    role: 'Real-estate professional',
-    items: [
-      'Lead context prepared before you call',
-      'Follow-up drafts waiting for your approval',
-      'Appointment preparation summaries',
-      'Alerts on conversations that have gone quiet',
-      'Daily priority summary',
-    ],
-  },
-  {
-    role: 'Administrator',
-    items: [
-      'Inbox triage and draft queue',
-      'Meeting preparation',
-      'Document intake and filing',
-      'Weekly status reporting and deadline reminders',
-    ],
-  },
-  {
-    role: 'Virtual assistant',
-    items: [
-      'Lead research and follow-up preparation',
-      'Client onboarding checklists',
-      'Content repurposing',
-      'Appointment and travel preparation',
-    ],
-  },
-  {
-    role: 'Small-business operator',
-    items: [
-      'Daily priority brief and inquiry routing',
-      'Estimate or proposal preparation',
-      'Overdue follow-up list',
-      'Operating-report preparation',
-    ],
-  },
-  {
-    role: 'Office manager',
-    items: [
-      'Vendor and supply reminders',
-      'Staff onboarding checklists',
-      'Maintenance issue routing',
-      'Recurring policy and document review',
-    ],
-  },
+const progression = [personalAgentSetup, roleAutomationSystem, managedAutomation];
+
+const examples = [
+  'Preparing email drafts for approval',
+  'Summarizing incoming information',
+  'Organizing follow-up tasks',
+  'Creating recurring reports',
+  'Updating approved business records',
+  'Preparing marketing content for review',
+  'Collecting information from supported systems',
+  'Routing exceptions to a person',
+  'Tracking routine operational work',
 ];
 ---
 
 <Base
   title="Services"
-  description="Personal AI Assistant Setup from $750, a four-workflow role system, and a dedicated Managed Automation Appliance."
+  description="Compare Personal AI Agent Setup, Role Automation System, and the OriginsLynk-managed dedicated automation appliance."
 >
   <section class="section-cream page-hero">
     <div class="container container-narrow">
       <p class="eyebrow">Services</p>
-      <h1>Three ways to recover time, with clear operating boundaries.</h1>
-      <p class="lede" style="margin-top: var(--space-5)">
-        Start with a supervised workspace you operate yourself, expand it around your
-        role, or move proven recurring work into managed infrastructure.
+      <h1>Three levels of implementation and operational support.</h1>
+      <p class="lede">
+        OriginsLynk builds configured business systems—not access to a named AI product.
+        Choose the level based on who should start the work, operate the workflows, and
+        maintain the environment after launch.
       </p>
     </div>
   </section>
 
-  <!-- ============ SERVICE LADDER ============ -->
-  <section class="section-sunken">
+  <section class="progression-section" aria-labelledby="progression-title">
+    <div class="container">
+      <div class="section-head section-head-center">
+        <p class="eyebrow">Service progression</p>
+        <h2 id="progression-title">You direct it → You operate it → We maintain it</h2>
+        <p class="muted">The system becomes deeper and OriginsLynk takes on more operational responsibility at each level.</p>
+      </div>
+      <ol class="progression">
+        {progression.map((service, index) => (
+          <li>
+            <span aria-hidden="true">0{index + 1}</span>
+            <strong>{service.shortLabel}</strong>
+            <p>{service.name}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-sunken service-sections">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Service ladder</p>
-        <h2>Choose based on who operates the system.</h2>
-        <p class="muted">The $750 Assistant Setup and $1,200 AI Workflow System are client-operated. The Managed Automation Appliance is monitored and maintained by OriginsLynk.</p>
+        <p class="eyebrow">What each service includes</p>
+        <h2>Scope and responsibility, side by side.</h2>
+        <p class="muted">Each section states what is built, what you operate, what OriginsLynk supports, and what remains outside the price.</p>
       </div>
-      <div class="service-grid">
-        <ServiceCard service={personalAssistantStarter} label="Service one · start here" featured details />
-        <ServiceCard service={assistantRoleSystem} label="Service two · expand the role" details />
-        <ServiceCard service={managedAutomation} label="Service three · proven recurring work" details />
-      </div>
-      <div class="separation-note">
-        <p><strong>The first two services remain yours to operate.</strong> Choose the appliance only when proven recurring work needs a dedicated environment, monitoring, backups, and ongoing care.</p>
+      <div class="service-list">
+        <ServiceCard service={personalAgentSetup} label="Tier 1 · You direct it" featured details />
+        <ServiceCard service={roleAutomationSystem} label="Tier 2 · You operate it" details />
+        <ServiceCard service={managedAutomation} label="Tier 3 · We maintain it" details />
       </div>
     </div>
   </section>
 
-  <!-- ============ EXAMPLE ROLE SYSTEMS ============ -->
-  <section id="use-cases">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Example role systems</p>
-        <h2>What this looks like for a specific job.</h2>
-        <p class="muted">
-          These are examples, not a fixed menu. The best first workflow is frequent,
-          time-consuming, predictable, and easy for a person to verify.
+  <section id="managed-appliance" class="section-dark appliance-section">
+    <div class="container appliance-grid">
+      <div>
+        <p class="eyebrow">Managed appliance, in plain language</p>
+        <h2>A dedicated small computer at your location.</h2>
+        <p class="lede appliance-intro">
+          OriginsLynk owns the appliance and remotely manages the agreed workflow
+          environment on it. It is dedicated to one client and is not shared with another
+          business.
+        </p>
+        <ul class="checklist appliance-list">
+          <li>You provide power, internet connectivity, and reasonable physical access.</li>
+          <li>Your accounts and business data remain yours.</li>
+          <li>You authorize account access through the approved onboarding process.</li>
+          <li>The appliance is returned when managed service ends.</li>
+          <li>Offboarding, access removal, and available exports follow the service agreement.</li>
+          <li>The environment may depend on third-party services whose availability and terms can change.</li>
+        </ul>
+        <p class="small appliance-note">
+          The public site does not promise a hardware model or internal infrastructure
+          design. The supplied device is selected for the agreed workload and availability.
         </p>
       </div>
+      <ApplianceVisual />
+    </div>
+  </section>
 
-      <div class="grid">
-        {roles.map((r) => (
-          <article class="card card-accent">
-            <h3>{r.role}</h3>
-            <ul class="card-list">
-              {r.items.map((i) => <li>{i}</li>)}
-            </ul>
-          </article>
-        ))}
+  <section id="examples">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Example workflows</p>
+        <h2>Practical work a system may help prepare or route.</h2>
+        <p class="muted">Examples are evaluated during discovery and are not automatically included in every package.</p>
+      </div>
+      <div class="example-grid">
+        {examples.map((example) => <p>{example}</p>)}
       </div>
     </div>
   </section>
 
-  <!-- ============ UPGRADE PATH ============ -->
-  <section class="section-dark upgrade-section">
+  <section class="section-sunken integration-section">
     <div class="container container-narrow">
-      <p class="eyebrow">The path between them</p>
-      <h2>Automate the thing you got tired of starting yourself.</h2>
-      <p class="muted" style="margin-top: var(--space-4)">
-        The personal assistant tends to reveal which tasks you still have to remember to
-        begin. Those are the honest candidates for automation — chosen from observed
-        friction, not from a sales conversation.
+      <p class="eyebrow">Supported business integrations</p>
+      <h2>Connections are evaluated during discovery.</h2>
+      <p class="lede">
+        OriginsLynk prioritizes official APIs, supported connectors, and documented
+        authorization methods. Unstable, undocumented, or unusually complex connections
+        may be declined, treated as experimental, or quoted separately.
       </p>
-
-      <ol class="path">
-        <li><strong>Personal AI Assistant Setup.</strong> Two guided workflows teach you what is useful and what still needs review.</li>
-        <li><strong>AI Workflow System.</strong> Four workflows organize recurring work around one person and one role.</li>
-        <li><strong>Managed Automation Appliance.</strong> Six configured workflows, including no more than two active automations, run in a dedicated environment.</li>
-        <li><strong>Measured expansion.</strong> Add only the workflows that prove their value in real use.</li>
-      </ol>
-
-      <p class="small muted" style="margin-top: var(--space-6)">
-        There is no requirement to move up this list, and no discount for doing it faster.
-        Plenty of people should stop at step one.
+      <p class="muted disclosure">
+        OriginsLynk configures and manages systems that may use selected third-party
+        software, AI services, integrations, and infrastructure. Specific providers may
+        change according to compatibility, availability, security, and client requirements.
       </p>
-
       <div class="btn-row">
-        <a href="/pricing" class="btn btn-primary">See pricing</a>
-        <a href="/contact" class="btn btn-secondary">Request a workflow review</a>
+        <a href="/contact" class="btn btn-primary">Request a discovery consultation</a>
+        <a href="/pricing" class="btn btn-secondary">Review pricing</a>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .service-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-    align-items: stretch;
-  }
-
-  .separation-note {
-    margin-top: var(--space-6);
-    padding: var(--space-5);
-    background: var(--ground-raised);
-    border: var(--border-thin) solid var(--rule);
-    border-left: var(--border-thick) solid var(--accent);
-    border-radius: var(--radius);
-  }
-
-  .separation-note p { color: var(--ink-muted); max-width: 84ch; }
-  .separation-note strong { color: var(--ink); }
-
   .page-hero h1 { max-width: 16ch; }
-  .page-hero .lede { max-width: 56ch; }
+  .page-hero .lede { max-width: 62ch; margin-top: var(--space-5); }
 
-  #use-cases .grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
-  #use-cases .card { box-shadow: none; }
+  .progression-section { padding-block: clamp(3.5rem, 6vw, var(--space-8)); }
+  .progression { display: grid; gap: var(--space-4); list-style: none; padding: 0; }
+  .progression li { position: relative; padding: var(--space-5); border-top: var(--border-thick) solid var(--accent); background: var(--ground-raised); }
+  .progression li > span { color: var(--accent-text); font-size: var(--text-xs); font-weight: 720; }
+  .progression strong, .progression p { display: block; }
+  .progression strong { margin-top: var(--space-4); font-size: var(--text-lg); }
+  .progression p { margin-top: var(--space-2); color: var(--ink-muted); font-size: var(--text-sm); }
 
-  .upgrade-section .path li { color: var(--ink-inverse-muted); border-left-color: var(--rule-inverse); }
-  .upgrade-section .path li::before {
-    background: var(--ground-inverse);
-    border-color: rgba(255,255,255,.32);
-    color: var(--ink-inverse-muted);
+  .service-list { display: grid; gap: var(--space-6); }
+  .service-list > :global(article) { scroll-margin-top: 7rem; }
+
+  .appliance-grid { display: grid; gap: var(--space-8); align-items: center; }
+  .appliance-intro { margin-top: var(--space-5); }
+  .appliance-list { margin-top: var(--space-6); }
+  .appliance-list li { color: var(--ink-inverse-muted); }
+  .appliance-list li::before { border-color: #a9c99e; }
+  .appliance-note { margin-top: var(--space-6); color: var(--ink-inverse-muted); }
+
+  .example-grid { display: grid; gap: var(--space-3); }
+  .example-grid p { padding: var(--space-4); border-left: var(--border-thick) solid var(--accent); background: var(--ground-sunken); color: var(--ink-muted); font-size: var(--text-sm); }
+
+  .integration-section .lede { margin-top: var(--space-4); }
+  .integration-section .disclosure { margin-top: var(--space-5); }
+
+  @media (min-width: 42em) {
+    .progression { grid-template-columns: repeat(3, 1fr); }
+    .example-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  .upgrade-section .path strong { color: var(--ink-inverse); }
-  .upgrade-section .small { color: var(--ink-inverse-muted); }
-
   @media (min-width: 64em) {
-    .service-grid { grid-template-columns: repeat(3, 1fr); }
+    .appliance-grid { grid-template-columns: 1fr 1fr; }
+    .example-grid { grid-template-columns: repeat(3, 1fr); }
   }
-
-  .path {
-    counter-reset: path;
-    list-style: none;
-    padding: 0;
-    margin-top: var(--space-6);
-    max-width: var(--measure);
-  }
-
-  .path li {
-    counter-increment: path;
-    position: relative;
-    padding-left: var(--space-7);
-    padding-bottom: var(--space-5);
-    border-left: var(--border-thin) solid var(--rule-strong);
-    margin-left: 11px;
-    color: var(--ink-muted);
-    font-size: var(--text-sm);
-  }
-
-  .path li:last-child { border-left-color: transparent; padding-bottom: 0; }
-
-  .path li::before {
-    content: counter(path);
-    position: absolute;
-    left: -11px;
-    top: 0;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--ground);
-    border: var(--border-thin) solid var(--rule-strong);
-    color: var(--ink-faint);
-    font-size: var(--text-xs);
-    font-weight: 650;
-    display: grid;
-    place-items: center;
-  }
-
-  .path strong { color: var(--ink); }
 </style>

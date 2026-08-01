@@ -68,8 +68,8 @@ prepared-email handoff if the Worker returns an error.
 src/
   layouts/Base.astro       shell, metadata, Open Graph, JSON-LD
   components/              navigation, workflow visuals, representative appliance, service card
-  data/services.ts         shared package names, pricing, scope, and boundaries
-  pages/                   index, services, pricing, FAQ, trust, privacy, contact, 404
+  data/services.ts         canonical tier names, pricing, scope, and responsibility boundaries
+  pages/                   marketing, pricing, discovery, trust, privacy, accessibility, and 404 routes
   styles/tokens.css        warm editorial design tokens
   styles/global.css        reset, typography, layout, components
 public/                    favicon, og image, robots.txt, _headers
@@ -112,6 +112,12 @@ Cloudflare Pages, connected to this repository. A push to `main` builds and depl
 Response headers, including the Content-Security-Policy, are in `public/_headers`.
 The `www` → apex redirect is a Cloudflare Redirect Rule, not a file here — see the
 ops repo's `docs/CLOUDFLARE_CHECKLIST.md`.
+
+## Public service model
+
+The canonical three-tier model and public-language rules are maintained in
+`docs/WEBSITE-SERVICE-MODEL.md`. Update that file and `src/data/services.ts` together
+whenever an approved offer changes.
 
 ## Accessibility
 

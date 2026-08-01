@@ -32,7 +32,12 @@ const validFields = {
   email: 'person@example.com',
   organization: 'Test Company',
   role: 'Marketing director',
+  industry: 'Professional services',
   problem: 'Preparing the same weekly report.',
+  tools: 'Email and spreadsheets',
+  hours: '6–10 hours',
+  sensitivity: 'No sensitive or regulated information known',
+  timeline: 'Weekday mornings, Eastern time',
   consent: 'yes',
 };
 
@@ -58,6 +63,21 @@ test('rejects missing required fields without sending', async () => {
   assert.equal(sends, 0);
 });
 
+test('requires every discovery field before sending', async () => {
+  for (const field of ['organization', 'role', 'industry', 'problem', 'tools', 'hours', 'sensitivity', 'timeline']) {
+    let sends = 0;
+    const fields = { ...validFields };
+    delete fields[field];
+    const result = await worker.fetch(
+      request(fields),
+      environment(async () => { sends += 1; }),
+    );
+
+    assert.equal(result.status, 400, `${field} should be required`);
+    assert.equal(sends, 0, `${field} should fail before sending`);
+  }
+});
+
 test('silently accepts the honeypot without sending', async () => {
   let sends = 0;
   const result = await worker.fetch(
@@ -72,7 +92,7 @@ test('silently accepts the honeypot without sending', async () => {
 test('sends a constrained plain-text message', async () => {
   const messages = [];
   const result = await worker.fetch(
-    request({ ...validFields, tools: 'Email and spreadsheets', phone: '555-0100' }),
+    request({ ...validFields, phone: '555-0100' }),
     environment(async (message) => { messages.push(message); }),
   );
 
@@ -83,6 +103,8 @@ test('sends a constrained plain-text message', async () => {
   assert.equal(messages[0].replyTo, 'person@example.com');
   assert.match(messages[0].subject, /Test Company/);
   assert.match(messages[0].text, /What repeats most:\nPreparing the same weekly report\./);
+  assert.match(messages[0].text, /Industry:\nProfessional services/);
+  assert.match(messages[0].text, /Preferred consultation time:\nWeekday mornings, Eastern time/);
   assert.doesNotMatch(messages[0].text, /consent|company_website/i);
 });
 

@@ -3,44 +3,72 @@ import Base from '../layouts/Base.astro';
 
 const faqs = [
   {
-    question: 'What exactly does OriginsLynk automate?',
-    answer: 'OriginsLynk helps with repetitive administrative work such as organizing information, preparing drafts, assembling reports, creating reminders, updating records, and routing work for approval. The exact boundaries are written down before implementation.',
+    question: 'What is a role-specific AI agent?',
+    answer: 'It is an AI work environment configured around one person’s responsibilities, preferences, instructions, and recurring tasks. OriginsLynk adds the operating guidance, reusable task systems, approval boundaries, testing, and training that make it useful for a particular role.',
   },
   {
-    question: 'Which service should I choose?',
-    answer: 'Choose the $750 Personal AI Assistant Setup for two guided workflows you start yourself. Choose the $1,200 AI Workflow System for four workflows around one role. Choose the Managed Automation Appliance, starting at $2,800, when proven recurring work should stay available and OriginsLynk should maintain the environment.',
+    question: 'Which tier is appropriate for me?',
+    answer: 'Choose Personal AI Agent Setup when you want to direct every task. Choose Role Automation System when you want three or four implemented workflows but will continue operating them. Choose Managed Automation Appliance when a dedicated environment and ongoing OriginsLynk maintenance are justified. Discovery confirms the fit before a proposal.',
   },
   {
-    question: 'Will this replace the tools I already use?',
-    answer: 'Usually not. The goal is to work around your existing email, calendar, documents, spreadsheets, and business accounts so you do less duplicate work without replacing an otherwise useful system.',
+    question: 'Does OriginsLynk build the underlying AI model?',
+    answer: 'No. OriginsLynk’s value is role and workflow discovery, configuration, business-specific instructions, implementation, safeguards, testing, documentation, training, and managed operation. Selected third-party systems may provide underlying software, AI services, integrations, and infrastructure.',
   },
   {
-    question: 'Will it send messages or make decisions without me?',
-    answer: 'Not by default. Customer-facing messages, important record changes, and higher-risk actions remain human-approved unless a clearly defined, low-risk action is separately reviewed and agreed in writing.',
+    question: 'Why are specific software providers not listed?',
+    answer: 'OriginsLynk selects and configures appropriate third-party software and AI services according to each project’s compatibility, security, and workflow requirements. Required client-owned subscriptions and data-processing providers are disclosed during proposal and onboarding.',
   },
   {
-    question: 'Who owns my data and accounts?',
-    answer: 'You keep ownership of your business data, accounts, subscriptions, and business outputs. OriginsLynk retains its reusable methods and generalized templates, without claiming ownership of your source information.',
+    question: 'What subscriptions will I need?',
+    answer: 'That depends on the agreed workflows and accounts you already use. Required subscriptions, provider charges, message fees, storage fees, and usage-based costs are disclosed before onboarding and are paid by the client unless the written proposal says otherwise.',
   },
   {
-    question: 'How are passwords and account access handled?',
-    answer: 'Credentials are entered directly or transferred through an approved secure method, never ordinary email. Access is limited to what the agreed workflow needs, and you can revoke access from your own accounts.',
+    question: 'Who owns the managed appliance?',
+    answer: 'OriginsLynk owns the appliance and rents it as part of the managed service. The appliance is dedicated to one client and must be returned when managed service ends.',
   },
   {
-    question: 'What happens after launch?',
-    answer: 'The Assistant Setup includes 14 days of stabilization and the AI Workflow System includes 30 days. The Managed Automation Appliance includes a 30-day launch period, followed by the $250 monthly Appliance Care Plan.',
+    question: 'Does the appliance remain at my location?',
+    answer: 'Yes, during the managed service. The dedicated small computer is placed at the client’s site. The client provides power, internet connectivity, and reasonable physical access while OriginsLynk remotely administers the agreed environment.',
   },
   {
-    question: 'What does the $250 monthly fee cover?',
-    answer: 'It covers appliance rental, monitoring, software and security updates, configuration backup checks, break/fix support, a monthly activity report, and up to 60 minutes of minor adjustments. It does not include new workflows.',
+    question: 'Who owns my accounts and business data?',
+    answer: 'You retain ownership of your accounts, subscriptions, client-provided business data, and business outputs. OriginsLynk retains its reusable methods and generalized implementation patterns without claiming ownership of your source information.',
   },
   {
-    question: 'Can I add workflows later?',
-    answer: 'Yes. An additional templated workflow is $300 when it uses the existing setup, supported connections, and established templates. Work involving new systems, advanced authentication, substantial custom development, or greater risk is quoted separately, normally from $500–$1,500+.',
+    question: 'Can I revoke account access?',
+    answer: 'Yes. Client-controlled account authorization is preferred so you can revoke access from the account itself. Credentials and authorization are handled through the approved onboarding process, never through the public consultation form or ordinary email.',
   },
   {
-    question: 'What happens if something breaks?',
-    answer: 'OriginsLynk investigates failures during the applicable support window. Managed clients receive monitoring and break/fix support. Outside-provider outages, internet or power failures, and account restrictions may require the client or outside provider to resolve their portion.',
+    question: 'Will the system send messages or change records automatically?',
+    answer: 'Consequential messages, record changes, and business actions remain human-approved unless a specific workflow authorization establishes a different review process in writing. Low-risk automation boundaries are documented and tested before production use.',
+  },
+  {
+    question: 'What happens when an integration stops working?',
+    answer: 'OriginsLynk investigates detected failures during the support period or managed-care hours in the service agreement. A provider outage, changed authorization, account restriction, or changed feature may require the client or provider to resolve its portion, and replacement work may be quoted separately.',
+  },
+  {
+    question: 'Are AI-generated outputs always correct?',
+    answer: 'No. AI-generated content and decisions may be incomplete or incorrect. Clients remain responsible for reviewing outputs and approving consequential business actions unless a written workflow authorization establishes a different review process.',
+  },
+  {
+    question: 'What does the monthly care plan include?',
+    answer: 'The $250 monthly plan includes appliance rental, automated monitoring, backup verification, routine maintenance, failure investigation, a monthly service report, business-hours support, and up to 30 minutes of minor workflow adjustments.',
+  },
+  {
+    question: 'What is excluded from the monthly plan?',
+    answer: 'It excludes new workflows, new integrations, major workflow changes, vendor migrations, custom development, after-hours emergency response, guaranteed uptime, third-party subscriptions, and usage-based charges.',
+  },
+  {
+    question: 'What happens when I cancel?',
+    answer: 'OriginsLynk removes managed access and credentials, provides available exports described in the service agreement, follows the agreed data-retention and offboarding process, and arranges return of the OriginsLynk-owned appliance. Client-owned accounts remain with the client.',
+  },
+  {
+    question: 'Are regulated or high-risk workflows supported?',
+    answer: 'They are excluded by default. Work involving regulated information or consequential medical, legal, credit, employment, insurance, or financial decisions requires explicit written approval, appropriate safeguards, and separate scope. OriginsLynk may decline the work.',
+  },
+  {
+    question: 'How are additional workflows priced?',
+    answer: 'Additional templated workflows start at $300 only when they use the existing environment and supported integrations, follow an established OriginsLynk pattern, require no major custom development, and take about two to three implementation hours. New, complex, unsupported, or high-risk work is quoted separately.',
   },
 ];
 ---

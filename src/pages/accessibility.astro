@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL || 'bryce@originslynk.com';
+---
+
+<Base
+  title="Accessibility"
+  description="OriginsLynk's accessibility approach, supported website features, and contact method for reporting an access barrier."
+>
+  <section class="section-cream page-hero">
+    <div class="container container-narrow">
+      <p class="eyebrow">Accessibility</p>
+      <h1>A website intended to work for more people.</h1>
+      <p class="lede">OriginsLynk aims to provide a clear, keyboard-accessible, readable experience across common devices and assistive technologies.</p>
+      <p class="small muted updated">Updated August 1, 2026</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container container-narrow accessibility-copy">
+      <article>
+        <h2>Current accessibility features</h2>
+        <ul class="checklist">
+          <li>Semantic page landmarks and heading structure</li>
+          <li>A skip link and keyboard-accessible navigation</li>
+          <li>Visible focus indicators</li>
+          <li>Explicit form labels, instructions, validation, and status messages</li>
+          <li>Color contrast designed for readable text and controls</li>
+          <li>Layouts that adapt to narrow screens without horizontal scrolling</li>
+          <li>Reduced-motion preferences respected</li>
+          <li>Descriptive links and text alternatives for meaningful visuals</li>
+        </ul>
+      </article>
+
+      <article>
+        <h2>Ongoing improvement</h2>
+        <p>
+          Accessibility can vary by browser, device, and assistive technology. OriginsLynk
+          tests important flows during site changes and will address confirmed barriers
+          according to their impact and available remedies.
+        </p>
+      </article>
+
+      <aside>
+        <h2>Report a barrier or request an alternative</h2>
+        <p>
+          Email <a href={`mailto:${email}?subject=Website%20accessibility`}>{email}</a> with
+          the page, the task you were trying to complete, and the browser or assistive
+          technology involved if you are comfortable sharing it. You may also request the
+          information in another reasonable format.
+        </p>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero h1 { max-width: 17ch; }
+  .page-hero .lede { margin-top: var(--space-5); }
+  .updated { margin-top: var(--space-4); }
+  .accessibility-copy { display: grid; gap: var(--space-7); }
+  .accessibility-copy article { padding-top: var(--space-5); border-top: var(--border-thin) solid var(--rule-strong); }
+  .accessibility-copy h2 { font-size: var(--text-xl); }
+  .accessibility-copy p, .accessibility-copy .checklist { margin-top: var(--space-4); color: var(--ink-muted); }
+  .accessibility-copy aside { padding: var(--space-6); background: var(--ground-sunken); border-left: var(--border-thick) solid var(--accent); border-radius: var(--radius); }
+  .accessibility-copy aside h2 { font-size: var(--text-lg); }
+</style>

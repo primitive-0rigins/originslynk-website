@@ -24,9 +24,15 @@ const prepareEmail = () => {
   const labels = {
     name: 'Name',
     email: 'Work email',
-    organization: 'Business or organization',
+    phone: 'Phone',
+    organization: 'Business name',
     role: 'Role',
-    problem: 'What repeats most',
+    industry: 'Industry',
+    problem: 'Main repetitive task or workflow',
+    tools: 'Current software or accounts involved',
+    hours: 'Approximate hours per week',
+    sensitivity: 'Sensitive or regulated information category',
+    timeline: 'Preferred consultation time',
     service: 'Service considered',
   };
   const lines = Object.entries(labels)

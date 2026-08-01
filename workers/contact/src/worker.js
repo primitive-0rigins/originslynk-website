@@ -6,17 +6,15 @@ const allowedOrigins = new Set([
 const fields = [
   ['name', 'Name', 100],
   ['email', 'Work email', 160],
-  ['organization', 'Business or organization', 140],
+  ['organization', 'Business name', 140],
   ['role', 'Role', 120],
+  ['industry', 'Industry', 120],
   ['problem', 'What repeats most', 1200],
-  ['tools', 'Tools or accounts involved', 300],
-  ['frequency', 'Frequency', 80],
+  ['tools', 'Tools or accounts involved', 500],
   ['hours', 'Hours per week', 20],
-  ['outcome', 'Desired result', 800],
   ['service', 'Service considered', 100],
-  ['users', 'People using the system', 40],
   ['sensitivity', 'Information involved', 100],
-  ['timeline', 'Preferred timing', 100],
+  ['timeline', 'Preferred consultation time', 160],
   ['phone', 'Phone', 40],
 ];
 
@@ -88,8 +86,14 @@ export default {
     if (
       !values.name ||
       !validEmail(values.email) ||
+      !values.organization ||
       !values.role ||
+      !values.industry ||
       !values.problem ||
+      !values.tools ||
+      !values.hours ||
+      !values.sensitivity ||
+      !values.timeline ||
       consent !== 'yes'
     ) {
       return response(
