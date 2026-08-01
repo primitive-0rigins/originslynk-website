@@ -1,19 +1,18 @@
 # Cloudflare Pages response headers.
 #
-# The site is fully static and ships only first-party scripts, which makes a strict
-# policy cheap to hold. Keep it that way: if a header below starts blocking
-# something you want to add, that is a prompt to ask whether the addition is worth
-# the exposure — not to weaken the header reflexively.
+# The site is fully static. OriginsLynk behavior ships as same-origin external
+# scripts; Cloudflare Pages injects its own performance beacon when Web Analytics
+# is enabled for the project.
 
 /*
-  # No third-party origins at all. 'unsafe-inline' for styles only, because Astro
-  # scopes component styles into inline <style> blocks. There is no inline script,
-  # so script-src stays strict.
+  # 'unsafe-inline' is allowed for styles only because Astro scopes component
+  # styles into inline <style> blocks. Executable inline script remains blocked.
+  # The Cloudflare Insights origin is the only permitted third-party script host.
   #
   # form-action: narrow `https:` to the exact form endpoint host once one is
   # chosen (DECISIONS.md D-04). As written, form-action and connect-src permit the
   # configured form request to use an HTTPS provider.
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https:; form-action 'self' https:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https:; form-action 'self' https:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY

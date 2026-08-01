@@ -71,11 +71,12 @@ value is needed, add a token instead of scattering literals across pages.
 - **Hardware stays honest.** `ApplianceVisual.astro` is labeled as a concept
   placeholder until the deployed unit is selected and photographed.
 - **No webfonts.** System stacks only: no third-party origin, no layout shift.
-- **Small first-party JavaScript only.** The site ships a lightweight analytics event
-  layer, accessible mobile navigation, FAQ filtering, and form-state handling. No
-  third-party analytics script is loaded. Events are pushed to `window.dataLayer` and
-  dispatched as `originslynk:analytics`; they contain event metadata, never form field
-  values or FAQ queries.
+- **Small first-party JavaScript only for site behavior.** The repository ships a
+  lightweight event layer, accessible mobile navigation, FAQ filtering, and form-state
+  handling as same-origin external scripts. Events are pushed to `window.dataLayer`
+  and dispatched as `originslynk:analytics`; they contain event metadata, never form
+  field values or FAQ queries. Cloudflare Pages may inject its own performance beacon
+  when Web Analytics is enabled for the project.
 
 ## Deployment
 

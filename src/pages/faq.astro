@@ -103,38 +103,7 @@ const faqs = [
   </section>
 </Base>
 
-<script>
-  type TrackingWindow = Window & {
-    originslynkTrack?: (event: string, details?: Record<string, string>) => void;
-  };
-
-  const search = document.querySelector<HTMLInputElement>('[data-faq-search]');
-  const items = Array.from(document.querySelectorAll<HTMLDetailsElement>('[data-faq-item]'));
-  const empty = document.querySelector<HTMLElement>('[data-faq-empty]');
-  const count = document.querySelector<HTMLElement>('#faq-result-count');
-  let tracked = false;
-
-  search?.addEventListener('input', () => {
-    const query = search.value.trim().toLowerCase();
-    let visible = 0;
-
-    items.forEach((item) => {
-      const matches = !query || (item.dataset.search || '').includes(query);
-      item.hidden = !matches;
-      if (matches) visible += 1;
-    });
-
-    if (count) count.textContent = query
-      ? `${visible} ${visible === 1 ? 'answer' : 'answers'} found.`
-      : `Showing all ${items.length} answers.`;
-    if (empty) empty.hidden = visible > 0;
-
-    if (!tracked && query.length >= 2) {
-      tracked = true;
-      (window as TrackingWindow).originslynkTrack?.('faq_search', { query_length: String(query.length) });
-    }
-  });
-</script>
+<script is:inline src="/scripts/faq.js" defer></script>
 
 <style>
   .page-hero h1 { max-width: 14ch; }
