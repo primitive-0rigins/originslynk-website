@@ -38,10 +38,28 @@ is nowhere for a secret to hide. Anything in this build is public.
 
 | Variable | Purpose |
 |---|---|
-| `PUBLIC_FORM_ENDPOINT` | Where the workflow-review form posts. If unset, the form prepares an addressed email for the visitor to review and send. |
+| `PUBLIC_FORM_ENDPOINT` | Optional override for the source-controlled production Worker URL. |
 | `PUBLIC_CONTACT_EMAIL` | Fallback contact address, shown in the footer. |
 
-Set the same variables in the Cloudflare Pages project settings for production.
+Only set these in Cloudflare Pages when intentionally overriding the source defaults.
+
+### Contact delivery Worker
+
+The public form posts to the separately deployed `originslynk-contact` Worker. Its
+private destination is stored in the `CONTACT_EMAIL` Worker secret and is not committed
+to this public repository. Visitors cannot select or change that recipient. The Worker
+validates the request origin and required fields, caps field sizes, uses the form's
+hidden spam trap, sends plain text only, and never logs submitted field values.
+
+```bash
+npm run test:contact-worker
+npx wrangler secret put CONTACT_EMAIL --config workers/contact/wrangler.jsonc
+npx wrangler deploy --config workers/contact/wrangler.jsonc
+```
+
+The production Worker URL is the site's source default. `PUBLIC_FORM_ENDPOINT` can
+override it for testing or a future endpoint move. The contact page retains its
+prepared-email handoff if the Worker returns an error.
 
 ## Structure
 
@@ -54,6 +72,7 @@ src/
   styles/tokens.css        warm editorial design tokens
   styles/global.css        reset, typography, layout, components
 public/                    favicon, og image, robots.txt, _headers
+workers/contact/           validated form-to-email Worker and deployment configuration
 design/og-source.svg       source for the Open Graph image
 ```
 
