@@ -38,7 +38,7 @@ is nowhere for a secret to hide. Anything in this build is public.
 
 | Variable | Purpose |
 |---|---|
-| `PUBLIC_FORM_ENDPOINT` | Where the workflow-review form posts. If unset, the contact page shows a direct-email fallback instead of a form that goes nowhere. |
+| `PUBLIC_FORM_ENDPOINT` | Where the workflow-review form posts. If unset, the form prepares an addressed email for the visitor to review and send. |
 | `PUBLIC_CONTACT_EMAIL` | Fallback contact address, shown in the footer. |
 
 Set the same variables in the Cloudflare Pages project settings for production.
@@ -48,7 +48,7 @@ Set the same variables in the Cloudflare Pages project settings for production.
 ```
 src/
   layouts/Base.astro       shell, metadata, Open Graph, JSON-LD
-  components/              navigation, workflow visuals, appliance placeholder, service card
+  components/              navigation, workflow visuals, representative appliance, service card
   data/services.ts         shared package names, pricing, scope, and boundaries
   pages/                   index, services, pricing, FAQ, trust, contact, 404
   styles/tokens.css        warm editorial design tokens
@@ -68,8 +68,9 @@ value is needed, add a token instead of scattering literals across pages.
 
 - **Green carries actions and connection lines.** It is restrained elsewhere so the
   workflow visuals remain operational instead of decorative.
-- **Hardware stays honest.** `ApplianceVisual.astro` is labeled as a concept
-  placeholder until the deployed unit is selected and photographed.
+- **Hardware stays honest.** `ApplianceVisual.astro` shows a representative form
+  factor. The actual low-profile device is selected for each deployment, so the site
+  does not promise a model or specification.
 - **No webfonts.** System stacks only: no third-party origin, no layout shift.
 - **Small first-party JavaScript only for site behavior.** The repository ships a
   lightweight event layer, accessible mobile navigation, FAQ filtering, and form-state

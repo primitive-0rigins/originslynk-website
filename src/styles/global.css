@@ -2,6 +2,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
+[hidden] { display: none !important; }
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -88,6 +89,7 @@ a:hover { color: var(--ink); }
 }
 .container-narrow { max-width: var(--container-narrow); }
 section { padding-block: clamp(4.25rem, 8vw, var(--space-9)); }
+.page-hero { padding-block: clamp(2.75rem, 5vw, 4.5rem); }
 .section-sunken { background: var(--ground-sunken); }
 .section-cream { background: var(--ground-cream); }
 .section-dark {

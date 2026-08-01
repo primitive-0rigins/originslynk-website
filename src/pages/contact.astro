@@ -3,10 +3,6 @@ import Base from '../layouts/Base.astro';
 
 const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
 const email = import.meta.env.PUBLIC_CONTACT_EMAIL || 'bryce@originslynk.com';
-
-// No endpoint configured yet? Show the fallback rather than a form that posts
-// nowhere. A form that silently swallows a prospect's message is worse than no
-// form. See the ops repo DECISIONS.md D-04.
 const configured = endpoint.length > 0;
 ---
 
@@ -18,348 +14,289 @@ const configured = endpoint.length > 0;
     <div class="container form-layout">
       <div class="form-intro">
         <p class="eyebrow">Workflow review</p>
-        <h1>Find the repetitive work worth removing.</h1>
-        <p class="lede" style="margin-top: var(--space-5)">
-          Tell us what role you perform, which task consumes the most time, and which tools
-          you already use. We will identify a practical first workflow, recommend the right
-          service level, and explain what should remain human-approved.
+        <h1>Start with the work you want off your mind.</h1>
+        <p class="lede">
+          A few practical details are enough. We will identify a useful first workflow,
+          recommend the right service level, and explain what should remain human-approved.
         </p>
 
         <h2 class="intro-h">What happens next</h2>
         <ol class="next-steps">
-          <li>We review the request and reply within one business day.</li>
-          <li>A discovery conversation maps the current process and its first useful workflow.</li>
-          <li>You receive a written scope, price, responsibilities, and support period before purchasing.</li>
+          <li>We review your request and reply within one business day.</li>
+          <li>A discovery call maps the current process and its first useful workflow.</li>
+          <li>You receive a written scope, price, responsibilities, and support period.</li>
         </ol>
 
-        <p class="small muted" style="margin-top: var(--space-6)">
-          If the honest conclusion is that nothing here is worth automating yet, we will
-          tell you. That answer costs us a sale and saves you a system you did not need.
-        </p>
-
-        <p class="small muted" style="margin-top: var(--space-4)">
-          What you send here goes to us and is used to prepare for that conversation.
-          It is not added to a mailing list, sold, or fed to an analytics tool.
-        </p>
-
-        <p class="safety-note small">
-          Do not submit passwords, access codes, private keys, medical information,
-          financial account numbers, or other sensitive records. Account access is handled
-          separately after a project is approved.
-        </p>
+        <div class="form-boundary">
+          <p><strong>Keep sensitive information out of this form.</strong></p>
+          <p>
+            Do not submit passwords, access codes, private keys, financial account numbers,
+            medical information, or private client records. Account access is handled
+            separately after a project is approved.
+          </p>
+          <a href="/trust#data-handling">How OriginsLynk handles access and information →</a>
+        </div>
       </div>
 
       <div class="form-panel">
-        {configured ? (
-          <form action={endpoint} method="POST" class="form" data-consultation-form>
-            <p class="form-note small">All fields marked <span aria-hidden="true">*</span> are required.</p>
+        <form
+          action={configured ? endpoint : '/contact'}
+          method="POST"
+          class="form"
+          data-consultation-form
+          data-form-mode={configured ? 'endpoint' : 'email'}
+          data-contact-email={email}
+        >
+          <div class="form-heading">
+            <p class="eyebrow">Tell us about the work</p>
+            <h2>Workflow review request</h2>
+            <p class="form-note small">
+              {configured
+                ? 'Your request will be sent securely. Required fields are marked with an asterisk.'
+                : 'Complete the form and we will prepare an addressed email for you to review and send. Required fields are marked with an asterisk.'}
+            </p>
+          </div>
 
+          <fieldset>
+            <legend><span>01</span> About you</legend>
+            <div class="field-grid">
+              <div class="field">
+                <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" required autocomplete="name" maxlength="100" />
+              </div>
+
+              <div class="field">
+                <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" maxlength="160" />
+              </div>
+
+              <div class="field">
+                <label for="organization">Business or organization <span class="optional">(optional)</span></label>
+                <input type="text" id="organization" name="organization" autocomplete="organization" maxlength="140" />
+              </div>
+
+              <div class="field">
+                <label for="role">Your role <span class="req" aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="role"
+                  name="role"
+                  required
+                  autocomplete="organization-title"
+                  maxlength="120"
+                  placeholder="Marketing director, office manager, owner…"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span>02</span> The work to improve</legend>
             <div class="field">
-              <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="name" name="name" required autocomplete="name" />
+              <label for="problem">What repeats most? <span class="req" aria-hidden="true">*</span></label>
+              <p class="hint" id="problem-hint">Describe the first task you would hand off in plain language.</p>
+              <textarea id="problem" name="problem" rows="5" required maxlength="1200" aria-describedby="problem-hint"></textarea>
             </div>
 
             <div class="field">
-              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" required autocomplete="email" />
+              <label for="tools">Which tools or accounts are involved?</label>
+              <p class="hint" id="tools-hint">Names only—never include passwords or access codes.</p>
+              <input type="text" id="tools" name="tools" maxlength="300" aria-describedby="tools-hint" placeholder="Email, calendar, spreadsheets, CRM…" />
+            </div>
+
+            <div class="field-grid">
+              <div class="field">
+                <label for="frequency">How often does it happen?</label>
+                <select id="frequency" name="frequency">
+                  <option value="">Choose one</option>
+                  <option value="several-times-a-day">Several times a day</option>
+                  <option value="daily">Daily</option>
+                  <option value="several-times-a-week">Several times a week</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="varies">It varies</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="hours">Rough hours per week</label>
+                <input type="number" id="hours" name="hours" min="0" max="80" step="0.5" inputmode="decimal" />
+              </div>
             </div>
 
             <div class="field">
-              <label for="organization">Business or organization <span class="optional">(optional)</span></label>
-              <input type="text" id="organization" name="organization" autocomplete="organization" />
+              <label for="outcome">What would a good result give you?</label>
+              <textarea id="outcome" name="outcome" rows="3" maxlength="800" placeholder="Faster follow-up, fewer missed steps, more time away from work…"></textarea>
             </div>
+          </fieldset>
 
-            <div class="field">
-              <label for="role">Your role <span class="req" aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="role"
-                name="role"
-                required
-                autocomplete="organization-title"
-                placeholder="e.g. marketing director, office manager, agent"
-              />
-            </div>
+          <fieldset>
+            <legend><span>03</span> Fit and timing</legend>
+            <div class="field-grid">
+              <div class="field">
+                <label for="service">Service you are considering</label>
+                <select id="service" name="service">
+                  <option value="">Not sure yet</option>
+                  <option value="personal-ai-assistant-starter">$750 Personal AI Assistant Setup</option>
+                  <option value="assistant-role-system">$1,200 AI Workflow System</option>
+                  <option value="managed-automation">From $2,800 Managed Automation Appliance</option>
+                </select>
+              </div>
 
-            <div class="field">
-              <label for="service">Service you are considering</label>
-              <select id="service" name="service">
-                <option value="">Not sure yet</option>
-                <option value="personal-ai-assistant-starter">$750 Personal AI Assistant Setup</option>
-                <option value="assistant-role-system">$1,200 AI Workflow System</option>
-                <option value="managed-automation">From $2,800 Managed Automation Appliance</option>
-              </select>
-            </div>
+              <div class="field">
+                <label for="users">Who would use it?</label>
+                <select id="users" name="users">
+                  <option value="">Not sure</option>
+                  <option value="1">One person</option>
+                  <option value="2-5">2–5 people</option>
+                  <option value="6+">6 or more people</option>
+                </select>
+              </div>
 
-            <div class="field">
-              <label for="users">How many people would use the system?</label>
-              <select id="users" name="users">
-                <option value="">Not sure</option>
-                <option value="1">One person</option>
-                <option value="2-5">2–5 people</option>
-                <option value="6+">6 or more people</option>
-              </select>
-            </div>
+              <div class="field">
+                <label for="sensitivity">What kind of information is involved?</label>
+                <select id="sensitivity" name="sensitivity">
+                  <option value="">Not sure</option>
+                  <option value="ordinary-business">Ordinary business information</option>
+                  <option value="customer-communication">Customer communication</option>
+                  <option value="sensitive-information">Sensitive information</option>
+                  <option value="regulated-information">Regulated information</option>
+                </select>
+              </div>
 
-            <div class="field">
-              <label for="problem">
-                What repeats most? <span class="req" aria-hidden="true">*</span>
-              </label>
-              <p class="hint" id="problem-hint">
-                The task you would hand off first. Plain description is fine.
-              </p>
-              <textarea
-                id="problem"
-                name="problem"
-                rows="5"
-                required
-                aria-describedby="problem-hint"
-              ></textarea>
-            </div>
-
-            <div class="field">
-              <label for="tools">Tools you use today</label>
-              <p class="hint" id="tools-hint">Email, CRM, spreadsheets, whatever it actually is.</p>
-              <input type="text" id="tools" name="tools" aria-describedby="tools-hint" />
-            </div>
-
-            <div class="field">
-              <label for="frequency">How often does the task happen?</label>
-              <input type="text" id="frequency" name="frequency" placeholder="e.g. every weekday, weekly, 20 times a month" />
-            </div>
-
-            <div class="field">
-              <label for="hours">Rough hours a week it costs you</label>
-              <input
-                type="number"
-                id="hours"
-                name="hours"
-                min="0"
-                max="60"
-                step="0.5"
-                inputmode="decimal"
-              />
+              <div class="field">
+                <label for="timeline">When would you like to begin?</label>
+                <select id="timeline" name="timeline">
+                  <option value="">No fixed date</option>
+                  <option value="as-soon-as-practical">As soon as practical</option>
+                  <option value="within-30-days">Within 30 days</option>
+                  <option value="within-90-days">Within 90 days</option>
+                  <option value="researching">I am researching for later</option>
+                </select>
+              </div>
             </div>
 
             <div class="field">
               <label for="phone">Phone <span class="optional">(optional)</span></label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" />
+              <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="40" />
             </div>
+          </fieldset>
 
-            <div class="field">
-              <label for="sensitivity">Does it involve customers or sensitive information?</label>
-              <select id="sensitivity" name="sensitivity">
-                <option value="">Not sure</option>
-                <option value="no">No</option>
-                <option value="customer-communication">Customer communication</option>
-                <option value="sensitive-information">Sensitive information</option>
-                <option value="both">Both</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="outcome">What result would make this worthwhile?</label>
-              <textarea id="outcome" name="outcome" rows="3"></textarea>
-            </div>
-
-            <div class="consent-field">
-              <input type="checkbox" id="consent" name="consent" value="yes" required />
-              <label for="consent">OriginsLynk may use this information to respond to my request. <span class="req" aria-hidden="true">*</span></label>
-            </div>
-
-            <!-- Spam trap. Bots fill hidden fields; people never see this one.
-                 Hidden from assistive technology as well as visually, so it is not
-                 announced to screen-reader users as an unlabeled input. -->
-            <div class="trap" aria-hidden="true">
-              <label for="company-website">Leave this field empty</label>
-              <input type="text" id="company-website" name="company_website" tabindex="-1" autocomplete="off" />
-            </div>
-
-            <button type="submit" class="btn btn-primary form-submit">Request a workflow review</button>
-
-            <p id="form-status" class="form-status small" role="status" aria-live="polite" hidden></p>
-
-            <p class="small muted" style="margin-top: var(--space-4)">
-              Or email <a href={`mailto:${email}`}>{email}</a> directly.
-            </p>
-          </form>
-        ) : (
-          <div class="form-fallback">
-            <h2>Email us directly</h2>
-            <p class="muted" style="margin-top: var(--space-4)">
-              The workflow review form is not connected yet, so rather than show you a form
-              that goes nowhere, here is the direct route:
-            </p>
-            <p class="fallback-email">
-              <a href={`mailto:${email}?subject=Workflow%20review%20request`}>{email}</a>
-            </p>
-            <p class="muted small" style="margin-top: var(--space-5)">Helpful to include:</p>
-            <ul class="card-list">
-              <li>Your role</li>
-              <li>The task you would hand off first</li>
-              <li>The tools you use today</li>
-              <li>Roughly how many hours a week it costs you</li>
-              <li>The result that would make fixing it worthwhile</li>
-            </ul>
-            <p class="safety-note small">Do not email passwords, access codes, financial account numbers, or sensitive records.</p>
-            <!--
-              To enable the form: set PUBLIC_FORM_ENDPOINT in the Cloudflare Pages
-              environment variables and redeploy. Provider options and their privacy
-              tradeoffs are in the ops repo, DECISIONS.md D-04.
-            -->
+          <div class="consent-field">
+            <input type="checkbox" id="consent" name="consent" value="yes" required />
+            <label for="consent">
+              OriginsLynk may use this information only to respond to my request.
+              <span class="req" aria-hidden="true">*</span>
+            </label>
           </div>
-        )}
+
+          <div class="trap" aria-hidden="true">
+            <label for="company-website">Leave this field empty</label>
+            <input type="text" id="company-website" name="company_website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            {configured ? 'Request a workflow review' : 'Prepare my request'}
+          </button>
+
+          <p id="form-status" class="form-status small" role="status" aria-live="polite" hidden></p>
+          <a id="prepared-email" class="btn btn-secondary prepared-email" href={`mailto:${email}`} hidden>Open prepared email</a>
+
+          <p class="direct-email small muted">
+            Prefer a blank email? Write to <a href={`mailto:${email}?subject=Workflow%20review%20request`}>{email}</a>.
+          </p>
+        </form>
       </div>
     </div>
   </section>
 </Base>
 
-{configured && (
-  <script is:inline src="/scripts/contact.js" defer></script>
-)}
+<script is:inline src="/scripts/contact.js" defer></script>
 
 <style>
-  .form-layout {
-    display: grid;
-    gap: var(--space-7);
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-
-  .form-intro h1 { max-width: 14ch; }
-
-  @media (min-width: 54em) {
-    .form-layout { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
-  }
+  .contact-section { padding-block: clamp(3.25rem, 6vw, var(--space-8)); }
+  .form-layout { display: grid; gap: var(--space-7); align-items: start; }
+  .form-intro h1 { max-width: 13ch; }
+  .form-intro > .lede { margin-top: var(--space-5); max-width: 52ch; }
 
   .intro-h {
-    font-size: var(--text-xs);
-    font-family: var(--font-sans);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
+    margin: var(--space-7) 0 var(--space-4);
     color: var(--ink-faint);
-    margin-top: var(--space-7);
-    margin-bottom: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
   }
 
-  .next-steps {
-    padding-left: var(--space-5);
-    max-width: var(--measure);
-    color: var(--ink-muted);
-    font-size: var(--text-sm);
-  }
+  .next-steps { padding-left: var(--space-5); color: var(--ink-muted); font-size: var(--text-sm); }
   .next-steps li + li { margin-top: var(--space-2); }
 
-  .safety-note {
-    margin-top: var(--space-5);
-    padding: var(--space-4);
-    color: var(--ink-muted);
+  .form-boundary {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
     background: var(--ground-sunken);
     border-left: var(--border-thick) solid var(--secondary);
     border-radius: var(--radius);
   }
+  .form-boundary p { color: var(--ink-muted); font-size: var(--text-sm); }
+  .form-boundary p + p { margin-top: var(--space-2); }
+  .form-boundary strong { color: var(--ink); }
+  .form-boundary a { display: inline-block; margin-top: var(--space-3); font-size: var(--text-xs); font-weight: 680; text-decoration: none; }
 
   .form-panel {
     background: var(--ground-raised);
     border: var(--border-thin) solid var(--rule);
     border-radius: var(--radius-lg);
-    padding: var(--space-6);
+    padding: clamp(1.25rem, 4vw, var(--space-7));
     box-shadow: var(--shadow);
   }
+  .form-heading { padding-bottom: var(--space-5); border-bottom: var(--border-thin) solid var(--rule); }
+  .form-heading h2 { font-size: var(--text-2xl); }
+  .form-note { color: var(--ink-faint); margin-top: var(--space-3); }
 
-  .form-note { color: var(--ink-faint); margin-bottom: var(--space-5); }
+  fieldset { padding: 0; border: 0; margin-top: var(--space-7); }
+  legend { width: 100%; margin-bottom: var(--space-5); color: var(--ink); font-size: var(--text-sm); font-weight: 720; letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  legend span { color: var(--accent-text); margin-right: var(--space-2); }
+  .field-grid { display: grid; gap: var(--space-5); }
+  .field + .field, .field-grid + .field, .field + .field-grid { margin-top: var(--space-5); }
 
-  .field + .field { margin-top: var(--space-5); }
-
-  .consent-field {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--space-3);
-    align-items: start;
-    margin-top: var(--space-5);
-  }
-
-  .consent-field input { width: 1.1rem; min-height: 1.1rem; margin-top: 0.2rem; }
-  .consent-field label { margin: 0; color: var(--ink-muted); }
-
-  label {
-    display: block;
-    font-weight: 600;
-    font-size: var(--text-sm);
-    margin-bottom: var(--space-2);
-  }
-
+  label { display: block; margin-bottom: var(--space-2); font-size: var(--text-sm); font-weight: 600; }
   .req { color: var(--accent-text); }
-  .optional { font-weight: 400; color: var(--ink-faint); }
+  .optional { color: var(--ink-faint); font-weight: 400; }
+  .hint { margin: calc(var(--space-1) * -1) 0 var(--space-2); color: var(--ink-faint); font-size: var(--text-xs); }
 
-  .hint {
-    font-size: var(--text-xs);
-    color: var(--ink-faint);
-    margin-bottom: var(--space-2);
-    margin-top: calc(var(--space-1) * -1);
-  }
-
-  input,
-  textarea,
-  select {
+  input, textarea, select {
     width: 100%;
+    min-height: 46px;
     padding: var(--space-3);
-    min-height: 44px;
     background: var(--ground);
     border: var(--border-thin) solid var(--rule-strong);
     border-radius: var(--radius);
     font-size: var(--text-base);
     transition: border-color var(--transition), box-shadow var(--transition);
   }
-
   textarea { resize: vertical; line-height: var(--leading-snug); }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 var(--focus-width) var(--accent-ring); }
+  input:user-invalid, textarea:user-invalid, select:user-invalid { border-color: var(--danger); }
 
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 var(--focus-width) var(--accent-ring);
-  }
+  .consent-field { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); align-items: start; margin-top: var(--space-7); }
+  .consent-field input { width: 1.1rem; min-height: 1.1rem; margin-top: .2rem; }
+  .consent-field label { margin: 0; color: var(--ink-muted); }
+  .form-submit, .prepared-email { width: 100%; margin-top: var(--space-5); }
+  .form-submit:disabled { opacity: .65; cursor: wait; }
 
-  /* Only style invalid fields after the user has engaged with them — colouring an
-     untouched empty required field red is hostile. */
-  input:user-invalid,
-  textarea:user-invalid {
-    border-color: var(--danger);
-  }
-
-  .form-submit {
-    width: 100%;
-    margin-top: var(--space-6);
-  }
-
-  .form-submit:disabled { opacity: 0.65; cursor: wait; }
-
-  .form-status {
-    margin-top: var(--space-4);
-    padding: var(--space-3);
-    border-radius: var(--radius);
-    color: var(--ink-muted);
-    background: var(--ground-sunken);
-  }
+  .form-status { margin-top: var(--space-4); padding: var(--space-3); border-radius: var(--radius); color: var(--ink-muted); background: var(--ground-sunken); }
   .form-status.is-success { border-left: var(--border-thick) solid var(--ok); color: var(--ink); }
   .form-status.is-error { border-left: var(--border-thick) solid var(--danger); }
+  .direct-email { margin-top: var(--space-4); }
 
-  .trap {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+  .trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  @media (min-width: 42em) {
+    .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-
-  .form-fallback h2 { font-size: var(--text-xl); }
-
-  .fallback-email {
-    margin-top: var(--space-5);
-    font-size: var(--text-lg);
-    font-weight: 600;
+  @media (min-width: 64em) {
+    .form-layout { grid-template-columns: .8fr 1.2fr; gap: var(--space-8); }
+    .form-intro { position: sticky; top: calc(var(--space-8) + var(--space-5)); }
   }
 </style>

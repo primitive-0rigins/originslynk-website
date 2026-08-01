@@ -65,7 +65,7 @@ const comparison = [
         <h2>The operating difference between each service.</h2>
       </div>
       <div class="table-wrap">
-        <table>
+        <table aria-label="Service operating comparison">
           <thead>
             <tr>
               <th scope="col">Service</th>
@@ -88,6 +88,19 @@ const comparison = [
           </tbody>
         </table>
       </div>
+      <div class="comparison-cards" aria-label="Service operating comparison">
+        {comparison.map((row) => (
+          <article>
+            <h3>{row.service}</h3>
+            <dl>
+              <div><dt>Day-to-day operator</dt><dd>{row.operator}</dd></div>
+              <div><dt>Included workflows</dt><dd>{row.workflows}</dd></div>
+              <div><dt>Stabilization</dt><dd>{row.support}</dd></div>
+              <div><dt>Ongoing cost</dt><dd>{row.ongoing}</dd></div>
+            </dl>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -101,6 +114,10 @@ const comparison = [
             The appliance remains OriginsLynk property and is rented as part of the managed
             service. The monthly plan keeps the agreed system maintained; it is not an
             unlimited development retainer.
+          </p>
+          <p class="small muted hardware-note">
+            The device is selected for the agreed workload. Its make, model, size, and
+            appearance may vary by deployment and availability.
           </p>
           <ul class="checklist" style="margin-top: var(--space-5)">
             <li>Dedicated appliance rental</li>
@@ -170,6 +187,7 @@ const comparison = [
   }
 
   .table-wrap {
+    display: none;
     width: 100%;
     overflow-x: auto;
     border: var(--border-thin) solid var(--rule);
@@ -184,8 +202,16 @@ const comparison = [
   tbody td { color: var(--ink-muted); font-size: var(--text-sm); }
   tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 
+  .comparison-cards { display: grid; gap: var(--space-4); }
+  .comparison-cards article { padding: var(--space-5); background: var(--ground-raised); border: var(--border-thin) solid var(--rule); border-radius: var(--radius-lg); }
+  .comparison-cards h3 { font-size: var(--text-lg); }
+  .comparison-cards dl { margin-top: var(--space-4); }
+  .comparison-cards dl > div { display: grid; grid-template-columns: minmax(8rem, .9fr) 1.1fr; gap: var(--space-3); padding-block: var(--space-3); border-top: var(--border-thin) solid var(--rule); }
+  .comparison-cards dt { color: var(--ink-faint); font-size: var(--text-xs); font-weight: 680; }
+  .comparison-cards dd { color: var(--ink-muted); font-size: var(--text-sm); }
+
   .two-col { display: grid; grid-template-columns: 1fr; gap: var(--space-8); }
-  .care-intro, .monthly-note { margin-top: var(--space-4); }
+  .care-intro, .monthly-note, .hardware-note { margin-top: var(--space-4); }
 
   .quote-note {
     margin-top: var(--space-6);
@@ -208,5 +234,10 @@ const comparison = [
   @media (min-width: 64em) {
     .service-grid { grid-template-columns: repeat(3, 1fr); }
     .two-col { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 48em) {
+    .table-wrap { display: block; }
+    .comparison-cards { display: none; }
   }
 </style>
