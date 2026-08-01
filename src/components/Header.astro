@@ -39,26 +39,7 @@ const isCurrent = (href: string) => href.startsWith('/#') ? path === '/' : path 
   </div>
 </header>
 
-<script>
-  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
-  const navigation = document.querySelector<HTMLElement>('#main-navigation');
-
-  if (toggle && navigation) {
-    toggle.classList.add('is-ready');
-    if (window.matchMedia('(max-width: 56rem)').matches) navigation.hidden = true;
-
-    toggle.addEventListener('click', () => {
-      const opening = navigation.hidden;
-      navigation.hidden = !opening;
-      toggle.setAttribute('aria-expanded', String(opening));
-    });
-
-    window.matchMedia('(min-width: 56.01rem)').addEventListener('change', (event) => {
-      navigation.hidden = !event.matches;
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  }
-</script>
+<script is:inline src="/scripts/header.js" defer></script>
 
 <style>
   .site-header {
