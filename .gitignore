@@ -1,0 +1,22 @@
+# PUBLIC REPOSITORY.
+# Nothing client-related has ever been in this tree and nothing ever will be.
+# See the ops repo's DECISIONS.md D-01.
+
+# Build output
+dist/
+.astro/
+node_modules/
+.wrangler/
+
+# Local env — the only variable here is the form endpoint, and it is public by
+# nature (it ships in the HTML). Still not committed: it differs per environment.
+.env
+.env.*
+!.env.example
+
+# Editor and OS noise
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

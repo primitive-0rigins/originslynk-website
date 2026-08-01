@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page not found"
+  description="That page does not exist."
+  noindex={true}
+>
+  <section>
+    <div class="container container-narrow notfound">
+      <p class="eyebrow">404</p>
+      <h1>That page does not exist.</h1>
+      <p class="lede" style="margin-top: var(--space-5)">
+        The link may be out of date, or the address may have a typo in it. Nothing is
+        broken on your end.
+      </p>
+
+      <nav aria-label="Site sections">
+        <ul class="routes">
+          <li><a href="/">Home</a> — what OriginsLynk does</li>
+          <li><a href="/services">Services</a> — the two ways to start</li>
+          <li><a href="/pricing">Pricing</a> — what it costs and what changes it</li>
+          <li><a href="/trust">Trust &amp; safety</a> — how access works</li>
+          <li><a href="/contact">Contact</a> — book a consultation</li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound { padding-block: var(--space-6); }
+
+  .routes {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-7);
+    max-width: var(--measure);
+  }
+
+  .routes li {
+    padding-block: var(--space-3);
+    border-top: var(--border-thin) solid var(--rule);
+    color: var(--ink-muted);
+    font-size: var(--text-sm);
+  }
+
+  .routes a { font-weight: 600; }
+</style>

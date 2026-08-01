@@ -1,0 +1,53 @@
+name: CI
+
+# Cloudflare Pages does the deploying. This exists so a broken build is caught on the
+# pull request rather than discovered live on originslynk.com.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Type and content check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+
+      # A guard against the one mistake that actually matters on this repo: a client
+      # identifier reaching the public site. The full scanner lives in the private ops
+      # repo and knows the real names; this is the subset that can run in public CI.
+      - name: No client hostnames in the build
+        run: |
+          if grep -rEn '\b(c[0-9]+|admin|status|n8n)\.originslynk\.com' dist/; then
+            echo "::error::A client or internal hostname is present in the build output."
+            exit 1
+          fi
+          echo "No client or internal hostnames found."
+
+      - name: No credential-shaped strings in the build
+        run: |
+          if grep -rEn 'sk-[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|BEGIN [A-Z ]*PRIVATE KEY' dist/; then
+            echo "::error::Something credential-shaped is present in the build output."
+            exit 1
+          fi
+          echo "No credential-shaped strings found."

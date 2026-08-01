@@ -1,0 +1,170 @@
+/* =============================================================================
+   OriginsLynk — design tokens
+   =============================================================================
+
+   Two directions are defined here, as the brief asks for a primary and an
+   alternate. Both share type, spacing, and structure — only the color ground and
+   accent weighting differ, which is what makes them swappable without touching a
+   single page.
+
+     PRIMARY   "Paper"  — warm off-white ground, ink text, orange as the single
+                          accent, cyan reserved for diagram linework.
+     ALTERNATE "Field"  — cool neutral ground, deeper contrast, blue carrying the
+                          secondary role instead of cyan.
+
+   To switch: change the <html data-direction> attribute in Base.astro to "field".
+   Nothing else changes.
+
+   The palette is Primitive Origins' own: orange leads, cyan and blue are
+   secondary and never share a role on the same surface. Dark-blue grounds are
+   deliberately absent.
+
+   Deliberately not implemented in v1: a dark mode. The brief calls for a light,
+   restrained, credible-to-small-business look, and a second full color mode is
+   scope that buys nothing before the site has visitors. The tokens are structured
+   so adding one later is a third block here, not a rewrite.
+   ========================================================================== */
+
+:root {
+  /* --- brand constants (identical across directions) --------------------- */
+  --brand-orange: #ff7a18;
+  --brand-orange-deep: #d95f06;   /* meets 4.5:1 on the light grounds */
+  --brand-amber: #fbbf24;
+  --brand-cyan: #22d3ee;
+  --brand-cyan-deep: #0e7490;
+  --brand-blue: #3b82f6;
+  --brand-blue-deep: #1d4ed8;
+
+  /* --- typography -------------------------------------------------------- */
+  /* System stacks only: no webfont request, no layout shift, no third-party
+     origin in the connection list. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               "Liberation Mono", monospace;
+
+  /* Fluid scale. clamp() means no breakpoint-specific font rules anywhere. */
+  --text-xs:   clamp(0.75rem, 0.73rem + 0.10vw, 0.8125rem);
+  --text-sm:   clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-lg:   clamp(1.125rem, 1.08rem + 0.22vw, 1.25rem);
+  --text-xl:   clamp(1.25rem, 1.17rem + 0.40vw, 1.5rem);
+  --text-2xl:  clamp(1.5rem, 1.36rem + 0.70vw, 1.9rem);
+  --text-3xl:  clamp(1.875rem, 1.60rem + 1.35vw, 2.6rem);
+  --text-4xl:  clamp(2.25rem, 1.80rem + 2.25vw, 3.4rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.65;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.06em;
+
+  /* --- spacing (4px base) ------------------------------------------------ */
+  --space-1: 0.25rem;  --space-2: 0.5rem;   --space-3: 0.75rem;
+  --space-4: 1rem;     --space-5: 1.5rem;   --space-6: 2rem;
+  --space-7: 3rem;     --space-8: 4rem;     --space-9: 6rem;
+  --space-10: 8rem;
+
+  --measure: 68ch;          /* readable line length for body copy */
+  --container: 1140px;
+  --container-narrow: 780px;
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 14px;
+
+  --border-thin: 1px;
+  --border-thick: 3px;
+
+  --transition: 140ms ease;
+
+  --focus-width: 3px;
+}
+
+/* =============================================================================
+   PRIMARY DIRECTION — "Paper"
+   Warm off-white ground. Orange is the only accent that appears at size; cyan
+   appears only as diagram linework, never as a text color on body copy.
+   ========================================================================== */
+
+:root,
+:root[data-direction="paper"] {
+  --ground: #fdfcfa;
+  --ground-raised: #ffffff;
+  --ground-sunken: #f6f3ee;
+  --ground-inverse: #1c1a17;
+
+  --ink: #1c1a17;           /* 15.8:1 on --ground */
+  --ink-muted: #57534e;     /*  7.4:1 on --ground */
+  --ink-faint: #78716c;     /*  4.9:1 on --ground */
+  --ink-inverse: #faf9f7;
+
+  --rule: #e7e2d9;
+  --rule-strong: #d6cfc2;
+
+  --accent: var(--brand-orange);
+  --accent-text: var(--brand-orange-deep);  /* for accent-colored text only */
+  --accent-soft: #fff1e4;
+  --accent-ring: rgba(255, 122, 24, 0.35);
+
+  --secondary: var(--brand-cyan-deep);
+  --secondary-soft: #e6f6fa;
+  --diagram-line: #9fb8bf;
+  --diagram-accent: var(--brand-cyan-deep);
+
+  --ok: #15803d;
+  --warn: #a16207;
+  --danger: #b91c1c;
+
+  --shadow-sm: 0 1px 2px rgba(28, 26, 23, 0.05);
+  --shadow: 0 2px 8px rgba(28, 26, 23, 0.06), 0 1px 2px rgba(28, 26, 23, 0.04);
+  --shadow-lg: 0 8px 28px rgba(28, 26, 23, 0.08);
+
+  --heading-font: var(--font-serif);
+  --heading-weight: 600;
+}
+
+/* =============================================================================
+   ALTERNATE DIRECTION — "Field"
+   Cooler, flatter, more engineered. Blue takes the secondary role; headings run
+   in the sans stack. Same structure, different temperature.
+   ========================================================================== */
+
+:root[data-direction="field"] {
+  --ground: #ffffff;
+  --ground-raised: #ffffff;
+  --ground-sunken: #f4f5f7;
+  --ground-inverse: #14181d;
+
+  --ink: #14181d;
+  --ink-muted: #4b5563;
+  --ink-faint: #6b7280;
+  --ink-inverse: #f9fafb;
+
+  --rule: #e4e7ec;
+  --rule-strong: #cbd2da;
+
+  --accent: var(--brand-orange);
+  --accent-text: var(--brand-orange-deep);
+  --accent-soft: #fff4ea;
+  --accent-ring: rgba(255, 122, 24, 0.35);
+
+  --secondary: var(--brand-blue-deep);
+  --secondary-soft: #eff4ff;
+  --diagram-line: #aab4c2;
+  --diagram-accent: var(--brand-blue-deep);
+
+  --ok: #15803d;
+  --warn: #a16207;
+  --danger: #b91c1c;
+
+  --shadow-sm: 0 1px 2px rgba(20, 24, 29, 0.05);
+  --shadow: 0 2px 8px rgba(20, 24, 29, 0.07), 0 1px 2px rgba(20, 24, 29, 0.04);
+  --shadow-lg: 0 8px 28px rgba(20, 24, 29, 0.09);
+
+  --heading-font: var(--font-sans);
+  --heading-weight: 650;
+}

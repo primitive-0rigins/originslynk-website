@@ -1,0 +1,393 @@
+---
+import Base from '../layouts/Base.astro';
+import Diagram from '../components/Diagram.astro';
+
+const problems = [
+  'Copying the same information between two tools that will never talk to each other.',
+  'Drafts that start from nothing, because the tool has no idea who the person is.',
+  'Follow-ups that get missed because remembering them is somebody’s job.',
+  'Approvals scattered across email, chat, and a document nobody can find.',
+  'Reports rebuilt by hand every week from the same four sources.',
+  'Recurring checklists that live in your head and only run when you have time.',
+];
+
+const builds = [
+  {
+    title: 'Contextual communication preparation',
+    body: 'Replies drafted with the history, the account, and the tone already accounted for — waiting in your drafts folder, not sent.',
+  },
+  {
+    title: 'Daily priority briefs',
+    body: 'One short summary each morning: what moved, what is waiting on you, what is about to be late.',
+  },
+  {
+    title: 'Reporting and campaign summaries',
+    body: 'The weekly numbers assembled and written up from wherever they actually live, ready for you to correct.',
+  },
+  {
+    title: 'Recurring process coordination',
+    body: 'Launch checklists that start themselves, track what is outstanding, and chase the gaps.',
+  },
+  {
+    title: 'Deadline and exception detection',
+    body: 'Surfacing the thing that did not happen — the reply that never came, the asset still missing.',
+  },
+  {
+    title: 'Content preparation and approvals',
+    body: 'Long-form work repurposed into drafts that route to a human before anything is published.',
+  },
+  {
+    title: 'Cross-tool data movement',
+    body: 'The copy-paste between systems, done reliably, on a schedule, with a record of what moved.',
+  },
+  {
+    title: 'Operational alerts',
+    body: 'A message when something needs attention, not a dashboard you have to remember to open.',
+  },
+];
+
+const steps = [
+  {
+    n: '01',
+    title: 'Workflow discovery',
+    body: 'We go through your actual week and find the work that repeats. No tooling decisions yet — just what you do, how often, and what it costs you.',
+  },
+  {
+    n: '02',
+    title: 'System design',
+    body: 'Each workflow gets written down before it gets built: what triggers it, what it may do, where you approve, and what happens when it fails.',
+  },
+  {
+    n: '03',
+    title: 'Build and testing',
+    body: 'Built against your real examples and run in read-only mode first, so you see its judgment before it writes anything.',
+  },
+  {
+    n: '04',
+    title: 'Managed operation',
+    body: 'Monitored, backed up, and maintained. When something breaks, we find out before you do.',
+  },
+];
+---
+
+<Base
+  title="OriginsLynk"
+  description="OriginsLynk builds role-specific automation around the tools you already use. Recover hours every week without replacing your CRM or handing over control."
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Role-specific automation systems by Primitive Origins</p>
+        <h1>Automate the repetitive work around your role.</h1>
+        <p class="lede">
+          We connect the email, calendar, documents, forms, and business tools you already
+          use into reliable workflows that prepare the work — and leave the decisions,
+          and the Send button, with you.
+        </p>
+        <div class="btn-row">
+          <a href="/contact" class="btn btn-primary">Book a consultation</a>
+          <a href="/services" class="btn btn-secondary">See example systems</a>
+        </div>
+        <p class="hero-note small">
+          We do not replace your CRM, and we do not move you onto a new platform.
+        </p>
+      </div>
+
+      <div class="hero-figure" aria-hidden="true">
+        <Diagram />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEMS ================= -->
+  <section class="section-sunken">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">The work that never gets scheduled</p>
+        <h2>You already know which hours these are.</h2>
+        <p class="muted">
+          Most of what an automation system should do is not exciting. It is the same
+          handful of tasks, every week, that quietly take a morning.
+        </p>
+      </div>
+      <ul class="problem-grid">
+        {problems.map((p) => <li>{p}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= WHAT WE BUILD ================= -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">What we build</p>
+        <h2>Concrete systems, not general-purpose AI.</h2>
+        <p class="muted">
+          Each of these is a specific workflow with a defined trigger, defined limits,
+          and a point where a person signs off.
+        </p>
+      </div>
+      <div class="grid">
+        {builds.map((b) => (
+          <article class="card card-accent">
+            <h3>{b.title}</h3>
+            <p>{b.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="section-sunken">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Four steps, and you keep your tools.</h2>
+      </div>
+      <ol class="steps">
+        {steps.map((s) => (
+          <li>
+            <span class="step-n" aria-hidden="true">{s.n}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= THE LADDER ================= -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Two ways to start</p>
+        <h2>Begin where you are actually comfortable.</h2>
+        <p class="muted">
+          Most people should not start with unattended automation. Starting smaller is
+          not a lesser version of the service — it is usually the right one.
+        </p>
+      </div>
+
+      <div class="ladder">
+        <article class="card ladder-card">
+          <p class="eyebrow">Start here</p>
+          <h3>Personal AI Assistant</h3>
+          <p>
+            A capable AI assistant configured around your role, on your own machine,
+            using your own subscription. Nothing runs unattended and nothing has access
+            you did not grant. You learn where it helps before anything is automated.
+          </p>
+          <ul class="card-list">
+            <li>Configured to your responsibilities and terminology</li>
+            <li>Two to four practical workflows, built with your real work</li>
+            <li>Live training and a written operating guide</li>
+            <li>No server, no unattended runs, no broad API access</li>
+          </ul>
+          <p class="ladder-price small"><strong>$750 – $1,800</strong> one-time · optional support from $50/mo</p>
+        </article>
+
+        <article class="card ladder-card">
+          <p class="eyebrow">When the work is proven</p>
+          <h3>Managed Automation</h3>
+          <p>
+            The recurring work moved onto infrastructure we run and monitor, so it happens
+            whether or not your laptop is open. Every deployment is isolated to one client,
+            and output still waits for your approval.
+          </p>
+          <ul class="card-list">
+            <li>Runs on a schedule, unattended, on isolated infrastructure</li>
+            <li>Connected to your email, calendar, documents, and tools</li>
+            <li>Monitoring, backups, and failure alerts included</li>
+            <li>Approval points built into every workflow</li>
+          </ul>
+          <p class="ladder-price small"><strong>$500 – $4,000</strong> setup · from $50/mo managed</p>
+        </article>
+      </div>
+
+      <div class="btn-row">
+        <a href="/pricing" class="btn btn-secondary">Compare in detail</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CASE STUDY PLACEHOLDER ================= -->
+  <!--
+    Deliberately contains no client name, employer, logo, or metric. There is an
+    active deployment; there are not yet measured, client-corrected numbers, and
+    consent to publish specific wording has not been given. Do not add figures here
+    until both exist. See the ops repo DECISIONS.md D-12.
+  -->
+  <section class="section-sunken">
+    <div class="container container-narrow">
+      <p class="eyebrow">Results</p>
+      <h2>The first system is running. The numbers are not published yet.</h2>
+      <p class="muted" style="margin-top: var(--space-4)">
+        There is an active deployment with a marketing professional, built as the full
+        rehearsal of this process — discovery through monitoring, backups, and recovery.
+        It is measured internally against the metrics below.
+      </p>
+      <p class="muted" style="margin-top: var(--space-4)">
+        Those measurements are not on this page, because they are not finished and
+        because the numbers belong to the person whose work they describe. When there
+        is a case study, it will be a real one, with their agreement, in their words.
+      </p>
+      <ul class="metric-list">
+        <li>Recurring tasks identified</li>
+        <li>Workflows deployed</li>
+        <li>Hours recovered per week</li>
+        <li>Share of the repetitive workload automated</li>
+        <li>Response-time improvement</li>
+        <li>Drafts prepared and accepted</li>
+        <li>Missed tasks prevented</li>
+        <li>Reporting time reduced</li>
+      </ul>
+      <p class="small muted" style="margin-top: var(--space-5)">
+        We would rather show you nothing than show you numbers we made up.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section>
+    <div class="container container-narrow cta">
+      <h2>Start with a conversation about your week.</h2>
+      <p class="lede" style="margin-top: var(--space-4)">
+        Tell us what repeats. If there is nothing here worth automating, we will say so —
+        that answer is cheaper for both of us than a system nobody needed.
+      </p>
+      <div class="btn-row">
+        <a href="/contact" class="btn btn-primary">Book a consultation</a>
+        <a href="/trust" class="btn btn-secondary">How we handle access</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: var(--space-8) var(--space-8); }
+
+  .hero-inner {
+    display: grid;
+    gap: var(--space-7);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .hero { padding-block: var(--space-9); }
+    .hero-inner { grid-template-columns: 1.15fr 1fr; gap: var(--space-8); }
+  }
+
+  .hero-copy h1 { margin-bottom: var(--space-5); }
+  .hero-note { color: var(--ink-faint); margin-top: var(--space-5); }
+
+  .hero-figure { display: none; }
+  @media (min-width: 56em) { .hero-figure { display: block; } }
+
+  .problem-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  }
+
+  .problem-grid li {
+    padding: var(--space-4) var(--space-4) var(--space-4) var(--space-6);
+    background: var(--ground-raised);
+    border: var(--border-thin) solid var(--rule);
+    border-radius: var(--radius);
+    position: relative;
+    font-size: var(--text-sm);
+    color: var(--ink-muted);
+  }
+
+  .problem-grid li::before {
+    content: "";
+    position: absolute;
+    left: var(--space-4);
+    top: 1.35em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    counter-reset: step;
+  }
+
+  .steps li {
+    border-top: var(--border-thick) solid var(--accent);
+    padding-top: var(--space-4);
+  }
+
+  .step-n {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--space-2);
+  }
+
+  .steps h3 { font-size: var(--text-lg); margin-bottom: var(--space-2); }
+  .steps p { font-size: var(--text-sm); color: var(--ink-muted); }
+
+  .ladder {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 48em) {
+    .ladder { grid-template-columns: 1fr 1fr; }
+  }
+
+  .ladder-card { display: flex; flex-direction: column; }
+  .ladder-card h3 { font-size: var(--text-xl); }
+  .ladder-card > p:not(.eyebrow):not(.ladder-price) { margin-bottom: var(--space-2); }
+
+  .ladder-price {
+    margin-top: auto;
+    padding-top: var(--space-5);
+    color: var(--ink);
+  }
+
+  .metric-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-6);
+    display: grid;
+    gap: var(--space-2) var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .metric-list li {
+    font-size: var(--text-sm);
+    color: var(--ink-faint);
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .metric-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 10px;
+    height: 1.5px;
+    background: var(--diagram-line);
+  }
+
+  .cta { text-align: center; }
+  .cta p { margin-inline: auto; }
+  .cta .btn-row { justify-content: center; }
+</style>

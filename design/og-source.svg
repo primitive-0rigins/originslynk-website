@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#fdfcfa"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#ff7a18"/>
+
+  <g fill="none" stroke="#ff7a18" stroke-width="2.0" stroke-linecap="round" transform="translate(96,88) scale(2.9)">
+    <path d="M10 14.2 7.6 16.6a3.4 3.4 0 0 1-4.8-4.8l3-3a3.4 3.4 0 0 1 4.8 0"/>
+    <path d="M14 9.8l2.4-2.4a3.4 3.4 0 0 1 4.8 4.8l-3 3a3.4 3.4 0 0 1-4.8 0"/>
+  </g>
+
+  <text x="168" y="150" font-family="Georgia, serif" font-size="42" font-weight="600" fill="#1c1a17">OriginsLynk</text>
+
+  <text x="96" y="300" font-family="Georgia, serif" font-size="76" font-weight="600" fill="#1c1a17">Automate the repetitive</text>
+  <text x="96" y="386" font-family="Georgia, serif" font-size="76" font-weight="600" fill="#1c1a17">work around your role.</text>
+
+  <text x="96" y="466" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#57534e">Role-specific automation systems by Primitive Origins.</text>
+  <text x="96" y="510" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#57534e">Your tools. Your approval. Nothing sends itself.</text>
+
+  <rect x="96" y="556" width="64" height="4" fill="#ff7a18"/>
+</svg>

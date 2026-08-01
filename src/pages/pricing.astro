@@ -1,0 +1,274 @@
+---
+import Base from '../layouts/Base.astro';
+
+const assistant = [
+  {
+    name: 'Assistant Starter',
+    setup: '$750',
+    support: '14 days included',
+    body: 'Installation, safe baseline configuration, one role profile, a custom instruction file, two task templates, and a 60-minute training session.',
+  },
+  {
+    name: 'Assistant Role System',
+    setup: '$1,200',
+    support: '30 days included',
+    recommended: true,
+    body: 'Full role discovery, a custom instruction architecture, an organized workspace, two to four working use cases, safety controls, a written guide, and 90 minutes of training.',
+  },
+  {
+    name: 'Assistant Plus',
+    setup: '$1,800',
+    support: '30 days included',
+    body: 'The Role System plus deeper document workflows, a reusable command library, integrations that need no managed server, additional training, and a measurement plan.',
+  },
+];
+
+const managed = [
+  {
+    name: 'Starter Workflow',
+    setup: '$500 – $900',
+    monthly: '$50 – $100 / mo',
+    body: 'One or two narrow workflows. The right size when there is a single clear repetitive task and no appetite for more yet.',
+  },
+  {
+    name: 'Role Automation System',
+    setup: '$1,500 – $2,200',
+    monthly: '$150 – $250 / mo',
+    recommended: true,
+    anchor: 'Typical engagement: $1,800',
+    body: 'Roughly four to six connected workflows with contextual rules, approval points, monitoring, backups, and minor maintenance.',
+  },
+  {
+    name: 'Advanced Role System',
+    setup: '$2,500 – $4,000',
+    monthly: '$300 – $500 / mo',
+    body: 'Multiple tools, reporting, exception handling, more complex approval paths, and continued optimization as the work changes.',
+  },
+];
+---
+
+<Base
+  title="Pricing"
+  description="OriginsLynk pricing: Personal AI Assistant from $750 one-time, and Managed Automation from $500 setup with monthly management. What each plan includes, and what it does not."
+>
+  <section>
+    <div class="container container-narrow">
+      <p class="eyebrow">Pricing</p>
+      <h1>What this costs, and what changes it.</h1>
+      <p class="lede" style="margin-top: var(--space-5)">
+        Two families, priced separately, because they are different services rather than
+        different sizes of the same one. Final pricing depends on complexity,
+        integrations, risk, and what the work is actually worth to you.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PERSONAL AI ASSISTANT ============ -->
+  <section class="section-sunken">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Personal AI Assistant</p>
+        <h2>One-time setup. No infrastructure, no monthly requirement.</h2>
+        <p class="muted">
+          Runs on your machine, using your own AI subscription. Ongoing support is
+          available but genuinely optional — plenty of people take the installation and
+          the documentation and never need us again.
+        </p>
+      </div>
+
+      <div class="tier-grid">
+        {assistant.map((t) => (
+          <article class={`card tier ${t.recommended ? 'tier-recommended' : ''}`}>
+            {t.recommended && <p class="tier-flag">Recommended default</p>}
+            <h3>{t.name}</h3>
+            <p class="tier-price">{t.setup}</p>
+            <p class="tier-meta small">one-time · support {t.support}</p>
+            <p>{t.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="note">
+        <p class="small">
+          <strong>Optional ongoing support: $50 – $100 / month.</strong> Instruction updates,
+          template maintenance, brief support, and one small improvement request. Additional
+          training or project work is quoted separately. Your AI subscription and provider
+          usage remain yours and bill to your own account.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MANAGED AUTOMATION ============ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Managed Automation</p>
+        <h2>Setup, then a monthly plan that keeps it running.</h2>
+        <p class="muted">
+          The monthly fee is not optional here, and it is not a maintenance upsell — it is
+          what pays for the hosting, the monitoring, and someone noticing at 6am that a
+          workflow failed. An unmanaged automation is a liability with your name on it.
+        </p>
+      </div>
+
+      <div class="tier-grid">
+        {managed.map((t) => (
+          <article class={`card tier ${t.recommended ? 'tier-recommended' : ''}`}>
+            {t.recommended && <p class="tier-flag">Most engagements</p>}
+            <h3>{t.name}</h3>
+            <p class="tier-price">{t.setup}</p>
+            <p class="tier-meta small">setup · then {t.monthly}</p>
+            {t.anchor && <p class="tier-anchor small">{t.anchor}</p>}
+            <p>{t.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT MONTHLY INCLUDES ============ -->
+  <section class="section-sunken">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <p class="eyebrow">Included every month</p>
+          <h2 style="font-size: var(--text-2xl)">What the monthly plan covers</h2>
+          <ul class="checklist" style="margin-top: var(--space-5)">
+            <li>Hosting on infrastructure isolated to you</li>
+            <li>Uptime and health monitoring</li>
+            <li>Automated daily backups, kept off the server they back up</li>
+            <li>API and credential upkeep as providers change things</li>
+            <li>Failure investigation when something breaks</li>
+            <li>Minor fixes</li>
+            <li>Up to one hour of small changes</li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="eyebrow">Not included</p>
+          <h2 style="font-size: var(--text-2xl)">What is quoted separately</h2>
+          <ul class="crosslist" style="margin-top: var(--space-5)">
+            <li>New workflows, or substantial changes to existing ones</li>
+            <li>Unlimited revisions — there is no such plan</li>
+            <li>Custom software development beyond the agreed scope</li>
+            <li>Unattended sending, publishing, purchasing, or account changes, which need a separate design and your explicit approval</li>
+            <li>Your AI provider usage and subscriptions, which bill to your own accounts</li>
+            <li>Legal, medical, financial, or compliance guarantees</li>
+          </ul>
+          <p class="small muted" style="margin-top: var(--space-5)">
+            Work beyond the monthly hour is scoped and priced before it starts, not billed
+            after the fact.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT MOVES THE PRICE ============ -->
+  <section>
+    <div class="container container-narrow">
+      <p class="eyebrow">What moves the number</p>
+      <h2>Four things, mostly.</h2>
+      <dl class="factors">
+        <dt>Complexity</dt>
+        <dd>How many decisions the workflow has to get right, and how many exceptions exist.</dd>
+
+        <dt>Integrations</dt>
+        <dd>How many systems are involved and how cooperative they are. A tool with a good API is a different job from one without.</dd>
+
+        <dt>Risk</dt>
+        <dd>What happens if it gets something wrong. Higher stakes mean more approval points, more testing, and more of our time.</dd>
+
+        <dt>Expected value</dt>
+        <dd>What the recovered hours are actually worth to you. If the honest answer is "not much," we will tell you that before you pay for anything.</dd>
+      </dl>
+
+      <div class="btn-row">
+        <a href="/contact" class="btn btn-primary">Book a consultation</a>
+        <a href="/services" class="btn btn-secondary">See what we build</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tier-grid {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    align-items: start;
+  }
+
+  .tier { display: flex; flex-direction: column; height: 100%; }
+  .tier h3 { font-size: var(--text-lg); margin-bottom: var(--space-3); }
+
+  .tier-recommended {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+  }
+
+  .tier-flag {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: var(--text-xs);
+    font-weight: 650;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    padding: var(--space-1) var(--space-3);
+    border-radius: 999px;
+    margin-bottom: var(--space-3);
+  }
+
+  .tier-price {
+    font-family: var(--heading-font);
+    font-size: var(--text-2xl);
+    font-weight: var(--heading-weight);
+    color: var(--ink);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+  }
+
+  .tier-meta { color: var(--ink-faint); margin-top: var(--space-1); }
+  .tier-anchor { color: var(--accent-text); font-weight: 600; margin-top: var(--space-2); }
+  .tier > p:last-child { margin-top: var(--space-4); }
+
+  .note {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    background: var(--ground-raised);
+    border: var(--border-thin) solid var(--rule);
+    border-left: var(--border-thick) solid var(--secondary);
+    border-radius: var(--radius);
+  }
+
+  .note p { max-width: 78ch; color: var(--ink-muted); }
+
+  .two-col {
+    display: grid;
+    gap: var(--space-7);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 52em) {
+    .two-col { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  }
+
+  .factors { margin-top: var(--space-6); max-width: var(--measure); }
+
+  .factors dt {
+    font-weight: 650;
+    color: var(--ink);
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: var(--border-thin) solid var(--rule);
+  }
+
+  .factors dd {
+    margin: var(--space-2) 0 0;
+    color: var(--ink-muted);
+    font-size: var(--text-sm);
+  }
+</style>

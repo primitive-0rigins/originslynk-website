@@ -1,0 +1,38 @@
+# Cloudflare Pages response headers.
+#
+# The site is fully static and ships no third-party scripts, which makes a strict
+# policy cheap to hold. Keep it that way: if a header below starts blocking
+# something you want to add, that is a prompt to ask whether the addition is worth
+# the exposure — not to weaken the header reflexively.
+
+/*
+  # No third-party origins at all. 'unsafe-inline' for styles only, because Astro
+  # scopes component styles into inline <style> blocks. There is no inline script,
+  # so script-src stays strict.
+  #
+  # form-action: narrow `https:` to the exact form endpoint host once one is
+  # chosen (DECISIONS.md D-04). As written it permits a POST to any HTTPS origin,
+  # which is the one loose clause in this policy.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; form-action 'self' https:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+
+# HSTS is deliberately NOT set here.
+#
+# It belongs in Cloudflare's SSL/TLS -> Edge Certificates panel, where it is a
+# reversible toggle, and it should be enabled only after the site has been live and
+# correct for a week (CLOUDFLARE_CHECKLIST.md §1). Setting it in this file would ship
+# a one-year policy on the very first deploy, before anyone has confirmed the domain
+# works — and `includeSubDomains` would extend that to every client hostname.
+#
+# Browsers cache an HSTS policy for its full max-age and there is no way to reach out
+# and clear it. That makes it the one setting in this tree that a mistake cannot be
+# undone from.
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=86400

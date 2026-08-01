@@ -1,0 +1,289 @@
+---
+import Base from '../layouts/Base.astro';
+
+const roles = [
+  {
+    role: 'Marketing director',
+    items: [
+      'Campaign performance brief, assembled weekly',
+      'Content request intake and triage',
+      'Campaign launch coordination and checklists',
+      'Context-aware email drafts for stakeholders',
+      'Missing asset and pending approval alerts',
+      'Weekly operational report',
+    ],
+  },
+  {
+    role: 'Real-estate professional',
+    items: [
+      'Lead context prepared before you call',
+      'Follow-up drafts waiting for your approval',
+      'Appointment preparation summaries',
+      'Alerts on conversations that have gone quiet',
+      'Daily priority summary',
+    ],
+  },
+  {
+    role: 'Administrator or VA',
+    items: [
+      'Inbox triage and routing',
+      'Request intake with the details already collected',
+      'Document collection chasing',
+      'Recurring reminders that run themselves',
+      'Status reporting',
+      'Exception alerts when something is off',
+    ],
+  },
+  {
+    role: 'Small-business operator',
+    items: [
+      'Proposals and standard procedures drafted from your templates',
+      'Customer messages prepared, never sent automatically',
+      'Meeting summaries and next actions',
+      'Recurring operational documents',
+      'Research comparisons on demand',
+    ],
+  },
+];
+---
+
+<Base
+  title="Services"
+  description="Two ways to work with OriginsLynk: a personal AI assistant configured around your role, or managed automation running on isolated infrastructure. Example systems by role."
+>
+  <section>
+    <div class="container container-narrow">
+      <p class="eyebrow">Services</p>
+      <h1>Two services, one ladder.</h1>
+      <p class="lede" style="margin-top: var(--space-5)">
+        The difference is not how capable the system is. It is how much runs without
+        you in the room — and that should follow your comfort and your evidence, not
+        our price list.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PERSONAL AI ASSISTANT ============ -->
+  <section class="section-sunken">
+    <div class="container">
+      <div class="service-head">
+        <div>
+          <p class="eyebrow">Service one · start here</p>
+          <h2>Personal AI Assistant</h2>
+          <p class="lede" style="margin-top: var(--space-4)">
+            A capable AI assistant, installed on your own machine, configured around your
+            actual role — your responsibilities, your terminology, your recurring work,
+            and the boundaries you set.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>What you receive</h3>
+          <ul class="checklist">
+            <li>Installation and configuration of a supported terminal-based assistant, authenticated with your own account and subscription</li>
+            <li>A role profile built from your responsibilities, tools, and approval boundaries</li>
+            <li>A custom instruction system defining how it works, what it may access, and what needs review</li>
+            <li>An organized workspace for documents, templates, references, and recurring tasks</li>
+            <li>Reusable task templates for your most common work</li>
+            <li>Two to four practical workflows, configured and tested on your real examples</li>
+            <li>Safety configuration: review rules, file protections, and recovery safeguards</li>
+            <li>Live training using your own work, plus a written guide and quick-reference sheet</li>
+            <li>Support through the included stabilization period</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Who it suits</h3>
+          <p class="muted">
+            People who are interested in AI but cautious about security, complexity, and
+            handing control to automated systems — and people who already pay for an AI
+            subscription but only ever use the chat box.
+          </p>
+          <h3 style="margin-top: var(--space-6)">What it deliberately is not</h3>
+          <ul class="crosslist">
+            <li>Nothing runs unattended</li>
+            <li>No server, no hosting, no infrastructure to maintain</li>
+            <li>No broad API access granted to anyone</li>
+            <li>No sending, publishing, purchasing, or deleting on your behalf</li>
+          </ul>
+          <p class="small muted" style="margin-top: var(--space-5)">
+            You stay responsible for reviewing output before it is sent, published, or used
+            to change a business record. That is the design, not a limitation of it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MANAGED AUTOMATION ============ -->
+  <section>
+    <div class="container">
+      <div class="service-head">
+        <div>
+          <p class="eyebrow">Service two · when the work is proven</p>
+          <h2>Managed Automation</h2>
+          <p class="lede" style="margin-top: var(--space-4)">
+            The recurring work moved onto infrastructure we run, monitor, and back up, so
+            it happens on schedule whether or not your laptop is open.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>What you receive</h3>
+          <ul class="checklist">
+            <li>Workflows running on a schedule, unattended, on infrastructure isolated to you alone</li>
+            <li>Connections to your email, calendar, documents, forms, and business tools</li>
+            <li>Deterministic rules controlling what each workflow is permitted to do</li>
+            <li>Approval points built in, so output waits for a person</li>
+            <li>Monitoring with alerts that reach us before they reach you</li>
+            <li>Automated daily backups, with a restore procedure that has been tested</li>
+            <li>Failure investigation and minor changes included in the monthly plan</li>
+            <li>Export of your workflows and data whenever you ask</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>The honest trade</h3>
+          <p class="muted">
+            Because this runs without you, credentials you authorize are held on
+            infrastructure we administer. That is a real change from the personal
+            assistant, and it is the reason the two are separate services rather than
+            two sizes of one.
+          </p>
+          <p class="muted" style="margin-top: var(--space-4)">
+            What we do about it: one isolated deployment per client — separate database,
+            separate credentials, separate encryption key, separate backups. Nothing is
+            shared between clients. You can revoke our access from your own accounts at
+            any time, without asking us.
+          </p>
+          <p style="margin-top: var(--space-5)">
+            <a href="/trust">How access, isolation, and revocation actually work →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXAMPLE ROLE SYSTEMS ============ -->
+  <section class="section-sunken">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Example role systems</p>
+        <h2>What this looks like for a specific job.</h2>
+        <p class="muted">
+          Illustrative, not a menu. What gets built comes out of discovery — your week,
+          not a template.
+        </p>
+      </div>
+
+      <div class="grid">
+        {roles.map((r) => (
+          <article class="card card-accent">
+            <h3>{r.role}</h3>
+            <ul class="card-list">
+              {r.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UPGRADE PATH ============ -->
+  <section>
+    <div class="container container-narrow">
+      <p class="eyebrow">The path between them</p>
+      <h2>Automate the thing you got tired of starting yourself.</h2>
+      <p class="muted" style="margin-top: var(--space-4)">
+        The personal assistant tends to reveal which tasks you still have to remember to
+        begin. Those are the honest candidates for automation — chosen from observed
+        friction, not from a sales conversation.
+      </p>
+
+      <ol class="path">
+        <li><strong>Personal AI Assistant.</strong> You learn to delegate safely and see where the time actually goes.</li>
+        <li><strong>Assisted expansion.</strong> More templates, structured intake, a command library for your role.</li>
+        <li><strong>Managed Role Automation.</strong> Scheduled workflows, approvals, monitoring, backups, isolated infrastructure.</li>
+        <li><strong>Advanced role system.</strong> Cross-tool reporting, exception detection, ongoing optimization.</li>
+      </ol>
+
+      <p class="small muted" style="margin-top: var(--space-6)">
+        There is no requirement to move up this list, and no discount for doing it faster.
+        Plenty of people should stop at step one.
+      </p>
+
+      <div class="btn-row">
+        <a href="/pricing" class="btn btn-primary">See pricing</a>
+        <a href="/contact" class="btn btn-secondary">Book a consultation</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .service-head { margin-bottom: var(--space-7); max-width: 62ch; }
+
+  .two-col {
+    display: grid;
+    gap: var(--space-7);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 52em) {
+    .two-col { grid-template-columns: 1.25fr 1fr; gap: var(--space-8); }
+  }
+
+  .two-col h3 {
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--ink-faint);
+    margin-bottom: var(--space-4);
+  }
+
+  .path {
+    counter-reset: path;
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-6);
+    max-width: var(--measure);
+  }
+
+  .path li {
+    counter-increment: path;
+    position: relative;
+    padding-left: var(--space-7);
+    padding-bottom: var(--space-5);
+    border-left: var(--border-thin) solid var(--rule-strong);
+    margin-left: 11px;
+    color: var(--ink-muted);
+    font-size: var(--text-sm);
+  }
+
+  .path li:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+  .path li::before {
+    content: counter(path);
+    position: absolute;
+    left: -11px;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--ground);
+    border: var(--border-thin) solid var(--rule-strong);
+    color: var(--ink-faint);
+    font-size: var(--text-xs);
+    font-weight: 650;
+    display: grid;
+    place-items: center;
+  }
+
+  .path strong { color: var(--ink); }
+</style>

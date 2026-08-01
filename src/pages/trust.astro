@@ -1,0 +1,222 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Trust & safety"
+  description="How OriginsLynk handles access, credentials, isolation, monitoring, backups, and offboarding — and what we deliberately do not claim."
+>
+  <section>
+    <div class="container container-narrow">
+      <p class="eyebrow">Trust &amp; safety</p>
+      <h1>How access actually works.</h1>
+      <p class="lede" style="margin-top: var(--space-5)">
+        Automation is only worth having if you can describe, out loud, what it is
+        permitted to do. This page is that description. It is written to be checked, not
+        to be reassuring.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-sunken">
+    <div class="container container-narrow">
+      <div class="principle">
+        <h2>The envelope</h2>
+        <p class="lede" style="margin-top: var(--space-4)">
+          Read the inputs. Interpret them. Prepare the work. Leave it as a draft or a
+          file. A person decides what happens next.
+        </p>
+        <p class="muted" style="margin-top: var(--space-4)">
+          Nothing we build sends an email, publishes a post, moves money, or deletes a
+          record on its own. If a workflow would need to, that is a separate conversation
+          with its own design and your explicit written approval — never a setting we
+          quietly enable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="pillars">
+        <article>
+          <h3>Human approval where it matters</h3>
+          <p>
+            Every workflow has a defined point where output waits for a person. You will
+            know where that point is, because it is written into the workflow's
+            specification before it is built.
+          </p>
+        </article>
+
+        <article>
+          <h3>Least access that works</h3>
+          <p>
+            Each connection gets the narrowest permission that does the job. If a
+            workflow only needs to read your inbox and create drafts, that is all it is
+            authorized to do — not full account access because it was simpler to set up.
+          </p>
+        </article>
+
+        <article>
+          <h3>Isolated deployments</h3>
+          <p>
+            Managed clients each get their own database, their own credentials, their own
+            encryption key, their own backups, and their own hostname. Nothing is shared
+            between clients, so nothing can leak between them.
+          </p>
+        </article>
+
+        <article>
+          <h3>Credentials stay out of source control</h3>
+          <p>
+            No client credential is ever committed to a repository. Secrets live in
+            encrypted storage with restricted access, and rotation is documented rather
+            than improvised.
+          </p>
+        </article>
+
+        <article>
+          <h3>Monitored, with alerts pointed at us</h3>
+          <p>
+            Health checks, failure alerts, and a dead-man's switch on the backup job. The
+            alerts reach us first. You should hear about a problem from a person, not
+            discover it from silence.
+          </p>
+        </article>
+
+        <article>
+          <h3>Backups you can actually restore</h3>
+          <p>
+            Daily, kept off the machine they back up, and — the part most people skip —
+            restored on a test system to prove the procedure works. A backup nobody has
+            restored is a guess.
+          </p>
+        </article>
+
+        <article>
+          <h3>Revocation is yours, not ours</h3>
+          <p>
+            Access is granted from your own accounts, which means you can withdraw it from
+            your own accounts, immediately, without asking us and without waiting for a
+            business day.
+          </p>
+        </article>
+
+        <article>
+          <h3>Export and offboarding on request</h3>
+          <p>
+            Ask, and you get your workflow definitions and your data in a portable form
+            that imports elsewhere. Leaving is a procedure we have written down, not a
+            negotiation.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE HONEST PART ============ -->
+  <section class="section-sunken">
+    <div class="container container-narrow">
+      <p class="eyebrow">The part most vendors leave out</p>
+      <h2>What we do not claim.</h2>
+
+      <div class="disclosure">
+        <h3>We hold credentials for managed clients</h3>
+        <p>
+          Managed automation runs without you, which means the connection to your accounts
+          is stored on infrastructure we administer. There is no version of always-on
+          automation where this is not true, and any vendor telling you otherwise is
+          describing something else. We isolate it per client, we say so in writing in the
+          service agreement, and we make sure revocation is one click you control.
+        </p>
+        <p class="small muted" style="margin-top: var(--space-3)">
+          If you are not comfortable with that — and it is reasonable not to be — the
+          Personal AI Assistant runs on your own machine and never has this property.
+        </p>
+      </div>
+
+      <div class="disclosure">
+        <h3>We hold no compliance certifications</h3>
+        <p>
+          We are not SOC 2 certified, not HIPAA compliant, and not ISO 27001 audited. We
+          are a small operation that follows sound practice, and we would rather say that
+          plainly than imply a certification we do not have. If your work requires one,
+          you need a vendor who has been audited for it.
+        </p>
+      </div>
+
+      <div class="disclosure">
+        <h3>AI gets things wrong</h3>
+        <p>
+          The models we configure will occasionally misread context, state something
+          confidently that is incorrect, or produce a draft that misses the point. This is
+          exactly why the approval step exists and why nothing sends itself. Part of what
+          we train you on is recognizing when output is wrong — including how to check a
+          claim before you act on it.
+        </p>
+      </div>
+
+      <div class="disclosure">
+        <h3>Sensitive and regulated work is excluded by default</h3>
+        <p>
+          Workflows touching regulated data or decisions with legal consequence are out of
+          scope unless separately assessed and designed. We would rather turn down that
+          work than build it casually.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container container-narrow cta">
+      <h2>Questions about any of this?</h2>
+      <p class="lede" style="margin-top: var(--space-4)">
+        Ask them before you buy something, not after. If something here does not fit how
+        you need to work, that is worth finding out in the first conversation.
+      </p>
+      <div class="btn-row">
+        <a href="/contact" class="btn btn-primary">Book a consultation</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .principle {
+    padding: var(--space-6);
+    background: var(--ground-raised);
+    border: var(--border-thin) solid var(--rule);
+    border-left: var(--border-thick) solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+
+  .principle h2 { font-size: var(--text-2xl); }
+
+  .pillars {
+    display: grid;
+    gap: var(--space-6) var(--space-7);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  }
+
+  .pillars h3 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: var(--border-thin) solid var(--rule-strong);
+  }
+
+  .pillars p { font-size: var(--text-sm); color: var(--ink-muted); }
+
+  .disclosure {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: var(--border-thin) solid var(--rule-strong);
+  }
+
+  .disclosure h3 { font-size: var(--text-lg); margin-bottom: var(--space-3); }
+  .disclosure p { color: var(--ink-muted); }
+
+  .cta { text-align: center; }
+  .cta p { margin-inline: auto; }
+  .cta .btn-row { justify-content: center; }
+</style>

@@ -1,0 +1,110 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  { href: '/services', label: 'Services' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/trust', label: 'Trust & safety' },
+];
+const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="wordmark" aria-label="OriginsLynk home">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <!-- Two linked segments: the connection between tools, not a robot. -->
+        <path d="M9.5 14.5 6.8 17.2a3.8 3.8 0 0 1-5.4-5.4l3.4-3.4a3.8 3.8 0 0 1 5.4 0" />
+        <path d="M14.5 9.5l2.7-2.7a3.8 3.8 0 0 1 5.4 5.4l-3.4 3.4a3.8 3.8 0 0 1-5.4 0" />
+      </svg>
+      <span class="wordmark-text">OriginsLynk</span>
+    </a>
+
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+        <li><a href="/contact" class="btn btn-primary nav-cta">Book a consultation</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: var(--border-thin) solid var(--rule);
+    background: var(--ground);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    padding-block: var(--space-4);
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--heading-font);
+    font-weight: 650;
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .mark {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    flex-shrink: 0;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .nav-list a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: 550;
+    padding-block: var(--space-2);
+  }
+
+  .nav-list a:hover { color: var(--ink); }
+
+  .nav-list a[aria-current='page'] {
+    color: var(--ink);
+    box-shadow: inset 0 -2px 0 var(--accent);
+  }
+
+  .nav-cta { color: #21160c; }
+  .nav-cta[aria-current='page'] { box-shadow: none; }
+
+  /* Below 30rem the wordmark and nav stack rather than crowd. No JS menu: three
+     links do not need one, and a hamburger is a component to maintain forever. */
+  @media (max-width: 30rem) {
+    .header-inner { justify-content: center; }
+    .nav-list { gap: var(--space-4); justify-content: center; }
+    .wordmark-text { font-size: var(--text-base); }
+  }
+</style>
