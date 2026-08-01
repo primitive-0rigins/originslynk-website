@@ -2,109 +2,95 @@
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
   { href: '/services', label: 'Services' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/trust', label: 'Trust & safety' },
+  { href: '/#process', label: 'How it works' },
+  { href: '/services#use-cases', label: 'Use cases' },
+  { href: '/trust', label: 'Trust' },
+  { href: '/faq', label: 'FAQ' },
 ];
-const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
+const isCurrent = (href: string) => href.startsWith('/#') ? path === '/' : path === href || path.startsWith(href + '/');
 ---
 
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="wordmark" aria-label="OriginsLynk home">
-      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <!-- Two linked segments: the connection between tools, not a robot. -->
-        <path d="M9.5 14.5 6.8 17.2a3.8 3.8 0 0 1-5.4-5.4l3.4-3.4a3.8 3.8 0 0 1 5.4 0" />
-        <path d="M14.5 9.5l2.7-2.7a3.8 3.8 0 0 1 5.4 5.4l-3.4 3.4a3.8 3.8 0 0 1-5.4 0" />
+      <svg class="mark" viewBox="0 0 34 24" aria-hidden="true" focusable="false">
+        <path d="M14.3 16.8 11.5 19.6a6 6 0 0 1-8.5-8.5l3.4-3.4a6 6 0 0 1 8.5 0l1.1 1.1" />
+        <path d="m19.7 7.2 2.8-2.8A6 6 0 0 1 31 12.9l-3.4 3.4a6 6 0 0 1-8.5 0L18 15.2" />
+        <path d="m11.2 12 11.6 0" />
       </svg>
-      <span class="wordmark-text">OriginsLynk</span>
+      <span class="wordmark-text">Origins<span>Lynk</span></span>
     </a>
 
-    <nav aria-label="Main">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">
+      <span>Menu</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+    </button>
+
+    <nav class="nav-wrap" id="main-navigation" aria-label="Main">
       <ul class="nav-list">
-        {links.map((l) => (
+        {links.map((link) => (
           <li>
-            <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+            <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
           </li>
         ))}
-        <li><a href="/contact" class="btn btn-primary nav-cta">Book a consultation</a></li>
+        <li><a href="/contact" class="btn btn-primary nav-cta">Request a workflow review</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('#main-navigation');
+
+  if (toggle && navigation) {
+    toggle.classList.add('is-ready');
+    if (window.matchMedia('(max-width: 56rem)').matches) navigation.hidden = true;
+
+    toggle.addEventListener('click', () => {
+      const opening = navigation.hidden;
+      navigation.hidden = !opening;
+      toggle.setAttribute('aria-expanded', String(opening));
+    });
+
+    window.matchMedia('(min-width: 56.01rem)').addEventListener('change', (event) => {
+      navigation.hidden = !event.matches;
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+</script>
+
 <style>
   .site-header {
-    border-bottom: var(--border-thin) solid var(--rule);
-    background: var(--ground);
+    border-bottom: var(--border-thin) solid color-mix(in srgb, var(--rule) 74%, transparent);
+    background: color-mix(in srgb, var(--ground) 94%, transparent);
+    backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
     z-index: 50;
   }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); min-height: 78px; }
+  .wordmark { display: inline-flex; align-items: center; gap: var(--space-2); text-decoration: none; color: var(--ink); flex-shrink: 0; }
+  .wordmark:hover { color: var(--ink); }
+  .wordmark-text { font-size: 1.05rem; font-weight: 720; letter-spacing: -0.025em; }
+  .wordmark-text span { color: var(--accent); }
+  .mark { width: 30px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-wrap { margin-left: auto; }
+  .nav-list { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.8rem); list-style: none; padding: 0; }
+  .nav-list > li > a:not(.btn) { color: var(--ink-muted); text-decoration: none; font-size: var(--text-sm); font-weight: 620; padding-block: var(--space-2); }
+  .nav-list > li > a:not(.btn):hover { color: var(--accent); }
+  .nav-list a[aria-current='page']:not(.btn) { color: var(--ink); }
+  .nav-cta { padding-inline: var(--space-4); }
+  .menu-toggle { display: none; border: var(--border-thin) solid var(--rule-strong); background: var(--ground-raised); border-radius: var(--radius-sm); min-height: 42px; padding: var(--space-2) var(--space-3); align-items: center; gap: var(--space-2); font-weight: 650; cursor: pointer; }
+  .menu-toggle svg { width: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    flex-wrap: wrap;
-    padding-block: var(--space-4);
-  }
-
-  .wordmark {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-3);
-    text-decoration: none;
-    color: var(--ink);
-    font-family: var(--heading-font);
-    font-weight: 650;
-    font-size: var(--text-lg);
-    letter-spacing: var(--tracking-tight);
-  }
-
-  .mark {
-    width: 26px;
-    height: 26px;
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 2;
-    stroke-linecap: round;
-    flex-shrink: 0;
-  }
-
-  .nav-list {
-    display: flex;
-    align-items: center;
-    gap: var(--space-5);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-wrap: wrap;
-  }
-
-  .nav-list a {
-    color: var(--ink-muted);
-    text-decoration: none;
-    font-size: var(--text-sm);
-    font-weight: 550;
-    padding-block: var(--space-2);
-  }
-
-  .nav-list a:hover { color: var(--ink); }
-
-  .nav-list a[aria-current='page'] {
-    color: var(--ink);
-    box-shadow: inset 0 -2px 0 var(--accent);
-  }
-
-  .nav-cta { color: #21160c; }
-  .nav-cta[aria-current='page'] { box-shadow: none; }
-
-  /* Below 30rem the wordmark and nav stack rather than crowd. No JS menu: three
-     links do not need one, and a hamburger is a component to maintain forever. */
-  @media (max-width: 30rem) {
-    .header-inner { justify-content: center; }
-    .nav-list { gap: var(--space-4); justify-content: center; }
-    .wordmark-text { font-size: var(--text-base); }
+  @media (max-width: 56rem) {
+    .header-inner { min-height: 68px; flex-wrap: wrap; padding-block: var(--space-3); }
+    .menu-toggle.is-ready { display: inline-flex; }
+    .nav-wrap { width: 100%; margin: 0; padding-block: var(--space-3) var(--space-2); border-top: var(--border-thin) solid var(--rule); }
+    .nav-wrap[hidden] { display: none; }
+    .nav-list { align-items: stretch; flex-direction: column; gap: 0; }
+    .nav-list > li > a:not(.btn) { display: block; padding-block: var(--space-3); }
+    .nav-cta { width: 100%; margin-top: var(--space-2); }
   }
 </style>

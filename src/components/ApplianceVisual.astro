@@ -1,0 +1,20 @@
+<figure class="appliance" aria-labelledby="appliance-caption">
+  <div class="device" aria-hidden="true">
+    <div class="device-top"></div>
+    <div class="device-face">
+      <span class="device-logo">OL</span>
+      <span class="device-light"></span>
+    </div>
+  </div>
+  <figcaption id="appliance-caption">Hardware concept placeholder · final unit selected per deployment</figcaption>
+</figure>
+
+<style>
+  .appliance { margin: 0; display: grid; justify-items: center; gap: var(--space-5); padding: var(--space-6); }
+  .device { width: min(100%, 22rem); aspect-ratio: 1.9 / 1; position: relative; filter: drop-shadow(0 24px 26px rgba(0,0,0,.28)); }
+  .device-top { position: absolute; inset: 5% 6% 33%; border-radius: 20px 20px 8px 8px; background: linear-gradient(145deg, #303b36, #121815 72%); border: 1px solid #4b5550; transform: perspective(480px) rotateX(56deg); transform-origin: bottom; }
+  .device-face { position: absolute; inset: 43% 4% 8%; border-radius: 8px 8px 16px 16px; background: linear-gradient(180deg, #28322e, #111714); border: 1px solid #46514c; display: flex; align-items: center; justify-content: center; }
+  .device-logo { color: #95a58e; border: 1px solid #75826f; border-radius: 50%; width: 34px; height: 34px; display: grid; place-items: center; font-size: .64rem; font-weight: 720; letter-spacing: .02em; }
+  .device-light { position: absolute; right: 12%; bottom: 14%; width: 34px; height: 2px; border-radius: 99px; background: #9dc18f; box-shadow: 0 0 9px #8fb980; }
+  figcaption { max-width: 30ch; text-align: center; color: var(--ink-inverse-muted); font-size: var(--text-xs); line-height: var(--leading-snug); }
+</style>

@@ -6,7 +6,7 @@ import Base from '../layouts/Base.astro';
   title="Trust & safety"
   description="How OriginsLynk handles access, credentials, isolation, monitoring, backups, and offboarding — and what we deliberately do not claim."
 >
-  <section>
+  <section class="section-cream page-hero">
     <div class="container container-narrow">
       <p class="eyebrow">Trust &amp; safety</p>
       <h1>How access actually works.</h1>
@@ -18,7 +18,7 @@ import Base from '../layouts/Base.astro';
     </div>
   </section>
 
-  <section class="section-sunken">
+  <section class="section-sunken principle-section">
     <div class="container container-narrow">
       <div class="principle">
         <h2>The envelope</h2>
@@ -60,18 +60,18 @@ import Base from '../layouts/Base.astro';
         <article>
           <h3>Isolated deployments</h3>
           <p>
-            Managed clients each get their own database, their own credentials, their own
-            encryption key, their own backups, and their own hostname. Nothing is shared
-            between clients, so nothing can leak between them.
+            Each managed client receives a dedicated environment with separate credentials,
+            settings, and configuration backups. This separation reduces the risk of one
+            client's system affecting another.
           </p>
         </article>
 
         <article>
-          <h3>Credentials stay out of source control</h3>
+          <h3>Credentials are handled separately</h3>
           <p>
-            No client credential is ever committed to a repository. Secrets live in
-            encrypted storage with restricted access, and rotation is documented rather
-            than improvised.
+            Passwords and access codes are not collected through the public contact form or
+            ordinary email. Account access is entered directly or shared through an approved
+            secure method after the scope is agreed.
           </p>
         </article>
 
@@ -85,11 +85,11 @@ import Base from '../layouts/Base.astro';
         </article>
 
         <article>
-          <h3>Backups you can actually restore</h3>
+          <h3>Configuration backups are checked</h3>
           <p>
-            Daily, kept off the machine they back up, and — the part most people skip —
-            restored on a test system to prove the procedure works. A backup nobody has
-            restored is a guess.
+            The managed configuration and workflow state described in your agreement are
+            backed up and checked. These backups do not replace the backup responsibilities
+            of every outside account connected to the system.
           </p>
         </article>
 
@@ -105,9 +105,9 @@ import Base from '../layouts/Base.astro';
         <article>
           <h3>Export and offboarding on request</h3>
           <p>
-            Ask, and you get your workflow definitions and your data in a portable form
-            that imports elsewhere. Leaving is a procedure we have written down, not a
-            negotiation.
+            When service ends, OriginsLynk provides the available configuration, removes
+            managed access and credentials, and schedules deletion according to the service
+            agreement. Rented hardware is then returned.
           </p>
         </article>
       </div>
@@ -115,7 +115,7 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <!-- ============ THE HONEST PART ============ -->
-  <section class="section-sunken">
+  <section class="section-dark disclosure-section">
     <div class="container container-narrow">
       <p class="eyebrow">The part most vendors leave out</p>
       <h2>What we do not claim.</h2>
@@ -124,10 +124,9 @@ import Base from '../layouts/Base.astro';
         <h3>We hold credentials for managed clients</h3>
         <p>
           Managed automation runs without you, which means the connection to your accounts
-          is stored on infrastructure we administer. There is no version of always-on
-          automation where this is not true, and any vendor telling you otherwise is
-          describing something else. We isolate it per client, we say so in writing in the
-          service agreement, and we make sure revocation is one click you control.
+          is stored on a dedicated appliance we administer. That access is limited to the
+          agreed work, documented in the service agreement, and revocable from the accounts
+          you own.
         </p>
         <p class="small muted" style="margin-top: var(--space-3)">
           If you are not comfortable with that — and it is reasonable not to be — the
@@ -175,7 +174,7 @@ import Base from '../layouts/Base.astro';
         you need to work, that is worth finding out in the first conversation.
       </p>
       <div class="btn-row">
-        <a href="/contact" class="btn btn-primary">Book a consultation</a>
+        <a href="/contact" class="btn btn-primary">Request a workflow review</a>
       </div>
     </div>
   </section>
@@ -191,6 +190,9 @@ import Base from '../layouts/Base.astro';
   }
 
   .principle h2 { font-size: var(--text-2xl); }
+
+  .page-hero h1 { max-width: 15ch; }
+  .page-hero .lede { max-width: 61ch; }
 
   .pillars {
     display: grid;
@@ -215,6 +217,10 @@ import Base from '../layouts/Base.astro';
 
   .disclosure h3 { font-size: var(--text-lg); margin-bottom: var(--space-3); }
   .disclosure p { color: var(--ink-muted); }
+  .disclosure-section .disclosure { border-color: var(--rule-inverse); }
+  .disclosure-section .disclosure p { color: var(--ink-inverse-muted); }
+  .disclosure-section .disclosure h3 { color: var(--ink-inverse); }
+  .disclosure-section .disclosure .small { color: #aab3ad; }
 
   .cta { text-align: center; }
   .cta p { margin-inline: auto; }

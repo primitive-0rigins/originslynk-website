@@ -1,0 +1,66 @@
+<figure class="artifact" aria-labelledby="artifact-title">
+  <div class="artifact-bar">
+    <span class="artifact-mark" aria-hidden="true"></span>
+    <figcaption id="artifact-title">A supervised workflow, at a glance</figcaption>
+    <span class="artifact-live">Ready</span>
+  </div>
+  <ol>
+    <li class="complete">
+      <span class="state-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 7l8 6 8-6" /></svg>
+      </span>
+      <span><small>New request</small><strong>Information received</strong></span>
+      <span class="status">Captured</span>
+    </li>
+    <li class="complete">
+      <span class="state-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M7 4h10v4H7zM5 10h14v10H5zM9 14h6M9 17h4" /></svg>
+      </span>
+      <span><small>Processing</small><strong>Summary prepared</strong></span>
+      <span class="status">Complete</span>
+    </li>
+    <li class="current">
+      <span class="state-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12M8 11l4 4 4-4M5 20h14" /></svg>
+      </span>
+      <span><small>Approval needed</small><strong>Review before action</strong></span>
+      <span class="status">Waiting</span>
+    </li>
+    <li>
+      <span class="state-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 6.5" /></svg>
+      </span>
+      <span><small>Outcome</small><strong>Approved work delivered</strong></span>
+      <span class="status">Next</span>
+    </li>
+  </ol>
+  <p class="artifact-note"><span aria-hidden="true"></span> You remain the decision point.</p>
+</figure>
+
+<style>
+  .artifact { margin: 0; width: 100%; max-width: 34rem; background: rgba(255,255,255,.88); border: 1px solid rgba(203,200,189,.92); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; transform: rotate(1.2deg); }
+  .artifact-bar { display: flex; align-items: center; gap: var(--space-3); min-height: 58px; padding: var(--space-4) var(--space-5); color: var(--ink-inverse); background: var(--ground-inverse); }
+  .artifact-mark { width: 10px; height: 10px; border-radius: 50%; background: #a7c09e; box-shadow: 0 0 0 4px rgba(167,192,158,.12); }
+  figcaption { font-size: var(--text-sm); font-weight: 680; }
+  .artifact-live { margin-left: auto; font-size: var(--text-xs); color: #c6d5c0; }
+  ol { list-style: none; padding: var(--space-3) var(--space-5); }
+  li { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-3); padding-block: var(--space-4); position: relative; }
+  li + li { border-top: 1px solid var(--rule); }
+  li:not(:last-child)::after { content: ""; position: absolute; left: 18px; top: calc(50% + 18px); height: calc(50% - 1px); width: 1px; background: var(--diagram-line); }
+  .state-icon { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--rule-strong); display: grid; place-items: center; background: var(--ground-raised); z-index: 1; }
+  .state-icon svg { width: 17px; fill: none; stroke: var(--ink-muted); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  small, strong { display: block; }
+  small { color: var(--ink-faint); font-size: var(--text-xs); }
+  strong { font-size: var(--text-sm); margin-top: 1px; }
+  .status { font-size: .69rem; color: var(--ink-faint); background: var(--ground-sunken); border-radius: 999px; padding: .2rem .5rem; }
+  .complete .state-icon { border-color: #adc1aa; background: var(--accent-soft); }
+  .current { margin-inline: calc(var(--space-3) * -1); padding-inline: var(--space-3); background: var(--secondary-soft); border-radius: var(--radius); }
+  .current + li { border-top-color: transparent; }
+  .current .status { background: #e6d3aa; color: #684a12; }
+  .artifact-note { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); color: var(--ink-muted); background: var(--ground-sunken); font-size: var(--text-xs); }
+  .artifact-note span { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+  @media (max-width: 34rem) {
+    .artifact { transform: none; }
+    .status { display: none; }
+  }
+</style>

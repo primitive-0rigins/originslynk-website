@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+
+const faqs = [
+  {
+    question: 'What exactly does OriginsLynk automate?',
+    answer: 'OriginsLynk helps with repetitive administrative work such as organizing information, preparing drafts, assembling reports, creating reminders, updating records, and routing work for approval. The exact boundaries are written down before implementation.',
+  },
+  {
+    question: 'Which service should I choose?',
+    answer: 'Choose the $750 Personal AI Assistant Setup for two guided workflows you start yourself. Choose the $1,200 AI Workflow System for four workflows around one role. Choose the Managed Automation Appliance, starting at $2,800, when proven recurring work should stay available and OriginsLynk should maintain the environment.',
+  },
+  {
+    question: 'Will this replace the tools I already use?',
+    answer: 'Usually not. The goal is to work around your existing email, calendar, documents, spreadsheets, and business accounts so you do less duplicate work without replacing an otherwise useful system.',
+  },
+  {
+    question: 'Will it send messages or make decisions without me?',
+    answer: 'Not by default. Customer-facing messages, important record changes, and higher-risk actions remain human-approved unless a clearly defined, low-risk action is separately reviewed and agreed in writing.',
+  },
+  {
+    question: 'Who owns my data and accounts?',
+    answer: 'You keep ownership of your business data, accounts, subscriptions, and business outputs. OriginsLynk retains its reusable methods and generalized templates, without claiming ownership of your source information.',
+  },
+  {
+    question: 'How are passwords and account access handled?',
+    answer: 'Credentials are entered directly or transferred through an approved secure method, never ordinary email. Access is limited to what the agreed workflow needs, and you can revoke access from your own accounts.',
+  },
+  {
+    question: 'What happens after launch?',
+    answer: 'The Assistant Setup includes 14 days of stabilization and the AI Workflow System includes 30 days. The Managed Automation Appliance includes a 30-day launch period, followed by the $250 monthly Appliance Care Plan.',
+  },
+  {
+    question: 'What does the $250 monthly fee cover?',
+    answer: 'It covers appliance rental, monitoring, software and security updates, configuration backup checks, break/fix support, a monthly activity report, and up to 60 minutes of minor adjustments. It does not include new workflows.',
+  },
+  {
+    question: 'Can I add workflows later?',
+    answer: 'Yes. An additional templated workflow is $300 when it uses the existing setup, supported connections, and established templates. Work involving new systems, advanced authentication, substantial custom development, or greater risk is quoted separately, normally from $500–$1,500+.',
+  },
+  {
+    question: 'What happens if something breaks?',
+    answer: 'OriginsLynk investigates failures during the applicable support window. Managed clients receive monitoring and break/fix support. Outside-provider outages, internet or power failures, and account restrictions may require the client or outside provider to resolve their portion.',
+  },
+];
+---
+
+<Base
+  title="Frequently asked questions"
+  description="Answers about OriginsLynk services, pricing, workflow boundaries, account ownership, ongoing support, and managed appliance care."
+>
+  <section class="section-cream page-hero">
+    <div class="container container-narrow">
+      <p class="eyebrow">Frequently asked questions</p>
+      <h1>Clear answers before you commit.</h1>
+      <p class="lede" style="margin-top: var(--space-5)">
+        The important distinction is who starts the work, who reviews it, and who remains
+        responsible for keeping the system available after launch.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-sunken">
+    <div class="container container-narrow">
+      <div class="faq-search" role="search">
+        <label for="faq-query">Search the FAQ</label>
+        <div class="search-control">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m15.5 15.5 5 5" /></svg>
+          <input id="faq-query" type="search" placeholder="Try “monthly fee” or “account access”" autocomplete="off" data-faq-search />
+        </div>
+        <p class="small muted" id="faq-result-count" aria-live="polite">Showing all {faqs.length} answers.</p>
+      </div>
+
+      <div class="faq-list" data-faq-list>
+      {faqs.map((faq, index) => (
+        <details open={index === 0} data-faq-item data-search={`${faq.question} ${faq.answer}`.toLowerCase()}>
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+      </div>
+
+      <div class="faq-empty" data-faq-empty hidden>
+        <h2>No matching answer yet.</h2>
+        <p>Try a broader phrase, or tell us what you are trying to solve.</p>
+        <a href="/contact" class="btn btn-primary">Request a workflow review</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container container-narrow cta">
+      <h2>Still not sure which level fits?</h2>
+      <p class="lede" style="margin-top: var(--space-4)">
+        Tell us what repeats, how often it happens, and what tools are involved. We will
+        recommend a practical first step—including no build when that is the honest answer.
+      </p>
+      <div class="btn-row">
+        <a href="/contact" class="btn btn-primary">Request a workflow review</a>
+        <a href="/pricing" class="btn btn-secondary">Compare pricing</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  type TrackingWindow = Window & {
+    originslynkTrack?: (event: string, details?: Record<string, string>) => void;
+  };
+
+  const search = document.querySelector<HTMLInputElement>('[data-faq-search]');
+  const items = Array.from(document.querySelectorAll<HTMLDetailsElement>('[data-faq-item]'));
+  const empty = document.querySelector<HTMLElement>('[data-faq-empty]');
+  const count = document.querySelector<HTMLElement>('#faq-result-count');
+  let tracked = false;
+
+  search?.addEventListener('input', () => {
+    const query = search.value.trim().toLowerCase();
+    let visible = 0;
+
+    items.forEach((item) => {
+      const matches = !query || (item.dataset.search || '').includes(query);
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    });
+
+    if (count) count.textContent = query
+      ? `${visible} ${visible === 1 ? 'answer' : 'answers'} found.`
+      : `Showing all ${items.length} answers.`;
+    if (empty) empty.hidden = visible > 0;
+
+    if (!tracked && query.length >= 2) {
+      tracked = true;
+      (window as TrackingWindow).originslynkTrack?.('faq_search', { query_length: String(query.length) });
+    }
+  });
+</script>
+
+<style>
+  .page-hero h1 { max-width: 14ch; }
+  .faq-search { margin-bottom: var(--space-6); }
+  .faq-search label { display: block; color: var(--ink); font-weight: 680; font-size: var(--text-sm); margin-bottom: var(--space-2); }
+  .search-control { position: relative; }
+  .search-control svg { position: absolute; left: var(--space-4); top: 50%; transform: translateY(-50%); width: 20px; fill: none; stroke: var(--ink-faint); stroke-width: 1.7; stroke-linecap: round; pointer-events: none; }
+  .search-control input { width: 100%; min-height: 52px; padding: var(--space-3) var(--space-4) var(--space-3) 3rem; border: 1px solid var(--rule-strong); border-radius: var(--radius); background: var(--ground-raised); }
+  .search-control input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 var(--focus-width) var(--accent-ring); }
+  #faq-result-count { margin-top: var(--space-2); }
+  .faq-list { display: grid; gap: var(--space-3); }
+
+  details {
+    background: var(--ground-raised);
+    border: var(--border-thin) solid var(--rule);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    box-shadow: none;
+  }
+
+  details[open] { border-left: var(--border-thick) solid var(--accent); }
+
+  summary {
+    cursor: pointer;
+    color: var(--ink);
+    font-family: var(--heading-font);
+    font-size: var(--text-lg);
+    font-weight: var(--heading-weight);
+    line-height: var(--leading-snug);
+  }
+
+  details p { margin-top: var(--space-4); color: var(--ink-muted); }
+  .faq-empty { text-align: center; padding: var(--space-8) var(--space-5); border: 1px dashed var(--rule-strong); border-radius: var(--radius-lg); background: var(--ground-raised); }
+  .faq-empty h2 { font-size: var(--text-xl); }
+  .faq-empty p { margin: var(--space-3) auto var(--space-5); color: var(--ink-muted); }
+  .cta { text-align: center; }
+  .cta p { margin-inline: auto; }
+  .cta .btn-row { justify-content: center; }
+</style>
