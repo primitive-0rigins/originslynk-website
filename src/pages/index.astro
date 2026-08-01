@@ -1,393 +1,324 @@
 ---
 import Base from '../layouts/Base.astro';
 import Diagram from '../components/Diagram.astro';
+import WorkflowArtifact from '../components/WorkflowArtifact.astro';
+import ApplianceVisual from '../components/ApplianceVisual.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { assistantRoleSystem, managedAutomation, personalAssistantStarter } from '../data/services';
 
-const problems = [
-  'Copying the same information between two tools that will never talk to each other.',
-  'Drafts that start from nothing, because the tool has no idea who the person is.',
-  'Follow-ups that get missed because remembering them is somebody’s job.',
-  'Approvals scattered across email, chat, and a document nobody can find.',
-  'Reports rebuilt by hand every week from the same four sources.',
-  'Recurring checklists that live in your head and only run when you have time.',
+const commitments = [
+  ['Human-guided', 'Important results stay visible to you.'],
+  ['Secure by design', 'Access is limited to the agreed work.'],
+  ['Built for your role', 'Your language, tools, and responsibilities.'],
+  ['Managed or client-operated', 'Choose who keeps the system running.'],
 ];
 
-const builds = [
-  {
-    title: 'Contextual communication preparation',
-    body: 'Replies drafted with the history, the account, and the tone already accounted for — waiting in your drafts folder, not sent.',
-  },
-  {
-    title: 'Daily priority briefs',
-    body: 'One short summary each morning: what moved, what is waiting on you, what is about to be late.',
-  },
-  {
-    title: 'Reporting and campaign summaries',
-    body: 'The weekly numbers assembled and written up from wherever they actually live, ready for you to correct.',
-  },
-  {
-    title: 'Recurring process coordination',
-    body: 'Launch checklists that start themselves, track what is outstanding, and chase the gaps.',
-  },
-  {
-    title: 'Deadline and exception detection',
-    body: 'Surfacing the thing that did not happen — the reply that never came, the asset still missing.',
-  },
-  {
-    title: 'Content preparation and approvals',
-    body: 'Long-form work repurposed into drafts that route to a human before anything is published.',
-  },
-  {
-    title: 'Cross-tool data movement',
-    body: 'The copy-paste between systems, done reliably, on a schedule, with a record of what moved.',
-  },
-  {
-    title: 'Operational alerts',
-    body: 'A message when something needs attention, not a dashboard you have to remember to open.',
-  },
+const processSteps = [
+  ['01', 'Discover', 'We learn the role, the repeated work, and where judgment matters.'],
+  ['02', 'Design', 'We map a useful workflow with clear inputs, boundaries, and approvals.'],
+  ['03', 'Build', 'We configure, connect, and test the agreed system.'],
+  ['04', 'Launch', 'You receive training, documentation, and a controlled handoff.'],
+  ['05', 'Stabilize', 'We correct launch issues and confirm the workflow holds up in real use.'],
 ];
 
-const steps = [
-  {
-    n: '01',
-    title: 'Workflow discovery',
-    body: 'We go through your actual week and find the work that repeats. No tooling decisions yet — just what you do, how often, and what it costs you.',
-  },
-  {
-    n: '02',
-    title: 'System design',
-    body: 'Each workflow gets written down before it gets built: what triggers it, what it may do, where you approve, and what happens when it fails.',
-  },
-  {
-    n: '03',
-    title: 'Build and testing',
-    body: 'Built against your real examples and run in read-only mode first, so you see its judgment before it writes anything.',
-  },
-  {
-    n: '04',
-    title: 'Managed operation',
-    body: 'Monitored, backed up, and maintained. When something breaks, we find out before you do.',
-  },
+const exampleSteps = [
+  ['Request', 'A message, form, or document arrives.'],
+  ['Capture', 'Useful details are extracted and organized.'],
+  ['Prepare', 'A concise summary and next-step draft are created.'],
+  ['Approve', 'You review, edit, or stop the work.'],
+  ['Deliver', 'The approved result is ready for the intended person or system.'],
 ];
 ---
 
 <Base
   title="OriginsLynk"
-  description="OriginsLynk builds role-specific automation around the tools you already use. Recover hours every week without replacing your CRM or handing over control."
+  description="Make repetitive work take less of your week with supervised AI assistance and managed automation built around the tools you already use."
 >
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="container hero-inner">
+  <section class="hero section-cream">
+    <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Role-specific automation systems by Primitive Origins</p>
-        <h1>Automate the repetitive work around your role.</h1>
+        <p class="eyebrow">Practical systems for real work</p>
+        <h1>Less repetitive work. <span>More of your week back.</span></h1>
         <p class="lede">
-          We connect the email, calendar, documents, forms, and business tools you already
-          use into reliable workflows that prepare the work — and leave the decisions,
-          and the Send button, with you.
+          OriginsLynk builds role-specific assistance and managed workflows around the
+          tools you already use—while keeping consequential decisions and approvals with you.
         </p>
         <div class="btn-row">
-          <a href="/contact" class="btn btn-primary">Book a consultation</a>
-          <a href="/services" class="btn btn-secondary">See example systems</a>
+          <a href="/contact" class="btn btn-primary" data-analytics-event="consultation_click" data-analytics-location="home_hero">Request a workflow review</a>
+          <a href="/services" class="btn btn-secondary" data-analytics-event="service_comparison_click" data-analytics-location="home_hero">Explore services</a>
         </div>
-        <p class="hero-note small">
-          We do not replace your CRM, and we do not move you onto a new platform.
-        </p>
+        <p class="hero-note">Serving Upstate South Carolina and clients across the United States.</p>
       </div>
+      <div class="hero-artifact"><WorkflowArtifact /></div>
+    </div>
+  </section>
 
-      <div class="hero-figure" aria-hidden="true">
-        <Diagram />
+  <section class="commitment-strip" aria-label="OriginsLynk commitments">
+    <div class="container commitment-grid">
+      {commitments.map(([title, body], index) => (
+        <div>
+          <span class="commitment-number" aria-hidden="true">0{index + 1}</span>
+          <p><strong>{title}</strong><span>{body}</span></p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-dark before-after">
+    <div class="container before-grid">
+      <div class="before-copy">
+        <p class="eyebrow">From scattered to clear</p>
+        <h2>Turn work you have to remember into a process you can see.</h2>
+        <p class="muted">The goal is not more software. It is a dependable path from incoming work to an approved result.</p>
+        <a href="/#process">See how the process works →</a>
+      </div>
+      <div class="comparison-board" aria-label="Before and after OriginsLynk">
+        <div class="comparison-side before-side">
+          <p class="board-label">Before</p>
+          <ul>
+            <li>Manual follow-up</li>
+            <li>Scattered information</li>
+            <li>Status lives in memory</li>
+            <li>Work waits to be noticed</li>
+          </ul>
+          <svg viewBox="0 0 220 90" aria-hidden="true"><path d="M4 42C40 6 51 91 86 37S119 78 147 23s35 58 69 13M7 75c41-48 54 9 79-29s53 17 70-18 29 27 57 2" /></svg>
+        </div>
+        <div class="lynk-node" aria-hidden="true">OL</div>
+        <div class="comparison-side after-side">
+          <p class="board-label">After</p>
+          <ul>
+            <li>Defined trigger</li>
+            <li>Organized context</li>
+            <li>Visible approval</li>
+            <li>Clear outcome</li>
+          </ul>
+          <svg viewBox="0 0 220 90" aria-hidden="true"><path d="M4 67c38 0 38-39 76-39s38 39 76 39 38-39 60-39M4 78c38 0 38-39 76-39s38 39 76 39 38-39 60-39" /></svg>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= PROBLEMS ================= -->
-  <section class="section-sunken">
+  <section class="section-sunken services-section">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">The work that never gets scheduled</p>
-        <h2>You already know which hours these are.</h2>
-        <p class="muted">
-          Most of what an automation system should do is not exciting. It is the same
-          handful of tasks, every week, that quietly take a morning.
-        </p>
+      <div class="section-head section-head-center">
+        <p class="eyebrow">Three ways to start</p>
+        <h2>Choose who operates the system.</h2>
+        <p class="muted">Begin with a workspace you run, expand around one role, or move proven recurring work into a managed environment.</p>
       </div>
-      <ul class="problem-grid">
-        {problems.map((p) => <li>{p}</li>)}
-      </ul>
+      <div class="service-ladder">
+        <ServiceCard service={personalAssistantStarter} label="Start here" featured />
+        <ServiceCard service={assistantRoleSystem} label="Build around one role" />
+        <ServiceCard service={managedAutomation} label="Managed for you" />
+      </div>
+
+      <aside class="care-strip" aria-label="Appliance Care Plan">
+        <div class="care-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.9 8.2 7 10 4.1-1.8 7-5.4 7-10V6l-7-3zM8.5 12l2.2 2.2 4.8-5" /></svg>
+        </div>
+        <div>
+          <p class="eyebrow">Appliance Care Plan</p>
+          <h3>$250 <span>/ month</span></h3>
+        </div>
+        <p>Hardware rental, monitoring, updates, configuration backup checks, reporting, break/fix support, and up to 60 minutes of minor adjustments.</p>
+        <a href="/pricing#care-plan" class="btn btn-secondary">See plan boundaries</a>
+      </aside>
     </div>
   </section>
 
-  <!-- ================= WHAT WE BUILD ================= -->
-  <section>
+  <section class="workflow-example">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">What we build</p>
-        <h2>Concrete systems, not general-purpose AI.</h2>
-        <p class="muted">
-          Each of these is a specific workflow with a defined trigger, defined limits,
-          and a point where a person signs off.
-        </p>
+      <div class="section-head section-head-center">
+        <p class="eyebrow">A real workflow pattern</p>
+        <h2>From incoming request to reviewed work.</h2>
+        <p class="muted">One practical sequence, with the approval point kept visible.</p>
       </div>
-      <div class="grid">
-        {builds.map((b) => (
-          <article class="card card-accent">
-            <h3>{b.title}</h3>
-            <p>{b.body}</p>
-          </article>
-        ))}
-      </div>
+      <Diagram />
+      <ol class="example-detail" aria-label="Example workflow details">
+        {exampleSteps.map(([title, body]) => <li><strong>{title}</strong><span>{body}</span></li>)}
+      </ol>
     </div>
   </section>
 
-  <!-- ================= HOW IT WORKS ================= -->
-  <section class="section-sunken">
+  <section class="section-dark appliance-section">
+    <div class="container appliance-grid">
+      <div class="appliance-copy">
+        <p class="eyebrow">Managed Automation Appliance</p>
+        <h2>A dedicated home for work that should keep running.</h2>
+        <p class="lede">For proven recurring workflows, OriginsLynk provides and maintains a separate appliance for your business.</p>
+        <ul class="appliance-list">
+          <li>OriginsLynk-owned hardware rented as part of the service</li>
+          <li>Separate environment, credentials, and settings for each client</li>
+          <li>Monitoring, configuration backup checks, and maintenance</li>
+          <li>Six configured workflows, with no more than two actively running automations</li>
+          <li>Human approval points where consequences matter</li>
+        </ul>
+        <a href="/services#managed-automation" class="btn btn-secondary">See managed service details</a>
+      </div>
+      <ApplianceVisual />
+    </div>
+  </section>
+
+  <section id="process" class="process-section">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">How it works</p>
-        <h2>Four steps, and you keep your tools.</h2>
+        <h2>A clear path from repeated task to dependable system.</h2>
       </div>
-      <ol class="steps">
-        {steps.map((s) => (
-          <li>
-            <span class="step-n" aria-hidden="true">{s.n}</span>
-            <h3>{s.title}</h3>
-            <p>{s.body}</p>
-          </li>
+      <ol class="process-list">
+        {processSteps.map(([number, title, body]) => (
+          <li><span>{number}</span><h3>{title}</h3><p>{body}</p></li>
         ))}
       </ol>
     </div>
   </section>
 
-  <!-- ================= THE LADDER ================= -->
-  <section>
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Two ways to start</p>
-        <h2>Begin where you are actually comfortable.</h2>
-        <p class="muted">
-          Most people should not start with unattended automation. Starting smaller is
-          not a lesser version of the service — it is usually the right one.
-        </p>
+  <section class="section-cream trust-section">
+    <div class="container trust-layout">
+      <div>
+        <p class="eyebrow">Trust is part of the build</p>
+        <h2>Know who has access, what can happen, and where the limits are.</h2>
+        <p class="lede">You keep ownership of your accounts and information. Every workflow has defined boundaries, and managed clients receive a separate environment.</p>
+        <div class="btn-row">
+          <a href="/trust" class="btn btn-primary">Read trust &amp; safety</a>
+          <a href="/faq" class="btn btn-secondary">Search the FAQ</a>
+        </div>
       </div>
-
-      <div class="ladder">
-        <article class="card ladder-card">
-          <p class="eyebrow">Start here</p>
-          <h3>Personal AI Assistant</h3>
-          <p>
-            A capable AI assistant configured around your role, on your own machine,
-            using your own subscription. Nothing runs unattended and nothing has access
-            you did not grant. You learn where it helps before anything is automated.
-          </p>
-          <ul class="card-list">
-            <li>Configured to your responsibilities and terminology</li>
-            <li>Two to four practical workflows, built with your real work</li>
-            <li>Live training and a written operating guide</li>
-            <li>No server, no unattended runs, no broad API access</li>
-          </ul>
-          <p class="ladder-price small"><strong>$750 – $1,800</strong> one-time · optional support from $50/mo</p>
-        </article>
-
-        <article class="card ladder-card">
-          <p class="eyebrow">When the work is proven</p>
-          <h3>Managed Automation</h3>
-          <p>
-            The recurring work moved onto infrastructure we run and monitor, so it happens
-            whether or not your laptop is open. Every deployment is isolated to one client,
-            and output still waits for your approval.
-          </p>
-          <ul class="card-list">
-            <li>Runs on a schedule, unattended, on isolated infrastructure</li>
-            <li>Connected to your email, calendar, documents, and tools</li>
-            <li>Monitoring, backups, and failure alerts included</li>
-            <li>Approval points built into every workflow</li>
-          </ul>
-          <p class="ladder-price small"><strong>$500 – $4,000</strong> setup · from $50/mo managed</p>
-        </article>
-      </div>
-
-      <div class="btn-row">
-        <a href="/pricing" class="btn btn-secondary">Compare in detail</a>
+      <div class="trust-points">
+        <article><span>01</span><div><h3>Approval stays visible</h3><p>Consequential outputs wait for a person unless a separately reviewed low-risk action is agreed.</p></div></article>
+        <article><span>02</span><div><h3>Access stays narrow</h3><p>Connections receive only the permissions the defined work requires.</p></div></article>
+        <article><span>03</span><div><h3>Limitations stay honest</h3><p>AI can be wrong, outside services can fail, and uninterrupted operation is not guaranteed.</p></div></article>
       </div>
     </div>
   </section>
 
-  <!-- ================= CASE STUDY PLACEHOLDER ================= -->
-  <!--
-    Deliberately contains no client name, employer, logo, or metric. There is an
-    active deployment; there are not yet measured, client-corrected numbers, and
-    consent to publish specific wording has not been given. Do not add figures here
-    until both exist. See the ops repo DECISIONS.md D-12.
-  -->
-  <section class="section-sunken">
-    <div class="container container-narrow">
-      <p class="eyebrow">Results</p>
-      <h2>The first system is running. The numbers are not published yet.</h2>
-      <p class="muted" style="margin-top: var(--space-4)">
-        There is an active deployment with a marketing professional, built as the full
-        rehearsal of this process — discovery through monitoring, backups, and recovery.
-        It is measured internally against the metrics below.
-      </p>
-      <p class="muted" style="margin-top: var(--space-4)">
-        Those measurements are not on this page, because they are not finished and
-        because the numbers belong to the person whose work they describe. When there
-        is a case study, it will be a real one, with their agreement, in their words.
-      </p>
-      <ul class="metric-list">
-        <li>Recurring tasks identified</li>
-        <li>Workflows deployed</li>
-        <li>Hours recovered per week</li>
-        <li>Share of the repetitive workload automated</li>
-        <li>Response-time improvement</li>
-        <li>Drafts prepared and accepted</li>
-        <li>Missed tasks prevented</li>
-        <li>Reporting time reduced</li>
-      </ul>
-      <p class="small muted" style="margin-top: var(--space-5)">
-        We would rather show you nothing than show you numbers we made up.
-      </p>
+  <section class="founder-section">
+    <div class="container founder-grid">
+      <div class="founder-intro">
+        <p class="eyebrow">Why OriginsLynk exists</p>
+        <h2>It began with helping one family get more time together.</h2>
+      </div>
+      <div class="founder-story">
+        <p class="lede">Bryce Worthy first built these systems for his wife, a marketing director who works from home. The goal was simple: help repetitive work take fewer hours so there was more time for each other and their four-year-old.</p>
+        <p>That practical family problem became OriginsLynk. The purpose is not automation for its own sake or squeezing more work into the day. It is giving capable people a safer, repeatable way to finish necessary work and step away from it.</p>
+        <p>OriginsLynk is a Primitive Origins company based in Anderson, serving Upstate South Carolina and clients elsewhere in the United States.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ================= CTA ================= -->
-  <section>
-    <div class="container container-narrow cta">
-      <h2>Start with a conversation about your week.</h2>
-      <p class="lede" style="margin-top: var(--space-4)">
-        Tell us what repeats. If there is nothing here worth automating, we will say so —
-        that answer is cheaper for both of us than a system nobody needed.
-      </p>
-      <div class="btn-row">
-        <a href="/contact" class="btn btn-primary">Book a consultation</a>
-        <a href="/trust" class="btn btn-secondary">How we handle access</a>
+  <section class="section-dark final-cta">
+    <div class="container final-cta-inner">
+      <div>
+        <p class="eyebrow">Start with what repeats</p>
+        <h2>Find the work worth removing from your week.</h2>
+      </div>
+      <div>
+        <p class="lede">Tell us where the time goes. We will recommend a practical first step—including no build when that is the honest answer.</p>
+        <div class="btn-row"><a href="/contact" class="btn btn-primary" data-analytics-event="consultation_click" data-analytics-location="home_final">Request a workflow review</a></div>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .hero { padding-block: var(--space-8) var(--space-8); }
+  .hero { padding-block: clamp(4rem, 8vw, 7.5rem); position: relative; }
+  .hero::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: linear-gradient(90deg, transparent, var(--rule-strong), transparent); }
+  .hero-grid { display: grid; gap: var(--space-8); align-items: center; }
+  .hero-copy h1 { max-width: 13ch; }
+  .hero-copy h1 span { color: var(--accent); }
+  .hero-copy .lede { max-width: 58ch; margin-top: var(--space-5); }
+  .hero-note { color: var(--ink-faint); font-size: var(--text-xs); margin-top: var(--space-5); }
+  .hero-artifact { display: flex; justify-content: center; }
 
-  .hero-inner {
-    display: grid;
-    gap: var(--space-7);
-    grid-template-columns: 1fr;
-    align-items: center;
+  .commitment-strip { padding-block: var(--space-6); background: var(--ground-raised); }
+  .commitment-grid { display: grid; gap: var(--space-5); }
+  .commitment-grid > div { display: flex; gap: var(--space-3); align-items: flex-start; }
+  .commitment-number { font-size: .68rem; color: var(--accent); font-weight: 720; padding-top: .2rem; }
+  .commitment-grid strong, .commitment-grid p span { display: block; }
+  .commitment-grid strong { font-size: var(--text-sm); }
+  .commitment-grid p span { color: var(--ink-faint); font-size: var(--text-xs); margin-top: .1rem; }
+
+  .before-grid { display: grid; gap: var(--space-8); align-items: center; }
+  .before-copy h2 { max-width: 15ch; }
+  .before-copy .muted { margin-top: var(--space-5); }
+  .before-copy > a { display: inline-block; margin-top: var(--space-6); text-decoration: none; font-size: var(--text-sm); font-weight: 680; }
+  .comparison-board { display: grid; position: relative; gap: var(--space-3); }
+  .comparison-side { position: relative; min-height: 19rem; padding: var(--space-6); border-radius: var(--radius-lg); overflow: hidden; }
+  .before-side { background: #e7e3da; color: var(--ink); }
+  .after-side { background: #f8f6ef; color: var(--ink); }
+  .board-label { font-size: .68rem; font-weight: 720; letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  .comparison-side ul { list-style: none; padding: 0; margin-top: var(--space-5); position: relative; z-index: 1; }
+  .comparison-side li { font-size: var(--text-sm); padding-block: var(--space-2); border-bottom: 1px solid rgba(23,32,29,.1); }
+  .comparison-side svg { position: absolute; right: -2rem; bottom: 1rem; width: 75%; fill: none; stroke: #727a76; stroke-width: 1; opacity: .55; }
+  .after-side svg { stroke: var(--accent); }
+  .lynk-node { display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; width: 58px; height: 58px; border-radius: 50%; background: var(--accent); color: #fff; place-items: center; font-size: var(--text-xs); font-weight: 720; box-shadow: 0 0 0 8px var(--ground-inverse); }
+
+  .service-ladder { display: grid; gap: var(--space-5); }
+  .care-strip { margin-top: var(--space-5); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--accent); color: #fff; display: grid; gap: var(--space-4); align-items: center; }
+  .care-icon { width: 48px; height: 48px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; display: grid; place-items: center; }
+  .care-icon svg { width: 24px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .care-strip .eyebrow { color: #d9e6d4; margin-bottom: var(--space-1); }
+  .care-strip h3 { font-size: var(--text-xl); }
+  .care-strip h3 span { font-size: var(--text-sm); font-weight: 500; }
+  .care-strip > p { color: #e2eadf; font-size: var(--text-sm); }
+  .care-strip .btn-secondary { border-color: rgba(255,255,255,.45); color: #fff; }
+  .care-strip .btn-secondary:hover { background: rgba(255,255,255,.1); }
+
+  .example-detail { list-style: none; padding: 0; margin-top: var(--space-7); display: grid; gap: var(--space-3); }
+  .example-detail li { padding: var(--space-4); border-left: 2px solid var(--rule-strong); background: var(--ground-raised); }
+  .example-detail li:nth-child(4) { border-color: var(--accent); background: var(--accent-soft); }
+  .example-detail strong, .example-detail span { display: block; }
+  .example-detail strong { font-size: var(--text-sm); }
+  .example-detail span { color: var(--ink-muted); font-size: var(--text-xs); margin-top: var(--space-1); }
+
+  .appliance-grid { display: grid; gap: var(--space-8); align-items: center; }
+  .appliance-copy h2 { max-width: 15ch; }
+  .appliance-copy .lede { margin-top: var(--space-5); }
+  .appliance-list { list-style: none; padding: 0; margin-block: var(--space-6); }
+  .appliance-list li { position: relative; padding-left: var(--space-6); margin-top: var(--space-3); color: var(--ink-inverse-muted); font-size: var(--text-sm); }
+  .appliance-list li::before { content: "✓"; position: absolute; left: 0; color: #a9c99e; }
+
+  .process-list { list-style: none; padding: 0; display: grid; gap: var(--space-6); }
+  .process-list li { position: relative; padding-top: var(--space-5); border-top: 1px solid var(--rule-strong); }
+  .process-list > li > span { display: block; color: var(--accent); font-size: var(--text-xs); font-weight: 720; margin-bottom: var(--space-3); }
+  .process-list h3 { font-size: var(--text-lg); }
+  .process-list p { margin-top: var(--space-2); color: var(--ink-muted); font-size: var(--text-sm); }
+
+  .trust-layout, .founder-grid, .final-cta-inner { display: grid; gap: var(--space-8); }
+  .trust-layout .lede { margin-top: var(--space-5); }
+  .trust-points { border-top: 1px solid var(--rule-strong); }
+  .trust-points article { display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); padding-block: var(--space-5); border-bottom: 1px solid var(--rule-strong); }
+  .trust-points article > span { color: var(--accent); font-size: var(--text-xs); font-weight: 720; }
+  .trust-points h3 { font-size: var(--text-base); }
+  .trust-points p { color: var(--ink-muted); font-size: var(--text-sm); margin-top: var(--space-2); }
+  .founder-intro h2 { max-width: 14ch; }
+  .founder-story > * + * { margin-top: var(--space-5); }
+  .founder-story > p:not(.lede) { color: var(--ink-muted); }
+  .final-cta h2 { max-width: 15ch; }
+
+  @media (min-width: 42em) {
+    .commitment-grid { grid-template-columns: repeat(2, 1fr); }
+    .comparison-board { grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .lynk-node { display: grid; }
+    .service-ladder { grid-template-columns: repeat(2, 1fr); }
+    .service-ladder > :last-child { grid-column: 1 / -1; }
+    .care-strip { grid-template-columns: auto auto 1fr; }
+    .care-strip .btn { grid-column: 3; justify-self: start; }
+    .example-detail { grid-template-columns: repeat(5, 1fr); }
+    .example-detail li { border-left: 0; border-top: 2px solid var(--rule-strong); }
+    .example-detail li:nth-child(4) { border-color: var(--accent); }
+    .process-list { grid-template-columns: repeat(2, 1fr); }
   }
-
-  @media (min-width: 56em) {
-    .hero { padding-block: var(--space-9); }
-    .hero-inner { grid-template-columns: 1.15fr 1fr; gap: var(--space-8); }
+  @media (min-width: 64em) {
+    .hero-grid { grid-template-columns: .95fr 1.05fr; gap: var(--space-9); }
+    .commitment-grid { grid-template-columns: repeat(4, 1fr); }
+    .commitment-grid > div + div { border-left: 1px solid var(--rule); padding-left: var(--space-5); }
+    .before-grid { grid-template-columns: .7fr 1.3fr; }
+    .service-ladder { grid-template-columns: repeat(3, 1fr); }
+    .service-ladder > :last-child { grid-column: auto; }
+    .care-strip { grid-template-columns: auto auto 1fr auto; padding: var(--space-5) var(--space-6); }
+    .care-strip .btn { grid-column: auto; justify-self: end; }
+    .appliance-grid { grid-template-columns: 1fr 1fr; }
+    .process-list { grid-template-columns: repeat(5, 1fr); }
+    .trust-layout, .founder-grid, .final-cta-inner { grid-template-columns: .95fr 1.05fr; }
   }
-
-  .hero-copy h1 { margin-bottom: var(--space-5); }
-  .hero-note { color: var(--ink-faint); margin-top: var(--space-5); }
-
-  .hero-figure { display: none; }
-  @media (min-width: 56em) { .hero-figure { display: block; } }
-
-  .problem-grid {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: var(--space-4);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-  }
-
-  .problem-grid li {
-    padding: var(--space-4) var(--space-4) var(--space-4) var(--space-6);
-    background: var(--ground-raised);
-    border: var(--border-thin) solid var(--rule);
-    border-radius: var(--radius);
-    position: relative;
-    font-size: var(--text-sm);
-    color: var(--ink-muted);
-  }
-
-  .problem-grid li::before {
-    content: "";
-    position: absolute;
-    left: var(--space-4);
-    top: 1.35em;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .steps {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: var(--space-5);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-    counter-reset: step;
-  }
-
-  .steps li {
-    border-top: var(--border-thick) solid var(--accent);
-    padding-top: var(--space-4);
-  }
-
-  .step-n {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--ink-faint);
-    letter-spacing: var(--tracking-wide);
-    margin-bottom: var(--space-2);
-  }
-
-  .steps h3 { font-size: var(--text-lg); margin-bottom: var(--space-2); }
-  .steps p { font-size: var(--text-sm); color: var(--ink-muted); }
-
-  .ladder {
-    display: grid;
-    gap: var(--space-5);
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 48em) {
-    .ladder { grid-template-columns: 1fr 1fr; }
-  }
-
-  .ladder-card { display: flex; flex-direction: column; }
-  .ladder-card h3 { font-size: var(--text-xl); }
-  .ladder-card > p:not(.eyebrow):not(.ladder-price) { margin-bottom: var(--space-2); }
-
-  .ladder-price {
-    margin-top: auto;
-    padding-top: var(--space-5);
-    color: var(--ink);
-  }
-
-  .metric-list {
-    list-style: none;
-    padding: 0;
-    margin-top: var(--space-6);
-    display: grid;
-    gap: var(--space-2) var(--space-5);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  }
-
-  .metric-list li {
-    font-size: var(--text-sm);
-    color: var(--ink-faint);
-    padding-left: var(--space-5);
-    position: relative;
-  }
-
-  .metric-list li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 10px;
-    height: 1.5px;
-    background: var(--diagram-line);
-  }
-
-  .cta { text-align: center; }
-  .cta p { margin-inline: auto; }
-  .cta .btn-row { justify-content: center; }
 </style>

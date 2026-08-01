@@ -6,24 +6,32 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <p class="footer-name">OriginsLynk</p>
-      <p class="small muted">Role-specific automation systems by Primitive Origins LLC.</p>
-      <p class="small muted">Anderson, South Carolina.</p>
+      <a href="/" class="footer-wordmark">Origins<span>Lynk</span></a>
+      <p>Practical systems for less repetitive work and more time away from it.</p>
+      <p class="footer-place">A Primitive Origins company · Anderson, South Carolina</p>
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
       <div>
-        <h2 class="footer-heading">Service</h2>
+        <h2>Explore</h2>
         <ul>
-          <li><a href="/services">What we build</a></li>
+          <li><a href="/services">Services</a></li>
           <li><a href="/pricing">Pricing</a></li>
-          <li><a href="/trust">Trust &amp; safety</a></li>
+          <li><a href="/#process">How it works</a></li>
         </ul>
       </div>
       <div>
-        <h2 class="footer-heading">Get in touch</h2>
+        <h2>Company</h2>
         <ul>
-          <li><a href="/contact">Book a consultation</a></li>
+          <li><a href="/trust">Trust &amp; safety</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Start here</h2>
+        <ul>
+          <li><a href="/contact">Request a workflow review</a></li>
           <li><a href={`mailto:${email}`}>{email}</a></li>
         </ul>
       </div>
@@ -31,72 +39,31 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="container footer-legal">
-    <p class="small muted">
-      &copy; {year} Primitive Origins LLC. Independent setup and support — not affiliated
+    <p>
+      &copy; {year} Primitive Origins LLC. Independent setup and support—not affiliated
       with, endorsed by, or a reseller of any AI, email, or business-software provider.
-      Services are configured against accounts and subscriptions the client owns.
+      Services use accounts and subscriptions the client owns.
     </p>
   </div>
 </footer>
 
 <style>
-  .site-footer {
-    margin-top: auto;
-    border-top: var(--border-thin) solid var(--rule);
-    background: var(--ground-sunken);
-    padding-top: var(--space-7);
-  }
-
-  .footer-inner {
-    display: grid;
-    gap: var(--space-6);
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 44em) {
-    .footer-inner { grid-template-columns: 1.2fr 1fr; }
-  }
-
-  .footer-name {
-    font-family: var(--heading-font);
-    font-weight: 650;
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-2);
-  }
-
-  .footer-brand p + p { margin-top: var(--space-1); }
-
-  .footer-nav {
-    display: grid;
-    gap: var(--space-5);
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  }
-
-  .footer-heading {
-    font-family: var(--font-sans);
-    font-size: var(--text-xs);
-    font-weight: 650;
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: var(--space-3);
-  }
-
-  .footer-nav ul { list-style: none; padding: 0; margin: 0; }
+  .site-footer { margin-top: auto; background: var(--ground-inverse); color: var(--ink-inverse); padding-top: var(--space-8); }
+  .footer-inner { display: grid; gap: var(--space-8); }
+  .footer-wordmark { color: var(--ink-inverse); text-decoration: none; font-weight: 720; font-size: var(--text-xl); }
+  .footer-wordmark:hover { color: var(--ink-inverse); }
+  .footer-wordmark span { color: #a9c29f; }
+  .footer-brand > p { color: var(--ink-inverse-muted); font-size: var(--text-sm); margin-top: var(--space-4); max-width: 38ch; }
+  .footer-brand .footer-place { margin-top: var(--space-2); color: #9fa8a2; }
+  .footer-nav { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+  .footer-nav h2 { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 720; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: #aeb6b0; margin-bottom: var(--space-4); }
+  .footer-nav ul { list-style: none; padding: 0; }
   .footer-nav li + li { margin-top: var(--space-2); }
-  .footer-nav a {
-    font-size: var(--text-sm);
-    color: var(--ink-muted);
-    text-decoration: none;
+  .footer-nav a { font-size: var(--text-sm); color: var(--ink-inverse-muted); text-decoration: none; }
+  .footer-nav a:hover { color: #fff; }
+  .footer-legal { margin-top: var(--space-8); padding-block: var(--space-5); border-top: var(--border-thin) solid var(--rule-inverse); }
+  .footer-legal p { color: #99a29c; font-size: var(--text-xs); max-width: 86ch; }
+  @media (min-width: 54em) {
+    .footer-inner { grid-template-columns: 1fr 1.3fr; }
   }
-  .footer-nav a:hover { color: var(--ink); text-decoration: underline; }
-
-  .footer-legal {
-    margin-top: var(--space-7);
-    padding-top: var(--space-4);
-    padding-bottom: var(--space-6);
-    border-top: var(--border-thin) solid var(--rule);
-  }
-
-  .footer-legal p { max-width: 70ch; }
 </style>

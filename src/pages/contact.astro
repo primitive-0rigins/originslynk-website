@@ -11,24 +11,25 @@ const configured = endpoint.length > 0;
 ---
 
 <Base
-  title="Book a consultation"
-  description="Tell us what repeats in your week. A short conversation about your recurring work, with an honest answer about whether automation is worth it for you."
+  title="Request a workflow review"
+  description="Tell OriginsLynk which repetitive task consumes the most time, which tools are involved, and what result would make the work worthwhile."
 >
-  <section>
+  <section class="section-cream contact-section">
     <div class="container form-layout">
       <div class="form-intro">
-        <p class="eyebrow">Consultation</p>
-        <h1>Tell us what repeats.</h1>
+        <p class="eyebrow">Workflow review</p>
+        <h1>Find the repetitive work worth removing.</h1>
         <p class="lede" style="margin-top: var(--space-5)">
-          A short conversation about the work that takes your week apart. No preparation
-          needed — bring the tasks you would hand off first if you could.
+          Tell us what role you perform, which task consumes the most time, and which tools
+          you already use. We will identify a practical first workflow, recommend the right
+          service level, and explain what should remain human-approved.
         </p>
 
         <h2 class="intro-h">What happens next</h2>
         <ol class="next-steps">
-          <li>We reply within two business days to arrange a time.</li>
-          <li>We spend 30–45 minutes on your actual week, not on software.</li>
-          <li>You get a written summary of what we saw, whether or not you hire us.</li>
+          <li>We review the request and reply within one business day.</li>
+          <li>A discovery conversation maps the current process and its first useful workflow.</li>
+          <li>You receive a written scope, price, responsibilities, and support period before purchasing.</li>
         </ol>
 
         <p class="small muted" style="margin-top: var(--space-6)">
@@ -40,11 +41,17 @@ const configured = endpoint.length > 0;
           What you send here goes to us and is used to prepare for that conversation.
           It is not added to a mailing list, sold, or fed to an analytics tool.
         </p>
+
+        <p class="safety-note small">
+          Do not submit passwords, access codes, private keys, medical information,
+          financial account numbers, or other sensitive records. Account access is handled
+          separately after a project is approved.
+        </p>
       </div>
 
       <div class="form-panel">
         {configured ? (
-          <form action={endpoint} method="POST" class="form">
+          <form action={endpoint} method="POST" class="form" data-consultation-form>
             <p class="form-note small">All fields marked <span aria-hidden="true">*</span> are required.</p>
 
             <div class="field">
@@ -58,6 +65,11 @@ const configured = endpoint.length > 0;
             </div>
 
             <div class="field">
+              <label for="organization">Business or organization <span class="optional">(optional)</span></label>
+              <input type="text" id="organization" name="organization" autocomplete="organization" />
+            </div>
+
+            <div class="field">
               <label for="role">Your role <span class="req" aria-hidden="true">*</span></label>
               <input
                 type="text"
@@ -67,6 +79,26 @@ const configured = endpoint.length > 0;
                 autocomplete="organization-title"
                 placeholder="e.g. marketing director, office manager, agent"
               />
+            </div>
+
+            <div class="field">
+              <label for="service">Service you are considering</label>
+              <select id="service" name="service">
+                <option value="">Not sure yet</option>
+                <option value="personal-ai-assistant-starter">$750 Personal AI Assistant Setup</option>
+                <option value="assistant-role-system">$1,200 AI Workflow System</option>
+                <option value="managed-automation">From $2,800 Managed Automation Appliance</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="users">How many people would use the system?</label>
+              <select id="users" name="users">
+                <option value="">Not sure</option>
+                <option value="1">One person</option>
+                <option value="2-5">2–5 people</option>
+                <option value="6+">6 or more people</option>
+              </select>
             </div>
 
             <div class="field">
@@ -92,6 +124,11 @@ const configured = endpoint.length > 0;
             </div>
 
             <div class="field">
+              <label for="frequency">How often does the task happen?</label>
+              <input type="text" id="frequency" name="frequency" placeholder="e.g. every weekday, weekly, 20 times a month" />
+            </div>
+
+            <div class="field">
               <label for="hours">Rough hours a week it costs you</label>
               <input
                 type="number"
@@ -109,6 +146,27 @@ const configured = endpoint.length > 0;
               <input type="tel" id="phone" name="phone" autocomplete="tel" />
             </div>
 
+            <div class="field">
+              <label for="sensitivity">Does it involve customers or sensitive information?</label>
+              <select id="sensitivity" name="sensitivity">
+                <option value="">Not sure</option>
+                <option value="no">No</option>
+                <option value="customer-communication">Customer communication</option>
+                <option value="sensitive-information">Sensitive information</option>
+                <option value="both">Both</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="outcome">What result would make this worthwhile?</label>
+              <textarea id="outcome" name="outcome" rows="3"></textarea>
+            </div>
+
+            <div class="consent-field">
+              <input type="checkbox" id="consent" name="consent" value="yes" required />
+              <label for="consent">OriginsLynk may use this information to respond to my request. <span class="req" aria-hidden="true">*</span></label>
+            </div>
+
             <!-- Spam trap. Bots fill hidden fields; people never see this one.
                  Hidden from assistive technology as well as visually, so it is not
                  announced to screen-reader users as an unlabeled input. -->
@@ -117,7 +175,9 @@ const configured = endpoint.length > 0;
               <input type="text" id="company-website" name="company_website" tabindex="-1" autocomplete="off" />
             </div>
 
-            <button type="submit" class="btn btn-primary form-submit">Request a consultation</button>
+            <button type="submit" class="btn btn-primary form-submit">Request a workflow review</button>
+
+            <p id="form-status" class="form-status small" role="status" aria-live="polite" hidden></p>
 
             <p class="small muted" style="margin-top: var(--space-4)">
               Or email <a href={`mailto:${email}`}>{email}</a> directly.
@@ -127,11 +187,11 @@ const configured = endpoint.length > 0;
           <div class="form-fallback">
             <h2>Email us directly</h2>
             <p class="muted" style="margin-top: var(--space-4)">
-              The consultation form is not connected yet, so rather than show you a form
+              The workflow review form is not connected yet, so rather than show you a form
               that goes nowhere, here is the direct route:
             </p>
             <p class="fallback-email">
-              <a href={`mailto:${email}?subject=Consultation%20request`}>{email}</a>
+              <a href={`mailto:${email}?subject=Workflow%20review%20request`}>{email}</a>
             </p>
             <p class="muted small" style="margin-top: var(--space-5)">Helpful to include:</p>
             <ul class="card-list">
@@ -139,7 +199,9 @@ const configured = endpoint.length > 0;
               <li>The task you would hand off first</li>
               <li>The tools you use today</li>
               <li>Roughly how many hours a week it costs you</li>
+              <li>The result that would make fixing it worthwhile</li>
             </ul>
+            <p class="safety-note small">Do not email passwords, access codes, financial account numbers, or sensitive records.</p>
             <!--
               To enable the form: set PUBLIC_FORM_ENDPOINT in the Cloudflare Pages
               environment variables and redeploy. Provider options and their privacy
@@ -152,6 +214,68 @@ const configured = endpoint.length > 0;
   </section>
 </Base>
 
+{configured && (
+  <script>
+    type TrackingWindow = Window & {
+      originslynkTrack?: (event: string, details?: Record<string, string>) => void;
+    };
+
+    const form = document.querySelector<HTMLFormElement>('[data-consultation-form]');
+    const status = document.querySelector<HTMLElement>('#form-status');
+    const service = document.querySelector<HTMLSelectElement>('#service');
+    const requestedService = new URLSearchParams(window.location.search).get('service');
+
+    if (service && requestedService && Array.from(service.options).some((option) => option.value === requestedService)) {
+      service.value = requestedService;
+    }
+
+    let formStarted = false;
+    let formCompleted = false;
+    form?.addEventListener('focusin', () => {
+      if (formStarted) return;
+      formStarted = true;
+      (window as TrackingWindow).originslynkTrack?.('form_start', { form: 'consultation' });
+    });
+
+    form?.addEventListener('submit', async (submitEvent) => {
+      submitEvent.preventDefault();
+      if (!status) return;
+
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      status.hidden = false;
+      status.classList.remove('is-error', 'is-success');
+      status.textContent = 'Sending your request…';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(`Form endpoint returned ${response.status}`);
+
+        status.classList.add('is-success');
+        status.textContent = 'Thank you. Your workflow review request was sent successfully. We will reply within one business day.';
+        formCompleted = true;
+        (window as TrackingWindow).originslynkTrack?.('form_submission', { form: 'consultation' });
+        form.reset();
+      } catch {
+        status.classList.add('is-error');
+        status.textContent = 'We could not send the form. Please use the direct email link below instead.';
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+
+    window.addEventListener('pagehide', () => {
+      if (formStarted && !formCompleted) {
+        (window as TrackingWindow).originslynkTrack?.('form_abandonment', { form: 'consultation' });
+      }
+    });
+  </script>
+)}
+
 <style>
   .form-layout {
     display: grid;
@@ -159,6 +283,8 @@ const configured = endpoint.length > 0;
     grid-template-columns: 1fr;
     align-items: start;
   }
+
+  .form-intro h1 { max-width: 14ch; }
 
   @media (min-width: 54em) {
     .form-layout { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
@@ -182,17 +308,37 @@ const configured = endpoint.length > 0;
   }
   .next-steps li + li { margin-top: var(--space-2); }
 
+  .safety-note {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    color: var(--ink-muted);
+    background: var(--ground-sunken);
+    border-left: var(--border-thick) solid var(--secondary);
+    border-radius: var(--radius);
+  }
+
   .form-panel {
     background: var(--ground-raised);
     border: var(--border-thin) solid var(--rule);
     border-radius: var(--radius-lg);
     padding: var(--space-6);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow);
   }
 
   .form-note { color: var(--ink-faint); margin-bottom: var(--space-5); }
 
   .field + .field { margin-top: var(--space-5); }
+
+  .consent-field {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-3);
+    align-items: start;
+    margin-top: var(--space-5);
+  }
+
+  .consent-field input { width: 1.1rem; min-height: 1.1rem; margin-top: 0.2rem; }
+  .consent-field label { margin: 0; color: var(--ink-muted); }
 
   label {
     display: block;
@@ -212,7 +358,8 @@ const configured = endpoint.length > 0;
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     width: 100%;
     padding: var(--space-3);
     min-height: 44px;
@@ -226,7 +373,8 @@ const configured = endpoint.length > 0;
   textarea { resize: vertical; line-height: var(--leading-snug); }
 
   input:focus,
-  textarea:focus {
+  textarea:focus,
+  select:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 var(--focus-width) var(--accent-ring);
@@ -243,6 +391,18 @@ const configured = endpoint.length > 0;
     width: 100%;
     margin-top: var(--space-6);
   }
+
+  .form-submit:disabled { opacity: 0.65; cursor: wait; }
+
+  .form-status {
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    color: var(--ink-muted);
+    background: var(--ground-sunken);
+  }
+  .form-status.is-success { border-left: var(--border-thick) solid var(--ok); color: var(--ink); }
+  .form-status.is-error { border-left: var(--border-thick) solid var(--danger); }
 
   .trap {
     position: absolute;

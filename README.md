@@ -3,7 +3,7 @@
 The public marketing site for **OriginsLynk** — role-specific automation systems by
 Primitive Origins LLC.
 
-Astro 7, static output, no server runtime, no third-party scripts, no analytics.
+Astro 7, static output, no server runtime, and no third-party scripts.
 
 ---
 
@@ -38,7 +38,7 @@ is nowhere for a secret to hide. Anything in this build is public.
 
 | Variable | Purpose |
 |---|---|
-| `PUBLIC_FORM_ENDPOINT` | Where the consultation form posts. If unset, the contact page shows a direct-email fallback instead of a form that goes nowhere. |
+| `PUBLIC_FORM_ENDPOINT` | Where the workflow-review form posts. If unset, the contact page shows a direct-email fallback instead of a form that goes nowhere. |
 | `PUBLIC_CONTACT_EMAIL` | Fallback contact address, shown in the footer. |
 
 Set the same variables in the Cloudflare Pages project settings for production.
@@ -48,9 +48,10 @@ Set the same variables in the Cloudflare Pages project settings for production.
 ```
 src/
   layouts/Base.astro       shell, metadata, Open Graph, JSON-LD
-  components/              Header, Footer, Diagram
-  pages/                   index, services, pricing, trust, contact, 404
-  styles/tokens.css        design tokens — both directions
+  components/              navigation, workflow visuals, appliance placeholder, service card
+  data/services.ts         shared package names, pricing, scope, and boundaries
+  pages/                   index, services, pricing, FAQ, trust, contact, 404
+  styles/tokens.css        warm editorial design tokens
   styles/global.css        reset, typography, layout, components
 public/                    favicon, og image, robots.txt, _headers
 design/og-source.svg       source for the Open Graph image
@@ -58,31 +59,23 @@ design/og-source.svg       source for the Open Graph image
 
 ## Design system
 
-Everything visual comes from `src/styles/tokens.css`. Two complete directions are
-defined there:
-
-- **Paper** (active) — warm off-white ground, serif headings, orange as the single
-  accent, cyan reserved for diagram linework.
-- **Field** (alternate) — cooler neutral ground, sans headings, blue in the secondary
-  role.
-
-Switch by changing one line in `src/layouts/Base.astro`:
-
-```js
-const direction = 'field';   // was 'paper'
-```
-
-No other file changes. If a color is needed that is not a token, add a token rather
-than a literal — that is what keeps the swap working.
+Everything visual comes from `src/styles/tokens.css`. The system uses warm white and
+cream grounds, graphite text, and a deep muted green accent. Charcoal sections create
+pace without turning the site into a dark dashboard. If a recurring color or spacing
+value is needed, add a token instead of scattering literals across pages.
 
 ### Rules worth keeping
 
-- **Orange leads.** Cyan and blue are secondary and never share a role on one surface.
-- **Dark ink on orange buttons, not white.** White on `#ff7a18` is about 2.3:1 and
-  fails contrast. The current pairing passes.
+- **Green carries actions and connection lines.** It is restrained elsewhere so the
+  workflow visuals remain operational instead of decorative.
+- **Hardware stays honest.** `ApplianceVisual.astro` is labeled as a concept
+  placeholder until the deployed unit is selected and photographed.
 - **No webfonts.** System stacks only: no third-party origin, no layout shift.
-- **No client-side JavaScript.** The site ships none today. Adding some is a decision,
-  not a detail — it changes the CSP, the performance profile, and the failure modes.
+- **Small first-party JavaScript only.** The site ships a lightweight analytics event
+  layer, accessible mobile navigation, FAQ filtering, and form-state handling. No
+  third-party analytics script is loaded. Events are pushed to `window.dataLayer` and
+  dispatched as `originslynk:analytics`; they contain event metadata, never form field
+  values or FAQ queries.
 
 ## Deployment
 

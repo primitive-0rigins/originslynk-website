@@ -1,16 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import {
+  assistantRoleSystem,
+  managedAutomation,
+  personalAssistantStarter,
+} from '../data/services';
 
 const roles = [
   {
     role: 'Marketing director',
     items: [
-      'Campaign performance brief, assembled weekly',
-      'Content request intake and triage',
-      'Campaign launch coordination and checklists',
-      'Context-aware email drafts for stakeholders',
-      'Missing asset and pending approval alerts',
-      'Weekly operational report',
+      'Campaign brief intake and asset-request routing',
+      'Content calendar preparation',
+      'Performance-summary drafts',
+      'Missing asset and approval tracking',
     ],
   },
   {
@@ -24,24 +28,39 @@ const roles = [
     ],
   },
   {
-    role: 'Administrator or VA',
+    role: 'Administrator',
     items: [
-      'Inbox triage and routing',
-      'Request intake with the details already collected',
-      'Document collection chasing',
-      'Recurring reminders that run themselves',
-      'Status reporting',
-      'Exception alerts when something is off',
+      'Inbox triage and draft queue',
+      'Meeting preparation',
+      'Document intake and filing',
+      'Weekly status reporting and deadline reminders',
+    ],
+  },
+  {
+    role: 'Virtual assistant',
+    items: [
+      'Lead research and follow-up preparation',
+      'Client onboarding checklists',
+      'Content repurposing',
+      'Appointment and travel preparation',
     ],
   },
   {
     role: 'Small-business operator',
     items: [
-      'Proposals and standard procedures drafted from your templates',
-      'Customer messages prepared, never sent automatically',
-      'Meeting summaries and next actions',
-      'Recurring operational documents',
-      'Research comparisons on demand',
+      'Daily priority brief and inquiry routing',
+      'Estimate or proposal preparation',
+      'Overdue follow-up list',
+      'Operating-report preparation',
+    ],
+  },
+  {
+    role: 'Office manager',
+    items: [
+      'Vendor and supply reminders',
+      'Staff onboarding checklists',
+      'Maintenance issue routing',
+      'Recurring policy and document review',
     ],
   },
 ];
@@ -49,134 +68,47 @@ const roles = [
 
 <Base
   title="Services"
-  description="Two ways to work with OriginsLynk: a personal AI assistant configured around your role, or managed automation running on isolated infrastructure. Example systems by role."
+  description="Personal AI Assistant Setup from $750, a four-workflow role system, and a dedicated Managed Automation Appliance."
 >
-  <section>
+  <section class="section-cream page-hero">
     <div class="container container-narrow">
       <p class="eyebrow">Services</p>
-      <h1>Two services, one ladder.</h1>
+      <h1>Three ways to recover time, with clear operating boundaries.</h1>
       <p class="lede" style="margin-top: var(--space-5)">
-        The difference is not how capable the system is. It is how much runs without
-        you in the room — and that should follow your comfort and your evidence, not
-        our price list.
+        Start with a supervised workspace you operate yourself, expand it around your
+        role, or move proven recurring work into managed infrastructure.
       </p>
     </div>
   </section>
 
-  <!-- ============ PERSONAL AI ASSISTANT ============ -->
+  <!-- ============ SERVICE LADDER ============ -->
   <section class="section-sunken">
     <div class="container">
-      <div class="service-head">
-        <div>
-          <p class="eyebrow">Service one · start here</p>
-          <h2>Personal AI Assistant</h2>
-          <p class="lede" style="margin-top: var(--space-4)">
-            A capable AI assistant, installed on your own machine, configured around your
-            actual role — your responsibilities, your terminology, your recurring work,
-            and the boundaries you set.
-          </p>
-        </div>
+      <div class="section-head">
+        <p class="eyebrow">Service ladder</p>
+        <h2>Choose based on who operates the system.</h2>
+        <p class="muted">The $750 Assistant Setup and $1,200 AI Workflow System are client-operated. The Managed Automation Appliance is monitored and maintained by OriginsLynk.</p>
       </div>
-
-      <div class="two-col">
-        <div>
-          <h3>What you receive</h3>
-          <ul class="checklist">
-            <li>Installation and configuration of a supported terminal-based assistant, authenticated with your own account and subscription</li>
-            <li>A role profile built from your responsibilities, tools, and approval boundaries</li>
-            <li>A custom instruction system defining how it works, what it may access, and what needs review</li>
-            <li>An organized workspace for documents, templates, references, and recurring tasks</li>
-            <li>Reusable task templates for your most common work</li>
-            <li>Two to four practical workflows, configured and tested on your real examples</li>
-            <li>Safety configuration: review rules, file protections, and recovery safeguards</li>
-            <li>Live training using your own work, plus a written guide and quick-reference sheet</li>
-            <li>Support through the included stabilization period</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Who it suits</h3>
-          <p class="muted">
-            People who are interested in AI but cautious about security, complexity, and
-            handing control to automated systems — and people who already pay for an AI
-            subscription but only ever use the chat box.
-          </p>
-          <h3 style="margin-top: var(--space-6)">What it deliberately is not</h3>
-          <ul class="crosslist">
-            <li>Nothing runs unattended</li>
-            <li>No server, no hosting, no infrastructure to maintain</li>
-            <li>No broad API access granted to anyone</li>
-            <li>No sending, publishing, purchasing, or deleting on your behalf</li>
-          </ul>
-          <p class="small muted" style="margin-top: var(--space-5)">
-            You stay responsible for reviewing output before it is sent, published, or used
-            to change a business record. That is the design, not a limitation of it.
-          </p>
-        </div>
+      <div class="service-grid">
+        <ServiceCard service={personalAssistantStarter} label="Service one · start here" featured details />
+        <ServiceCard service={assistantRoleSystem} label="Service two · expand the role" details />
+        <ServiceCard service={managedAutomation} label="Service three · proven recurring work" details />
       </div>
-    </div>
-  </section>
-
-  <!-- ============ MANAGED AUTOMATION ============ -->
-  <section>
-    <div class="container">
-      <div class="service-head">
-        <div>
-          <p class="eyebrow">Service two · when the work is proven</p>
-          <h2>Managed Automation</h2>
-          <p class="lede" style="margin-top: var(--space-4)">
-            The recurring work moved onto infrastructure we run, monitor, and back up, so
-            it happens on schedule whether or not your laptop is open.
-          </p>
-        </div>
-      </div>
-
-      <div class="two-col">
-        <div>
-          <h3>What you receive</h3>
-          <ul class="checklist">
-            <li>Workflows running on a schedule, unattended, on infrastructure isolated to you alone</li>
-            <li>Connections to your email, calendar, documents, forms, and business tools</li>
-            <li>Deterministic rules controlling what each workflow is permitted to do</li>
-            <li>Approval points built in, so output waits for a person</li>
-            <li>Monitoring with alerts that reach us before they reach you</li>
-            <li>Automated daily backups, with a restore procedure that has been tested</li>
-            <li>Failure investigation and minor changes included in the monthly plan</li>
-            <li>Export of your workflows and data whenever you ask</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>The honest trade</h3>
-          <p class="muted">
-            Because this runs without you, credentials you authorize are held on
-            infrastructure we administer. That is a real change from the personal
-            assistant, and it is the reason the two are separate services rather than
-            two sizes of one.
-          </p>
-          <p class="muted" style="margin-top: var(--space-4)">
-            What we do about it: one isolated deployment per client — separate database,
-            separate credentials, separate encryption key, separate backups. Nothing is
-            shared between clients. You can revoke our access from your own accounts at
-            any time, without asking us.
-          </p>
-          <p style="margin-top: var(--space-5)">
-            <a href="/trust">How access, isolation, and revocation actually work →</a>
-          </p>
-        </div>
+      <div class="separation-note">
+        <p><strong>The first two services remain yours to operate.</strong> Choose the appliance only when proven recurring work needs a dedicated environment, monitoring, backups, and ongoing care.</p>
       </div>
     </div>
   </section>
 
   <!-- ============ EXAMPLE ROLE SYSTEMS ============ -->
-  <section class="section-sunken">
+  <section id="use-cases">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">Example role systems</p>
         <h2>What this looks like for a specific job.</h2>
         <p class="muted">
-          Illustrative, not a menu. What gets built comes out of discovery — your week,
-          not a template.
+          These are examples, not a fixed menu. The best first workflow is frequent,
+          time-consuming, predictable, and easy for a person to verify.
         </p>
       </div>
 
@@ -194,7 +126,7 @@ const roles = [
   </section>
 
   <!-- ============ UPGRADE PATH ============ -->
-  <section>
+  <section class="section-dark upgrade-section">
     <div class="container container-narrow">
       <p class="eyebrow">The path between them</p>
       <h2>Automate the thing you got tired of starting yourself.</h2>
@@ -205,10 +137,10 @@ const roles = [
       </p>
 
       <ol class="path">
-        <li><strong>Personal AI Assistant.</strong> You learn to delegate safely and see where the time actually goes.</li>
-        <li><strong>Assisted expansion.</strong> More templates, structured intake, a command library for your role.</li>
-        <li><strong>Managed Role Automation.</strong> Scheduled workflows, approvals, monitoring, backups, isolated infrastructure.</li>
-        <li><strong>Advanced role system.</strong> Cross-tool reporting, exception detection, ongoing optimization.</li>
+        <li><strong>Personal AI Assistant Setup.</strong> Two guided workflows teach you what is useful and what still needs review.</li>
+        <li><strong>AI Workflow System.</strong> Four workflows organize recurring work around one person and one role.</li>
+        <li><strong>Managed Automation Appliance.</strong> Six configured workflows, including no more than two active automations, run in a dedicated environment.</li>
+        <li><strong>Measured expansion.</strong> Add only the workflows that prove their value in real use.</li>
       </ol>
 
       <p class="small muted" style="margin-top: var(--space-6)">
@@ -218,33 +150,49 @@ const roles = [
 
       <div class="btn-row">
         <a href="/pricing" class="btn btn-primary">See pricing</a>
-        <a href="/contact" class="btn btn-secondary">Book a consultation</a>
+        <a href="/contact" class="btn btn-secondary">Request a workflow review</a>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .service-head { margin-bottom: var(--space-7); max-width: 62ch; }
-
-  .two-col {
+  .service-grid {
     display: grid;
-    gap: var(--space-7);
     grid-template-columns: 1fr;
+    gap: var(--space-5);
+    align-items: stretch;
   }
 
-  @media (min-width: 52em) {
-    .two-col { grid-template-columns: 1.25fr 1fr; gap: var(--space-8); }
+  .separation-note {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    background: var(--ground-raised);
+    border: var(--border-thin) solid var(--rule);
+    border-left: var(--border-thick) solid var(--accent);
+    border-radius: var(--radius);
   }
 
-  .two-col h3 {
-    font-size: var(--text-base);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    font-family: var(--font-sans);
-    font-size: var(--text-xs);
-    color: var(--ink-faint);
-    margin-bottom: var(--space-4);
+  .separation-note p { color: var(--ink-muted); max-width: 84ch; }
+  .separation-note strong { color: var(--ink); }
+
+  .page-hero h1 { max-width: 16ch; }
+  .page-hero .lede { max-width: 56ch; }
+
+  #use-cases .grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+  #use-cases .card { box-shadow: none; }
+
+  .upgrade-section .path li { color: var(--ink-inverse-muted); border-left-color: var(--rule-inverse); }
+  .upgrade-section .path li::before {
+    background: var(--ground-inverse);
+    border-color: rgba(255,255,255,.32);
+    color: var(--ink-inverse-muted);
+  }
+  .upgrade-section .path strong { color: var(--ink-inverse); }
+  .upgrade-section .small { color: var(--ink-inverse-muted); }
+
+  @media (min-width: 64em) {
+    .service-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
   .path {
