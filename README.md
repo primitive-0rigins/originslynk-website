@@ -26,7 +26,7 @@ npm run build      # -> dist/
 npm run preview    # serve the built output
 ```
 
-Node 18.20+ or 20.3+.
+Node 22.12+.
 
 ## Configuration
 
@@ -92,7 +92,7 @@ Cloudflare Pages, connected to this repository. A push to `main` builds and depl
 |---|---|
 | Build command | `npm run build` |
 | Output directory | `dist` |
-| Node version | 20 or later |
+| Node version | 22.12 or later |
 
 Response headers, including the Content-Security-Policy, are in `public/_headers`.
 The `www` → apex redirect is a Cloudflare Redirect Rule, not a file here — see the
