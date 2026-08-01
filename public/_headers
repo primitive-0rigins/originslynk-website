@@ -17,13 +17,13 @@
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
 
-# HSTS is deliberately NOT set here.
+# HSTS is deliberately managed in Cloudflare, not set here. As of 2026-08-01 it is
+# active for 30 days without includeSubDomains or preload.
 #
-# It belongs in Cloudflare's SSL/TLS -> Edge Certificates panel, where it is a
-# reversible toggle, and it should be enabled only after the site has been live and
-# correct for a week (CLOUDFLARE_CHECKLIST.md §1). Setting it in this file would ship
-# a one-year policy on the very first deploy, before anyone has confirmed the domain
-# works — and `includeSubDomains` would extend that to every client hostname.
+# It belongs in Cloudflare's SSL/TLS -> Edge Certificates panel, where the operator
+# can inspect and adjust it without a site deploy. Setting a long policy in this file
+# on the first launch would have committed browsers before the domain was verified —
+# and `includeSubDomains` would extend that commitment to every client hostname.
 #
 # Browsers cache an HSTS policy for its full max-age and there is no way to reach out
 # and clear it. That makes it the one setting in this tree that a mistake cannot be
