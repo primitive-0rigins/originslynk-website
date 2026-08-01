@@ -73,11 +73,11 @@ export const managedAutomation: Service = {
   name: 'Managed Automation Appliance',
   price: 'From $2,800',
   priceNote: 'setup · then $250/month',
-  positioning: 'A dedicated, always-available system for recurring work we monitor and maintain.',
+  positioning: 'A dedicated device for recurring work we monitor and maintain.',
   bestFor: 'A business with proven recurring work that should continue when no one remembers to start it.',
   includes: [
     'Everything in the AI Workflow System',
-    'A dedicated appliance for your business',
+    'A dedicated device selected for your deployment',
     'Six total configured workflows',
     'Up to two actively running automations',
     'Human approval points where consequences matter',
