@@ -20,11 +20,12 @@ const fields = [
   ['phone', 'Phone', 40],
 ];
 
-function response(body, status, origin = '') {
+function response(body, status, origin = '', extraHeaders = {}) {
   const headers = {
     'Cache-Control': 'no-store',
     'Content-Type': 'application/json',
     Vary: 'Origin',
+    ...extraHeaders,
   };
 
   if (origin) {
@@ -96,6 +97,19 @@ export default {
         400,
         origin,
       );
+    }
+
+    if (env.CONTACT_RATE_LIMITER) {
+      const rateKey = request.headers.get('CF-Connecting-IP') || values.email.toLowerCase();
+      const { success } = await env.CONTACT_RATE_LIMITER.limit({ key: rateKey });
+      if (!success) {
+        return response(
+          { ok: false, error: 'Too many requests. Please try again in a minute.' },
+          429,
+          origin,
+          { 'Retry-After': '60' },
+        );
+      }
     }
 
     const message = fields

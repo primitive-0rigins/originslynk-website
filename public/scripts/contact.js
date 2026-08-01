@@ -27,15 +27,7 @@ const prepareEmail = () => {
     organization: 'Business or organization',
     role: 'Role',
     problem: 'What repeats most',
-    tools: 'Tools or accounts involved',
-    frequency: 'Frequency',
-    hours: 'Hours per week',
-    outcome: 'Desired result',
     service: 'Service considered',
-    users: 'People using the system',
-    sensitivity: 'Information involved',
-    timeline: 'Preferred timing',
-    phone: 'Phone',
   };
   const lines = Object.entries(labels)
     .map(([name, label]) => [label, String(values.get(name) || '').trim()])

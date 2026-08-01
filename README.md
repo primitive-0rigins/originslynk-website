@@ -49,7 +49,8 @@ The public form posts to the separately deployed `originslynk-contact` Worker. I
 private destination is stored in the `CONTACT_EMAIL` Worker secret and is not committed
 to this public repository. Visitors cannot select or change that recipient. The Worker
 validates the request origin and required fields, caps field sizes, uses the form's
-hidden spam trap, sends plain text only, and never logs submitted field values.
+hidden spam trap, rate-limits valid submissions, sends plain text only, and never logs
+submitted field values.
 
 ```bash
 npm run test:contact-worker
@@ -68,7 +69,7 @@ src/
   layouts/Base.astro       shell, metadata, Open Graph, JSON-LD
   components/              navigation, workflow visuals, representative appliance, service card
   data/services.ts         shared package names, pricing, scope, and boundaries
-  pages/                   index, services, pricing, FAQ, trust, contact, 404
+  pages/                   index, services, pricing, FAQ, trust, privacy, contact, 404
   styles/tokens.css        warm editorial design tokens
   styles/global.css        reset, typography, layout, components
 public/                    favicon, og image, robots.txt, _headers

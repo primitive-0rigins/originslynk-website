@@ -98,88 +98,18 @@ const configured = endpoint.length > 0;
               <p class="hint" id="problem-hint">Describe the first task you would hand off in plain language.</p>
               <textarea id="problem" name="problem" rows="5" required maxlength="1200" aria-describedby="problem-hint"></textarea>
             </div>
-
-            <div class="field">
-              <label for="tools">Which tools or accounts are involved?</label>
-              <p class="hint" id="tools-hint">Names only—never include passwords or access codes.</p>
-              <input type="text" id="tools" name="tools" maxlength="300" aria-describedby="tools-hint" placeholder="Email, calendar, spreadsheets, CRM…" />
-            </div>
-
-            <div class="field-grid">
-              <div class="field">
-                <label for="frequency">How often does it happen?</label>
-                <select id="frequency" name="frequency">
-                  <option value="">Choose one</option>
-                  <option value="several-times-a-day">Several times a day</option>
-                  <option value="daily">Daily</option>
-                  <option value="several-times-a-week">Several times a week</option>
-                  <option value="weekly">Weekly</option>
-                  <option value="monthly">Monthly</option>
-                  <option value="varies">It varies</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="hours">Rough hours per week</label>
-                <input type="number" id="hours" name="hours" min="0" max="80" step="0.5" inputmode="decimal" />
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="outcome">What would a good result give you?</label>
-              <textarea id="outcome" name="outcome" rows="3" maxlength="800" placeholder="Faster follow-up, fewer missed steps, more time away from work…"></textarea>
-            </div>
           </fieldset>
 
           <fieldset>
-            <legend><span>03</span> Fit and timing</legend>
-            <div class="field-grid">
-              <div class="field">
-                <label for="service">Service you are considering</label>
-                <select id="service" name="service">
-                  <option value="">Not sure yet</option>
-                  <option value="personal-ai-assistant-starter">$750 Personal AI Assistant Setup</option>
-                  <option value="assistant-role-system">$1,200 AI Workflow System</option>
-                  <option value="managed-automation">From $2,800 Managed Automation Appliance</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="users">Who would use it?</label>
-                <select id="users" name="users">
-                  <option value="">Not sure</option>
-                  <option value="1">One person</option>
-                  <option value="2-5">2–5 people</option>
-                  <option value="6+">6 or more people</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="sensitivity">What kind of information is involved?</label>
-                <select id="sensitivity" name="sensitivity">
-                  <option value="">Not sure</option>
-                  <option value="ordinary-business">Ordinary business information</option>
-                  <option value="customer-communication">Customer communication</option>
-                  <option value="sensitive-information">Sensitive information</option>
-                  <option value="regulated-information">Regulated information</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="timeline">When would you like to begin?</label>
-                <select id="timeline" name="timeline">
-                  <option value="">No fixed date</option>
-                  <option value="as-soon-as-practical">As soon as practical</option>
-                  <option value="within-30-days">Within 30 days</option>
-                  <option value="within-90-days">Within 90 days</option>
-                  <option value="researching">I am researching for later</option>
-                </select>
-              </div>
-            </div>
-
+            <legend><span>03</span> Where to start</legend>
             <div class="field">
-              <label for="phone">Phone <span class="optional">(optional)</span></label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="40" />
+              <label for="service">Service you are considering <span class="optional">(optional)</span></label>
+              <select id="service" name="service">
+                <option value="">Not sure yet</option>
+                <option value="personal-ai-assistant-starter">$750 Personal AI Assistant Setup</option>
+                <option value="assistant-role-system">$1,200 AI Workflow System</option>
+                <option value="managed-automation">From $2,800 Managed Automation Appliance</option>
+              </select>
             </div>
           </fieldset>
 
@@ -188,6 +118,7 @@ const configured = endpoint.length > 0;
             <label for="consent">
               OriginsLynk may use this information only to respond to my request.
               <span class="req" aria-hidden="true">*</span>
+              <a href="/privacy">Read the privacy notice.</a>
             </label>
           </div>
 

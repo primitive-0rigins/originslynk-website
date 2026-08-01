@@ -9,10 +9,9 @@
   # styles into inline <style> blocks. Executable inline script remains blocked.
   # The Cloudflare Insights origin is the only permitted third-party script host.
   #
-  # form-action: narrow `https:` to the exact form endpoint host once one is
-  # chosen (DECISIONS.md D-04). As written, form-action and connect-src permit the
-  # configured form request to use an HTTPS provider.
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https:; form-action 'self' https:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  # The contact Worker is the only external form and fetch destination. Cloudflare's
+  # automatically injected performance beacon reports through the same site origin.
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://originslynk-contact.primitive-origins.workers.dev; form-action 'self' https://originslynk-contact.primitive-origins.workers.dev; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY

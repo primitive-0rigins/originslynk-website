@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL || 'bryce@originslynk.com';
+---
+
+<Base
+  title="Privacy notice"
+  description="How OriginsLynk collects, uses, protects, and deletes information submitted through this website."
+>
+  <section class="section-cream page-hero">
+    <div class="container container-narrow">
+      <p class="eyebrow">Privacy notice</p>
+      <h1>A short explanation of what happens to your information.</h1>
+      <p class="lede">
+        OriginsLynk is operated by Primitive Origins LLC. This notice covers information
+        submitted through originslynk.com and direct conversations that begin here.
+      </p>
+      <p class="small muted updated">Effective August 1, 2026</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container container-narrow notice">
+      <article>
+        <h2>Information you choose to provide</h2>
+        <p>
+          The workflow review form asks for your name, work email, organization, role,
+          the repeated work you want to improve, and an optional service preference. We
+          also receive whatever you choose to include in a direct email or later business
+          conversation.
+        </p>
+        <p>
+          Do not send passwords, access codes, private keys, financial account numbers,
+          medical information, or private client records through the website or ordinary
+          email.
+        </p>
+      </article>
+
+      <article>
+        <h2>How the information is used</h2>
+        <p>
+          We use inquiry information to respond, understand the workflow you described,
+          recommend whether a service is appropriate, prepare a scope, prevent abuse, and
+          maintain necessary business records. It is not added to a marketing list, sold,
+          rented, or used to train an AI model.
+        </p>
+      </article>
+
+      <article>
+        <h2>Website and analytics data</h2>
+        <p>
+          The site records small first-party interaction events such as a consultation-link
+          click or FAQ search length. Those events do not contain form answers or search
+          terms. Cloudflare hosts the site and may process ordinary request and performance
+          data, including an IP address, browser information, requested page, and timing data,
+          to deliver and protect the service.
+        </p>
+        <p>OriginsLynk does not use advertising trackers on this site.</p>
+      </article>
+
+      <article>
+        <h2>Service providers and disclosure</h2>
+        <p>
+          The website and contact-delivery system use infrastructure and email providers that
+          process information only as needed to host the site, prevent abuse, and deliver your
+          request. Information may also be disclosed when required by law, to protect the
+          service or another person, or as part of a business transfer where the recipient
+          assumes the same responsibilities.
+        </p>
+      </article>
+
+      <article>
+        <h2>Retention and deletion</h2>
+        <p>
+          Inquiry information is kept only as long as reasonably needed to respond, evaluate
+          or provide requested services, protect the business, and meet recordkeeping
+          obligations. You may ask us to delete an inquiry that is no longer needed, subject
+          to any information we must retain for legal, security, or accounting reasons.
+        </p>
+      </article>
+
+      <article>
+        <h2>Your choices</h2>
+        <p>
+          You may ask what inquiry information we hold about you, request a correction, or
+          request deletion by emailing <a href={`mailto:${email}?subject=Privacy%20request`}>{email}</a>.
+          We may need to verify that the request came from the person concerned.
+        </p>
+      </article>
+
+      <article>
+        <h2>Security and scope</h2>
+        <p>
+          OriginsLynk uses reasonable technical and organizational safeguards, but no website,
+          email system, or transmission method can be guaranteed completely secure. This site
+          is intended for business inquiries from adults in the United States and is not
+          directed to children.
+        </p>
+      </article>
+
+      <aside>
+        <h2>Questions</h2>
+        <p>
+          Contact Primitive Origins LLC in Anderson, South Carolina at
+          <a href={`mailto:${email}?subject=Privacy%20question`}>{email}</a>.
+        </p>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero h1 { max-width: 17ch; }
+  .page-hero .lede { max-width: 62ch; margin-top: var(--space-5); }
+  .updated { margin-top: var(--space-4); }
+  .notice { display: grid; gap: var(--space-7); }
+  .notice article { padding-top: var(--space-5); border-top: var(--border-thin) solid var(--rule-strong); }
+  .notice h2 { font-size: var(--text-xl); }
+  .notice p { margin-top: var(--space-3); color: var(--ink-muted); }
+  .notice aside { padding: var(--space-6); background: var(--ground-sunken); border-left: var(--border-thick) solid var(--accent); border-radius: var(--radius); }
+  .notice aside h2 { font-size: var(--text-lg); }
+</style>

@@ -16,9 +16,13 @@ function request(fields = {}, requestOrigin = origin) {
   });
 }
 
-function environment(send = async () => undefined) {
+function environment(
+  send = async () => undefined,
+  limit = async () => ({ success: true }),
+) {
   return {
     CONTACT_EMAIL: 'owner@example.com',
+    CONTACT_RATE_LIMITER: { limit },
     SEND_EMAIL: { send },
   };
 }
@@ -80,6 +84,21 @@ test('sends a constrained plain-text message', async () => {
   assert.match(messages[0].subject, /Test Company/);
   assert.match(messages[0].text, /What repeats most:\nPreparing the same weekly report\./);
   assert.doesNotMatch(messages[0].text, /consent|company_website/i);
+});
+
+test('rate limits valid submissions before sending', async () => {
+  let sends = 0;
+  const result = await worker.fetch(
+    request(validFields),
+    environment(
+      async () => { sends += 1; },
+      async () => ({ success: false }),
+    ),
+  );
+
+  assert.equal(result.status, 429);
+  assert.equal(result.headers.get('Retry-After'), '60');
+  assert.equal(sends, 0);
 });
 
 test('returns a recoverable error when email delivery fails', async () => {

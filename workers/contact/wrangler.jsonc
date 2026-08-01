@@ -8,5 +8,15 @@
     {
       "name": "SEND_EMAIL"
     }
+  ],
+  "ratelimits": [
+    {
+      "name": "CONTACT_RATE_LIMITER",
+      "namespace_id": "20260801",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
   ]
 }
