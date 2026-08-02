@@ -7,15 +7,11 @@ const fields = [
   ['name', 'Name', 100],
   ['email', 'Work email', 160],
   ['organization', 'Business name', 140],
-  ['role', 'Role', 120],
-  ['industry', 'Industry', 120],
-  ['problem', 'What repeats most', 1200],
-  ['tools', 'Tools or accounts involved', 500],
-  ['hours', 'Hours per week', 20],
-  ['service', 'Service considered', 100],
+  ['challenge', 'Closest situation', 120],
+  ['problem', 'What happens now', 1200],
+  ['desired_outcome', 'What should happen instead', 700],
+  ['service', 'Requested service', 100],
   ['sensitivity', 'Information involved', 100],
-  ['timeline', 'Preferred consultation time', 160],
-  ['phone', 'Phone', 40],
 ];
 
 function response(body, status, origin = '', extraHeaders = {}) {
@@ -87,13 +83,10 @@ export default {
       !values.name ||
       !validEmail(values.email) ||
       !values.organization ||
-      !values.role ||
-      !values.industry ||
+      !values.challenge ||
       !values.problem ||
-      !values.tools ||
-      !values.hours ||
+      !values.desired_outcome ||
       !values.sensitivity ||
-      !values.timeline ||
       consent !== 'yes'
     ) {
       return response(
@@ -122,8 +115,8 @@ export default {
       .join('\n\n');
     const organization = values.organization.replace(/[\r\n]/g, ' ').slice(0, 80);
     const subject = organization
-      ? `Workflow review request - ${organization}`
-      : 'Workflow review request';
+      ? `Service request - ${organization}`
+      : 'Service request';
 
     try {
       await env.SEND_EMAIL.send({

@@ -14,7 +14,7 @@ const { title, description, noindex = false } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') || Astro.site?.href;
 const fullTitle = title === 'OriginsLynk'
-  ? 'OriginsLynk — Practical AI systems for real business work'
+  ? 'OriginsLynk — Stop rebuilding the same work every week'
   : `${title} — OriginsLynk`;
 ---
 
@@ -36,7 +36,7 @@ const fullTitle = title === 'OriginsLynk'
     <meta property="og:image" content={new URL('/og.png', Astro.site).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="OriginsLynk — practical AI systems built around the way you work." />
+    <meta property="og:image:alt" content="OriginsLynk — dependable workflow systems for repetitive business work." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
@@ -51,7 +51,7 @@ const fullTitle = title === 'OriginsLynk'
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
       name: 'OriginsLynk',
-      description: 'Role-specific AI agents and workflow systems for practical business work.',
+      description: 'Dependable workflow systems that reduce repetitive business work while keeping people in control.',
       url: 'https://originslynk.com',
       parentOrganization: { '@type': 'Organization', name: 'Primitive Origins LLC' },
       founder: {
@@ -67,7 +67,7 @@ const fullTitle = title === 'OriginsLynk'
       },
       sameAs: ['https://github.com/primitive-0rigins'],
       areaServed: 'United States',
-      serviceType: ['AI agent configuration', 'Business workflow implementation', 'Managed automation services'],
+      serviceType: ['Automation health checks', 'Business workflow implementation', 'Managed workflow services'],
     })} />
   </head>
 

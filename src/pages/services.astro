@@ -1,170 +1,113 @@
 ---
 import Base from '../layouts/Base.astro';
-import ApplianceVisual from '../components/ApplianceVisual.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import { managedAutomation, personalAgentSetup, roleAutomationSystem } from '../data/services';
-
-const progression = [personalAgentSetup, roleAutomationSystem, managedAutomation];
+import { healthCheck, implementationServices } from '../data/services';
 
 const examples = [
-  'Preparing email drafts for approval',
-  'Summarizing incoming information',
-  'Organizing follow-up tasks',
-  'Creating recurring reports',
-  'Updating approved business records',
-  'Preparing marketing content for review',
-  'Collecting information from supported systems',
-  'Routing exceptions to a person',
-  'Tracking routine operational work',
+  ['Lead and request follow-up', 'Capture the request, prepare the next step, and keep exceptions visible.'],
+  ['Recurring reports', 'Gather and organize approved information so review starts with a useful draft.'],
+  ['Document preparation', 'Turn consistent inputs into repeatable drafts, summaries, checklists, or packets.'],
+  ['Inbox and form triage', 'Sort incoming information and route it to the right person or next action.'],
+  ['Task and record updates', 'Prepare routine updates while keeping consequential changes human-approved.'],
+  ['Existing automation repair', 'Identify silent failures, unclear ownership, waste, and the safest repair order.'],
 ];
 ---
 
 <Base
   title="Services"
-  description="Compare Personal AI Agent Setup, Role Automation System, and the OriginsLynk-managed dedicated automation appliance."
+  description="Clear OriginsLynk services for diagnosing broken automation and removing repetitive business work with two, four, or six total workflows."
 >
   <section class="section-cream page-hero">
     <div class="container container-narrow">
       <p class="eyebrow">Services</p>
-      <h1>Three levels of implementation and operational support.</h1>
-      <p class="lede">
-        OriginsLynk builds configured business systems—not access to a named AI product.
-        Choose the level based on who should start the work, operate the workflows, and
-        maintain the environment after launch.
-      </p>
+      <h1>Tell us what is slowing the business down. We will tell you what to do next.</h1>
+      <p class="lede">Start with a diagnosis when an existing system is unreliable. Start with Tier 1 when the work is still manual. Add complexity only after the first workflows prove useful.</p>
     </div>
   </section>
 
-  <section class="progression-section" aria-labelledby="progression-title">
+  <section class="diagnostic-section">
+    <div class="container split-head">
+      <div>
+        <p class="eyebrow">When something already exists</p>
+        <h2>Diagnose before you repair.</h2>
+        <p class="lede">An automation that “mostly works” can hide failed handoffs, duplicate costs, risky access, and work nobody owns.</p>
+      </div>
+      <ServiceCard service={healthCheck} featured details />
+    </div>
+  </section>
+
+  <section class="section-sunken">
     <div class="container">
       <div class="section-head section-head-center">
-        <p class="eyebrow">Service progression</p>
-        <h2 id="progression-title">You direct it → You operate it → We maintain it</h2>
-        <p class="muted">The system becomes deeper and OriginsLynk takes on more operational responsibility at each level.</p>
-      </div>
-      <ol class="progression">
-        {progression.map((service, index) => (
-          <li>
-            <span aria-hidden="true">0{index + 1}</span>
-            <strong>{service.shortLabel}</strong>
-            <p>{service.name}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <section class="section-sunken service-sections">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">What each service includes</p>
-        <h2>Scope and responsibility, side by side.</h2>
-        <p class="muted">Each section states what is built, what you operate, what OriginsLynk supports, and what remains outside the price.</p>
+        <p class="eyebrow">When you need a system built</p>
+        <h2>Three cumulative levels, one clear path.</h2>
+        <p class="muted">Tier 2 includes Tier 1. Tier 3 includes Tiers 1 and 2. Compatible completed work is credited when you upgrade.</p>
       </div>
       <div class="service-list">
-        <ServiceCard service={personalAgentSetup} label="Tier 1 · You direct it" featured details />
-        <ServiceCard service={roleAutomationSystem} label="Tier 2 · You operate it" details />
-        <ServiceCard service={managedAutomation} label="Tier 3 · We maintain it" details />
+        {implementationServices.map((service, index) => (
+          <ServiceCard service={service} label={`Tier ${index + 1} · ${index === 0 ? 'You direct it' : index === 1 ? 'You operate it' : 'We maintain it'}`} featured={index === 0} details />
+        ))}
       </div>
     </div>
   </section>
 
-  <section id="managed-appliance" class="section-dark appliance-section">
-    <div class="container appliance-grid">
-      <div>
-        <p class="eyebrow">Managed appliance, in plain language</p>
-        <h2>A dedicated small computer at your location.</h2>
-        <p class="lede appliance-intro">
-          OriginsLynk owns the appliance and remotely manages the agreed workflow
-          environment on it. It is dedicated to one client and is not shared with another
-          business.
-        </p>
-        <ul class="checklist appliance-list">
-          <li>You provide power, internet connectivity, and reasonable physical access.</li>
-          <li>Your accounts and business data remain yours.</li>
-          <li>You authorize account access through the approved onboarding process.</li>
-          <li>The appliance is returned when managed service ends.</li>
-          <li>Offboarding, access removal, and available exports follow the service agreement.</li>
-          <li>The environment may depend on third-party services whose availability and terms can change.</li>
-        </ul>
-        <p class="small appliance-note">
-          The public site does not promise a hardware model or internal infrastructure
-          design. The supplied device is selected for the agreed workload and availability.
-        </p>
-      </div>
-      <ApplianceVisual />
-    </div>
-  </section>
-
-  <section id="examples">
+  <section>
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Example workflows</p>
-        <h2>Practical work a system may help prepare or route.</h2>
-        <p class="muted">Examples are evaluated during discovery and are not automatically included in every package.</p>
+        <p class="eyebrow">What this can look like</p>
+        <h2>Business work in. Prepared next step out.</h2>
+        <p class="muted">The exact workflow depends on your process, accounts, risk, and volume. These examples show the kind of friction we look for.</p>
       </div>
       <div class="example-grid">
-        {examples.map((example) => <p>{example}</p>)}
+        {examples.map(([title, body]) => <article><h3>{title}</h3><p>{body}</p></article>)}
       </div>
     </div>
   </section>
 
-  <section class="section-sunken integration-section">
-    <div class="container container-narrow">
-      <p class="eyebrow">Supported business integrations</p>
-      <h2>Connections are evaluated during discovery.</h2>
-      <p class="lede">
-        OriginsLynk prioritizes official APIs, supported connectors, and documented
-        authorization methods. Unstable, undocumented, or unusually complex connections
-        may be declined, treated as experimental, or quoted separately.
-      </p>
-      <p class="muted disclosure">
-        OriginsLynk configures and manages systems that may use selected third-party
-        software, AI services, integrations, and infrastructure. Specific providers may
-        change according to compatibility, availability, security, and client requirements.
-      </p>
-      <div class="btn-row">
-        <a href="/contact" class="btn btn-primary">Request a discovery consultation</a>
-        <a href="/pricing" class="btn btn-secondary">Review pricing</a>
+  <section class="section-dark boundary-section">
+    <div class="container boundary-grid">
+      <div>
+        <p class="eyebrow">No mystery box</p>
+        <h2>You will know what the system does—and what it does not do.</h2>
+      </div>
+      <div>
+        <ul class="checklist">
+          <li>The trigger, inputs, outputs, approval point, and owner are written down.</li>
+          <li>We use supported connections and narrow, revocable access.</li>
+          <li>Consequential messages and record changes remain human-approved unless separately authorized in writing.</li>
+          <li>Required subscriptions and outside provider charges are disclosed before onboarding.</li>
+        </ul>
+        <div class="btn-row">
+          <a href="/contact" class="btn btn-primary">Request a service</a>
+          <a href="/pricing" class="btn btn-secondary">Compare pricing</a>
+        </div>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .page-hero h1 { max-width: 16ch; }
-  .page-hero .lede { max-width: 62ch; margin-top: var(--space-5); }
-
-  .progression-section { padding-block: clamp(3.5rem, 6vw, var(--space-8)); }
-  .progression { display: grid; gap: var(--space-4); list-style: none; padding: 0; }
-  .progression li { position: relative; padding: var(--space-5); border-top: var(--border-thick) solid var(--accent); background: var(--ground-raised); }
-  .progression li > span { color: var(--accent-text); font-size: var(--text-xs); font-weight: 720; }
-  .progression strong, .progression p { display: block; }
-  .progression strong { margin-top: var(--space-4); font-size: var(--text-lg); }
-  .progression p { margin-top: var(--space-2); color: var(--ink-muted); font-size: var(--text-sm); }
-
-  .service-list { display: grid; gap: var(--space-6); }
-  .service-list > :global(article) { scroll-margin-top: 7rem; }
-
-  .appliance-grid { display: grid; gap: var(--space-8); align-items: center; }
-  .appliance-intro { margin-top: var(--space-5); }
-  .appliance-list { margin-top: var(--space-6); }
-  .appliance-list li { color: var(--ink-inverse-muted); }
-  .appliance-list li::before { border-color: #a9c99e; }
-  .appliance-note { margin-top: var(--space-6); color: var(--ink-inverse-muted); }
-
-  .example-grid { display: grid; gap: var(--space-3); }
-  .example-grid p { padding: var(--space-4); border-left: var(--border-thick) solid var(--accent); background: var(--ground-sunken); color: var(--ink-muted); font-size: var(--text-sm); }
-
-  .integration-section .lede { margin-top: var(--space-4); }
-  .integration-section .disclosure { margin-top: var(--space-5); }
-
+  .page-hero h1 { max-width: 18ch; }
+  .page-hero .lede { margin-top: var(--space-5); }
+  .split-head { display: grid; gap: var(--space-8); align-items: start; }
+  .split-head > div h2 { max-width: 12ch; }
+  .split-head > div .lede { margin-top: var(--space-5); }
+  .service-list { display: grid; gap: var(--space-5); }
+  .example-grid { display: grid; gap: var(--space-4); }
+  .example-grid article { padding: var(--space-5); border: 1px solid var(--rule); border-radius: var(--radius); background: var(--ground-raised); }
+  .example-grid h3 { font-size: var(--text-lg); }
+  .example-grid p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-sm); }
+  .boundary-grid { display: grid; gap: var(--space-8); }
+  .boundary-grid h2 { max-width: 15ch; }
+  .section-dark .checklist li { color: var(--ink-inverse-muted); }
+  .section-dark .checklist li::before { border-color: #8fd0c6; }
   @media (min-width: 42em) {
-    .progression { grid-template-columns: repeat(3, 1fr); }
     .example-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (min-width: 64em) {
-    .appliance-grid { grid-template-columns: 1fr 1fr; }
+    .split-head { grid-template-columns: .8fr 1.2fr; }
+    .service-list { grid-template-columns: repeat(3, 1fr); }
     .example-grid { grid-template-columns: repeat(3, 1fr); }
+    .boundary-grid { grid-template-columns: .9fr 1.1fr; }
   }
 </style>

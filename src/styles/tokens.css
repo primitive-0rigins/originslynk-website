@@ -1,8 +1,8 @@
-/* OriginsLynk visual system: warm, restrained, operational. */
+/* OriginsLynk visual system: calm authority, warm clarity, decisive action. */
 :root {
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+  --font-sans: "Avenir Next", Avenir, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
-  --font-serif: Iowan Old Style, Baskerville, "Times New Roman", serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   --text-xs: clamp(0.72rem, 0.7rem + 0.1vw, 0.79rem);
@@ -36,24 +36,24 @@
   --container: 1240px;
   --container-narrow: 820px;
 
-  --radius-sm: 5px;
-  --radius: 10px;
-  --radius-lg: 18px;
+  --radius-sm: 7px;
+  --radius: 12px;
+  --radius-lg: 22px;
   --border-thin: 1px;
   --border-thick: 3px;
   --transition: 160ms ease;
   --focus-width: 3px;
 
-  --ground: #fbfaf7;
+  --ground: #faf9f5;
   --ground-raised: #fffefa;
-  --ground-sunken: #f1efe9;
-  --ground-cream: #f5f0e5;
-  --ground-inverse: #17201d;
-  --ground-inverse-soft: #202a26;
+  --ground-sunken: #eef1ed;
+  --ground-cream: #f4efe4;
+  --ground-inverse: #102b2b;
+  --ground-inverse-soft: #173737;
 
-  --ink: #17201d;
-  --ink-muted: #505a55;
-  --ink-faint: #6d766f;
+  --ink: #132d2d;
+  --ink-muted: #495d5b;
+  --ink-faint: #647572;
   --ink-inverse: #f8f5ed;
   --ink-inverse-muted: #c9cec8;
 
@@ -61,24 +61,25 @@
   --rule-strong: #cbc8bd;
   --rule-inverse: rgba(248, 245, 237, 0.17);
 
-  --accent: #385b3d;
-  --accent-dark: #29472f;
-  --accent-text: #315437;
-  --accent-soft: #e8eee5;
-  --accent-ring: rgba(56, 91, 61, 0.28);
-  --secondary: #87672d;
-  --secondary-soft: #f2ead8;
-  --diagram-line: #9ba797;
-  --diagram-accent: #385b3d;
+  --accent: #c94f2d;
+  --accent-dark: #a93c20;
+  --accent-text: #a23b20;
+  --accent-soft: #f9e8df;
+  --accent-ring: rgba(201, 79, 45, 0.28);
+  --secondary: #207a72;
+  --secondary-dark: #17635d;
+  --secondary-soft: #dfeeea;
+  --diagram-line: #91a8a4;
+  --diagram-accent: #207a72;
 
   --ok: #315f39;
   --warn: #8b651b;
   --danger: #a43c34;
 
-  --shadow-sm: 0 2px 8px rgba(23, 32, 29, 0.045);
-  --shadow: 0 12px 32px rgba(23, 32, 29, 0.08);
-  --shadow-lg: 0 24px 60px rgba(23, 32, 29, 0.12);
+  --shadow-sm: 0 3px 12px rgba(16, 43, 43, 0.07);
+  --shadow: 0 16px 42px rgba(16, 43, 43, 0.10);
+  --shadow-lg: 0 28px 72px rgba(16, 43, 43, 0.15);
 
-  --heading-font: var(--font-sans);
-  --heading-weight: 620;
+  --heading-font: var(--font-serif);
+  --heading-weight: 650;
 }

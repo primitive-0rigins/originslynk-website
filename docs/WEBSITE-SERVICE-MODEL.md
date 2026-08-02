@@ -3,24 +3,25 @@
 Internal editing reference for the public website. This file is not imported by Astro and
 must not be copied into `public/` or a client-facing download.
 
-## Current tier definitions
+## Current service definitions
 
-| Tier | Public name | Price | Responsibility label | Operating boundary |
+| Service | Public name | Price | Responsibility label | Operating boundary |
 |---|---|---:|---|---|
-| 1 | Personal AI Agent Setup | $750 one-time | You direct it. | The client starts tasks, reviews work, and approves consequential actions. OriginsLynk provides setup, training, and 14 days of setup support. |
-| 2 | Role Automation System | $1,200 one-time | You operate it. | The client operates three to four implemented workflows and maintains subscriptions and authorization. OriginsLynk provides the agreed implementation and 30 days of setup support. |
-| 3 | Managed Automation Appliance | Starting at $2,800 setup plus $250/month | We maintain it. | OriginsLynk owns and remotely administers one dedicated on-site appliance. The client provides power, internet, physical access, account authorization, and output review. |
+| Diagnostic | Automation Health Check | Starting at $350 | Know what to fix first. | Up to three existing workflows on one automation platform. Findings and a prioritized plan are included; production repair is separately scoped and priced. |
+| Tier 1 | Tier 1 Intelligence Setup | $750 one-time | You direct it. | Two client-started workflows. The client starts tasks, reviews work, and approves consequential actions. OriginsLynk provides setup, training, and 14 days of setup support. |
+| Tier 2 | Tier 2 Intelligence Setup | $1,200 one-time | You operate it. | Tier 1 plus two scheduled or supported connected workflows, four total. The client operates the system and maintains subscriptions and authorization. OriginsLynk provides 30 days of setup support. |
+| Tier 3 | Tier 3 Intelligence Setup | Starting at $2,800 setup plus $250/month | We maintain it. | Tiers 1 and 2 plus up to two managed workflows, six total. OriginsLynk owns and remotely administers one dedicated on-site appliance. |
 
-Tier 1 includes two reusable client-run skills, task systems, or templates and one compatible
-existing AI account. It does not include continuous operation, monitoring, dedicated managed
+Tier 1 includes two client-started intelligence workflows for one user and one client-owned
+computer. It does not include continuous operation, monitoring, dedicated managed
 infrastructure, or an unattended-workflow guarantee.
 
-Tier 2 includes full role and workflow discovery, role-specific configuration, three to four
-defined workflows, supported integrations when in scope, documentation, testing, training,
-and 30 days of setup support. Ongoing maintenance is separate.
+Tier 2 is cumulative: everything in Tier 1 plus two scheduled or supported connected
+workflows, four total. It includes supported connections when in scope, documentation,
+testing, training, and 30 days of setup support. Ongoing maintenance is separate.
 
-Tier 3 includes the dedicated OriginsLynk-owned appliance, isolated environment, initial
-agreed workflow implementation, remote administration, automated monitoring, backup
+Tier 3 is cumulative: everything in Tiers 1 and 2 plus up to two managed workflows, six total.
+It includes the dedicated OriginsLynk-owned appliance, isolated environment, remote administration, automated monitoring, backup
 verification, routine maintenance, failure investigation, a monthly service report,
 business-hours support, a 30-day launch stabilization period, and up to 30 minutes of minor
 workflow adjustments per month. The appliance is returned when managed service ends.
@@ -51,10 +52,11 @@ subscriptions, and usage-based charges.
 
 - AI agent
 - Role-specific AI agent
-- Personal AI Agent
 - AI-assisted workflow system
-- Role Automation System
-- Managed Automation Appliance
+- Automation Health Check
+- Tier 1 Intelligence Setup
+- Tier 2 Intelligence Setup
+- Tier 3 Intelligence Setup
 - Dedicated workflow environment
 - Supported business integrations
 - Managed workflow infrastructure
@@ -99,10 +101,10 @@ Approved general disclosure:
 
 | Route | Purpose |
 |---|---|
-| `/` | Homepage, three-tier overview, workflow pattern, process, founder |
-| `/services` | Detailed tier scope, progression, examples, integration policy, appliance explanation |
+| `/` | Outcome-led homepage, Health Check, three-tier overview, process, trust, founder |
+| `/services` | Diagnostic and implementation scope, examples, operating boundaries |
 | `/pricing` | Exact prices, operating comparison, monthly scope, add-on boundaries |
-| `/contact` | Discovery form and direct-email fallback |
+| `/contact` | Short service-request form and direct-email fallback |
 | `/faq` | Buyer questions, ownership, providers, limitations, care and cancellation |
 | `/trust` | Approval, access, testing, monitoring, backups, limitations, offboarding |
 | `/privacy` | Actual website collection, analytics, processors, retention, privacy requests |

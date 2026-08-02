@@ -70,7 +70,7 @@ a:hover { color: var(--ink); }
   font-weight: 720;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--accent-text);
+  color: var(--secondary-dark);
   margin-bottom: var(--space-3);
 }
 .lede {
@@ -96,7 +96,7 @@ section { padding-block: clamp(4.25rem, 8vw, var(--space-9)); }
   background: var(--ground-inverse);
   color: var(--ink-inverse);
 }
-.section-dark .eyebrow { color: #b7caaa; }
+.section-dark .eyebrow { color: #9fd2cb; }
 .section-dark .muted,
 .section-dark .lede { color: var(--ink-inverse-muted); }
 .section-dark a:not(.btn) { color: #dce8d6; }
@@ -135,7 +135,7 @@ section { padding-block: clamp(4.25rem, 8vw, var(--space-9)); }
   padding: 0.8rem 1.25rem;
   border-radius: var(--radius-sm);
   border: var(--border-thin) solid transparent;
-  font-weight: 680;
+  font-weight: 760;
   font-size: var(--text-sm);
   text-decoration: none;
   cursor: pointer;
@@ -145,10 +145,10 @@ section { padding-block: clamp(4.25rem, 8vw, var(--space-9)); }
 }
 .btn::after { content: "→"; font-weight: 400; }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; box-shadow: 0 8px 22px rgba(169,60,32,.22); transform: translateY(-1px); }
 .btn-primary:active { transform: translateY(1px); }
 .btn-secondary { background: transparent; border-color: var(--rule-strong); color: var(--ink); }
-.btn-secondary:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-dark); }
+.btn-secondary:hover { border-color: var(--secondary); background: var(--secondary-soft); color: var(--secondary-dark); }
 .section-dark .btn-secondary { border-color: rgba(255,255,255,.32); color: var(--ink-inverse); }
 .section-dark .btn-secondary:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.58); }
 .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }

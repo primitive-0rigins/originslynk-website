@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <rect width="1200" height="630" fill="#f5f0e5"/>
-  <rect x="0" y="0" width="1200" height="8" fill="#385b3d"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#c94f2d"/>
 
-  <g fill="none" stroke="#385b3d" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" transform="translate(96,80) scale(2.9)">
+  <g fill="none" stroke="#207a72" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" transform="translate(96,80) scale(2.9)">
     <path d="M14.3 16.8 11.5 19.6a6 6 0 0 1-8.5-8.5l3.4-3.4a6 6 0 0 1 8.5 0l1.1 1.1"/>
     <path d="m19.7 7.2 2.8-2.8A6 6 0 0 1 31 12.9l-3.4 3.4a6 6 0 0 1-8.5 0L18 15.2"/>
     <path d="m11.2 12 11.6 0"/>
   </g>
 
-  <text x="205" y="145" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#17201d">OriginsLynk</text>
+  <text x="205" y="145" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#132d2d">OriginsLynk</text>
 
-  <text x="96" y="292" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700" fill="#17201d">Practical AI systems built</text>
-  <text x="96" y="374" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700" fill="#17201d">around the way you work.</text>
+  <text x="96" y="286" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700" fill="#132d2d">Stop rebuilding the same</text>
+  <text x="96" y="370" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700" fill="#a23b20">work every week.</text>
 
-  <text x="96" y="462" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#505a55">Role-specific agents, reusable workflows, and managed automation.</text>
-  <text x="96" y="506" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#505a55">You direct it. You operate it. We maintain it.</text>
+  <text x="96" y="458" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#495d5b">Dependable workflow systems for repetitive business work.</text>
+  <text x="96" y="503" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#495d5b">Clear scope. Human control. A practical first step.</text>
 
-  <rect x="96" y="556" width="72" height="4" fill="#385b3d"/>
+  <rect x="96" y="556" width="96" height="5" fill="#c94f2d"/>
 </svg>

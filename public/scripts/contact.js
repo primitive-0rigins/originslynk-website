@@ -24,23 +24,19 @@ const prepareEmail = () => {
   const labels = {
     name: 'Name',
     email: 'Work email',
-    phone: 'Phone',
     organization: 'Business name',
-    role: 'Role',
-    industry: 'Industry',
-    problem: 'Main repetitive task or workflow',
-    tools: 'Current software or accounts involved',
-    hours: 'Approximate hours per week',
-    sensitivity: 'Sensitive or regulated information category',
-    timeline: 'Preferred consultation time',
-    service: 'Service considered',
+    challenge: 'Closest situation',
+    problem: 'What happens now',
+    desired_outcome: 'What should happen instead',
+    sensitivity: 'Sensitive or regulated information',
+    service: 'Requested service',
   };
   const lines = Object.entries(labels)
     .map(([name, label]) => [label, String(values.get(name) || '').trim()])
     .filter(([, value]) => value)
     .map(([label, value]) => `${label}:\n${value}`);
   const organization = String(values.get('organization') || '').trim();
-  const subject = `Workflow review request${organization ? ` — ${organization}` : ''}`;
+  const subject = `Service request${organization ? ` — ${organization}` : ''}`;
   const contactEmail = form.dataset.contactEmail || 'bryce@originslynk.com';
 
   preparedEmail.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n\n'))}`;
@@ -91,7 +87,7 @@ form?.addEventListener('submit', async (submitEvent) => {
     if (!response.ok) throw new Error(`Form endpoint returned ${response.status}`);
 
     status.classList.add('is-success');
-    status.textContent = 'Thank you. Your workflow review request was sent. We will reply within one business day.';
+    status.textContent = 'Thank you. Your service request was sent. Bryce will reply within one business day.';
     formCompleted = true;
     window.originslynkTrack?.('form_submission', { form: 'consultation', method: 'endpoint' });
     form.reset();

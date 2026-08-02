@@ -33,7 +33,7 @@ const isCurrent = (href: string) => !href.includes('#') && (path === href || pat
             <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
           </li>
         ))}
-        <li><a href="/contact" class="btn btn-primary nav-cta">Request a workflow review</a></li>
+        <li><a href="/contact" class="btn btn-primary nav-cta">Request a service</a></li>
       </ul>
     </nav>
   </div>
@@ -54,12 +54,12 @@ const isCurrent = (href: string) => !href.includes('#') && (path === href || pat
   .wordmark { display: inline-flex; align-items: center; gap: var(--space-2); text-decoration: none; color: var(--ink); flex-shrink: 0; }
   .wordmark:hover { color: var(--ink); }
   .wordmark-text { font-size: 1.05rem; font-weight: 720; letter-spacing: -0.025em; }
-  .wordmark-text span { color: var(--accent); }
-  .mark { width: 30px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+  .wordmark-text span { color: var(--accent-text); }
+  .mark { width: 30px; height: 24px; fill: none; stroke: var(--secondary); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
   .nav-wrap { margin-left: auto; }
   .nav-list { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.8rem); list-style: none; padding: 0; }
   .nav-list > li > a:not(.btn) { color: var(--ink-muted); text-decoration: none; font-size: var(--text-sm); font-weight: 620; padding-block: var(--space-2); }
-  .nav-list > li > a:not(.btn):hover { color: var(--accent); }
+  .nav-list > li > a:not(.btn):hover { color: var(--secondary-dark); }
   .nav-list a[aria-current='page']:not(.btn) { color: var(--ink); }
   .nav-cta { padding-inline: var(--space-4); }
   .menu-toggle { display: none; border: var(--border-thin) solid var(--rule-strong); background: var(--ground-raised); border-radius: var(--radius-sm); min-height: 42px; padding: var(--space-2) var(--space-3); align-items: center; gap: var(--space-2); font-weight: 650; cursor: pointer; }

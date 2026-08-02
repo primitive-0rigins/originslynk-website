@@ -31,13 +31,10 @@ const validFields = {
   name: 'Test Person',
   email: 'person@example.com',
   organization: 'Test Company',
-  role: 'Marketing director',
-  industry: 'Professional services',
+  challenge: 'Repetitive admin work',
   problem: 'Preparing the same weekly report.',
-  tools: 'Email and spreadsheets',
-  hours: '6–10 hours',
+  desired_outcome: 'Start each Friday with a prepared report to review.',
   sensitivity: 'No sensitive or regulated information known',
-  timeline: 'Weekday mornings, Eastern time',
   consent: 'yes',
 };
 
@@ -63,8 +60,8 @@ test('rejects missing required fields without sending', async () => {
   assert.equal(sends, 0);
 });
 
-test('requires every discovery field before sending', async () => {
-  for (const field of ['organization', 'role', 'industry', 'problem', 'tools', 'hours', 'sensitivity', 'timeline']) {
+test('requires every core intake field before sending', async () => {
+  for (const field of ['organization', 'challenge', 'problem', 'desired_outcome', 'sensitivity']) {
     let sends = 0;
     const fields = { ...validFields };
     delete fields[field];
@@ -92,7 +89,7 @@ test('silently accepts the honeypot without sending', async () => {
 test('sends a constrained plain-text message', async () => {
   const messages = [];
   const result = await worker.fetch(
-    request({ ...validFields, phone: '555-0100' }),
+    request(validFields),
     environment(async (message) => { messages.push(message); }),
   );
 
@@ -102,9 +99,9 @@ test('sends a constrained plain-text message', async () => {
   assert.equal(messages[0].to, 'owner@example.com');
   assert.equal(messages[0].replyTo, 'person@example.com');
   assert.match(messages[0].subject, /Test Company/);
-  assert.match(messages[0].text, /What repeats most:\nPreparing the same weekly report\./);
-  assert.match(messages[0].text, /Industry:\nProfessional services/);
-  assert.match(messages[0].text, /Preferred consultation time:\nWeekday mornings, Eastern time/);
+  assert.match(messages[0].text, /What happens now:\nPreparing the same weekly report\./);
+  assert.match(messages[0].text, /Closest situation:\nRepetitive admin work/);
+  assert.match(messages[0].text, /What should happen instead:\nStart each Friday/);
   assert.doesNotMatch(messages[0].text, /consent|company_website/i);
 });
 

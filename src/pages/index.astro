@@ -1,175 +1,81 @@
 ---
 import Base from '../layouts/Base.astro';
-import Diagram from '../components/Diagram.astro';
-import WorkflowArtifact from '../components/WorkflowArtifact.astro';
-import ApplianceVisual from '../components/ApplianceVisual.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import { managedAutomation, personalAgentSetup, roleAutomationSystem } from '../data/services';
+import { tier1Setup, tier2Setup, tier3Setup } from '../data/services';
 
-const commitments = [
-  ['Human-guided', 'Important results stay visible to you.'],
-  ['Secure by design', 'Access is limited to the agreed work.'],
-  ['Built for your role', 'Your language, tools, and responsibilities.'],
-  ['Managed or client-operated', 'Choose who keeps the system running.'],
+const painPoints = [
+  ['Follow-up lives in someone’s memory', 'Requests wait, leads cool off, and the team has to ask what happened.'],
+  ['The same information gets copied twice', 'Details move by hand between email, forms, documents, and business systems.'],
+  ['Reports are rebuilt from scratch', 'Hours disappear into gathering, sorting, formatting, and checking the same information.'],
+  ['Existing automation cannot be trusted', 'It fails quietly, has no clear owner, or costs money without saving dependable time.'],
 ];
 
-const processSteps = [
-  ['01', 'Discover', 'We learn the role, the repeated work, and where judgment matters.'],
-  ['02', 'Design', 'We map a useful workflow with clear inputs, boundaries, and approvals.'],
-  ['03', 'Build', 'We configure, connect, and test the agreed system.'],
-  ['04', 'Launch', 'You receive training, documentation, and a controlled handoff.'],
-  ['05', 'Stabilize', 'We correct launch issues and confirm the workflow holds up in real use.'],
+const outcomes = [
+  ['01', 'Show us the drag', 'Tell us what repeats, breaks, or keeps following you home.'],
+  ['02', 'See the right first move', 'We map the process and recommend the smallest useful service.'],
+  ['03', 'Get a system you understand', 'We build, test, document, and train around your actual work.'],
 ];
-
-const reviewEvidence = [
-  ['A representative walkthrough', 'See a workflow run with fictional or sanitized inputs before any account access is discussed.'],
-  ['A written operating boundary', 'Know what starts the work, what the system prepares, where approval happens, and who maintains it.'],
-  ['A direct recommendation', 'Receive a practical first step—including no build when the time, risk, or repetition does not justify one.'],
-];
-
 ---
 
 <Base
   title="OriginsLynk"
-  description="Role-specific AI agents, reusable workflows, and managed automation systems built around real business work—with people in control."
+  description="OriginsLynk removes repetitive business work by building clear, dependable workflow systems around the way your team already works."
 >
-  <section class="hero section-cream">
+  <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Practical systems for real work</p>
-        <h1>Practical AI systems built around <span>the way you actually work.</span></h1>
+        <p class="eyebrow">Practical workflow systems for small business</p>
+        <h1>Stop rebuilding the same work <em>every week.</em></h1>
         <p class="lede">
-          OriginsLynk configures role-specific AI agents, reusable workflows, and managed
-          automation systems that reduce repetitive work while keeping people in control.
+          OriginsLynk finds the repetitive work draining your time and turns the right
+          parts into clear, dependable systems—without taking important decisions away
+          from you.
         </p>
         <div class="btn-row">
-          <a href="/contact" class="btn btn-primary" data-analytics-event="consultation_click" data-analytics-location="home_hero">Request a workflow review</a>
-          <a href="/services" class="btn btn-secondary" data-analytics-event="service_comparison_click" data-analytics-location="home_hero">Explore services</a>
+          <a href="/contact" class="btn btn-primary" data-analytics-event="consultation_click" data-analytics-location="home_hero">Show me what to fix</a>
+          <a href="/services" class="btn btn-secondary" data-analytics-event="service_comparison_click" data-analytics-location="home_hero">See services and prices</a>
         </div>
-        <p class="hero-note">Serving Upstate South Carolina and clients across the United States.</p>
+        <ul class="hero-trust" aria-label="Service assurances">
+          <li>Plain-language scope</li>
+          <li>Human approval where it matters</li>
+          <li>Price in writing before work begins</li>
+        </ul>
       </div>
-      <div class="hero-artifact"><WorkflowArtifact /></div>
-    </div>
-  </section>
 
-  <section class="commitment-strip" aria-label="OriginsLynk commitments">
-    <div class="container commitment-grid">
-      {commitments.map(([title, body], index) => (
-        <div>
-          <span class="commitment-number" aria-hidden="true">0{index + 1}</span>
-          <p><strong>{title}</strong><span>{body}</span></p>
+      <div class="clarity-card" aria-label="Example of a business process before and after OriginsLynk">
+        <p class="card-kicker">A common before and after</p>
+        <div class="clarity-row before-row">
+          <span>Before</span>
+          <p>Search the inbox → copy details → update a sheet → remember the follow-up → rebuild the report</p>
         </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="section-dark before-after">
-    <div class="container before-grid">
-      <div class="before-copy">
-        <p class="eyebrow">The first OriginsLynk system</p>
-        <h2>Built first to give our own family more time together.</h2>
-        <p class="muted">
-          Bryce Worthy began by organizing repetitive work for his wife, a marketing
-          director working from home. The aim was not to fill her day with more work. It
-          was to help necessary work take fewer hours so there was more time for each
-          other and their four-year-old.
-        </p>
-        <p class="founder-note">That practical family problem became OriginsLynk.</p>
-        <div class="founder-card" id="founder">
-          <div class="founder-mark" aria-hidden="true">BW</div>
-          <div>
-            <p class="founder-name"><strong>Bryce Worthy</strong><span>Founder and systems builder</span></p>
-            <p>
-              Bryce brings experience from HVAC-R, business operations, Microsoft 365
-              administration, and running a small farm to systems that have to work outside
-              a slide deck. His public engineering work includes tested Rust infrastructure,
-              local-first AI memory, and governed agent-system prototypes.
-            </p>
-            <p>
-              He has filed a U.S. provisional patent application for a human-directed AI
-              coordination architecture. OriginsLynk clients work directly with him from
-              discovery through launch.
-            </p>
-            <a href="https://github.com/primitive-0rigins">Inspect Bryce's public engineering work →</a>
-          </div>
+        <div class="clarity-arrow" aria-hidden="true">↓</div>
+        <div class="clarity-row after-row">
+          <span>After</span>
+          <p>One clear intake → prepared work → your approval → consistent record → visible next step</p>
         </div>
-        <a href="/trust">See how human approval stays part of the work →</a>
-      </div>
-      <div class="comparison-board" aria-label="The problem and the system built around it">
-        <div class="comparison-side before-side">
-          <p class="board-label">The problem</p>
-          <ul>
-            <li>Campaign details scattered across tools</li>
-            <li>Recurring preparation rebuilt by hand</li>
-            <li>Approvals and next steps held in memory</li>
-            <li>Work continued after the workday should end</li>
-          </ul>
-          <svg viewBox="0 0 220 90" aria-hidden="true"><path d="M4 42C40 6 51 91 86 37S119 78 147 23s35 58 69 13M7 75c41-48 54 9 79-29s53 17 70-18 29 27 57 2" /></svg>
-        </div>
-        <div class="lynk-node" aria-hidden="true">OL</div>
-        <div class="comparison-side after-side">
-          <p class="board-label">What changed</p>
-          <ul>
-            <li>Repeatable inputs and preparation</li>
-            <li>Information organized before review</li>
-            <li>Important decisions still hers</li>
-            <li>A clearer stopping point for the day</li>
-          </ul>
-          <svg viewBox="0 0 220 90" aria-hidden="true"><path d="M4 67c38 0 38-39 76-39s38 39 76 39 38-39 60-39M4 78c38 0 38-39 76-39s38 39 76 39 38-39 60-39" /></svg>
-        </div>
+        <p class="clarity-note">The system handles repetition. You keep judgment and control.</p>
       </div>
     </div>
   </section>
 
-  <section class="section-sunken services-section">
+  <section class="signal-strip" aria-label="Who OriginsLynk helps">
+    <div class="container signal-inner">
+      <p><strong>Built for busy owners and professionals</strong></p>
+      <p>Serving Upstate South Carolina and clients across the United States.</p>
+    </div>
+  </section>
+
+  <section class="pain-section">
     <div class="container">
-      <div class="section-head section-head-center">
-        <p class="eyebrow">Three ways to start</p>
-        <h2>You direct it → You operate it → We maintain it.</h2>
-        <p class="muted">Each level adds implementation depth and operational responsibility without taking consequential decisions away from you.</p>
+      <div class="section-head">
+        <p class="eyebrow">The cost is already showing up</p>
+        <h2>If the work depends on copying, checking, and remembering, it is costing you twice.</h2>
+        <p class="muted">Once in the hours you spend doing it—and again when something gets delayed, missed, or done differently.</p>
       </div>
-      <div class="service-ladder">
-        <ServiceCard service={personalAgentSetup} label="You direct it" featured />
-        <ServiceCard service={roleAutomationSystem} label="You operate it" />
-        <ServiceCard service={managedAutomation} label="We maintain it" />
-      </div>
-
-      <aside class="care-strip" aria-label="Appliance Care Plan">
-        <div class="care-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.9 8.2 7 10 4.1-1.8 7-5.4 7-10V6l-7-3zM8.5 12l2.2 2.2 4.8-5" /></svg>
-        </div>
-        <div>
-          <p class="eyebrow">Appliance Care Plan</p>
-          <h3>$250 <span>/ month</span></h3>
-        </div>
-        <p>Appliance rental, automated monitoring, backup verification, routine maintenance, failure investigation, reporting, business-hours support, and up to 30 minutes of minor adjustments.</p>
-        <a href="/pricing#care-plan" class="btn btn-secondary">See plan boundaries</a>
-      </aside>
-    </div>
-  </section>
-
-  <section class="workflow-example">
-    <div class="container">
-      <div class="section-head section-head-center">
-        <p class="eyebrow">A real workflow pattern</p>
-        <h2>From incoming request to reviewed work.</h2>
-        <p class="muted">One practical sequence, with the approval point kept visible.</p>
-      </div>
-      <Diagram />
-    </div>
-  </section>
-
-  <section class="section-sunken evidence-section">
-    <div class="container">
-      <div class="section-head section-head-center">
-        <p class="eyebrow">Evidence before commitment</p>
-        <h2>See the shape of the work before you buy.</h2>
-        <p class="muted">A workflow review should make the proposed system easier to inspect—not ask you to trust a vague promise.</p>
-      </div>
-      <div class="evidence-grid">
-        {reviewEvidence.map(([title, body], index) => (
+      <div class="pain-grid">
+        {painPoints.map(([title, body]) => (
           <article>
-            <span aria-hidden="true">0{index + 1}</span>
+            <span aria-hidden="true"></span>
             <h3>{title}</h3>
             <p>{body}</p>
           </article>
@@ -178,149 +84,164 @@ const reviewEvidence = [
     </div>
   </section>
 
-  <section class="section-dark appliance-section">
-    <div class="container appliance-grid">
-      <div class="appliance-copy">
-        <p class="eyebrow">Managed Automation Appliance</p>
-        <h2>A dedicated home for work that should keep running.</h2>
-        <p class="lede">For proven recurring workflows, OriginsLynk provides and maintains a separate, low-profile device for your business.</p>
-        <ul class="appliance-list">
-          <li>An OriginsLynk-owned appliance dedicated to one client and placed at the client's location</li>
-          <li>An isolated environment with separate credentials and settings</li>
-          <li>Automated monitoring, backup verification, failure investigation, and routine maintenance</li>
-          <li>The client supplies power, internet, account authorization, and reasonable physical access</li>
-          <li>Human approval points where consequences matter</li>
+  <section class="health-section section-cream">
+    <div class="container health-grid">
+      <div>
+        <p class="eyebrow">Already have automation?</p>
+        <h2>Find out what works, what is risky, and what to fix first.</h2>
+        <p class="lede">The Automation Health Check gives you a plain-language answer before you spend money repairing the wrong thing.</p>
+        <ul class="checklist">
+          <li>Up to three existing workflows on one automation platform</li>
+          <li>Safe testing, failure review, access review, and cost review</li>
+          <li>A prioritized keep, repair, rebuild, replace, or retire plan</li>
+          <li>Repairs priced separately—no open-ended repair meter</li>
         </ul>
-        <a href="/services#managed-appliance" class="btn btn-secondary">See managed service details</a>
       </div>
-      <ApplianceVisual />
+      <aside class="health-price">
+        <p>Automation Health Check</p>
+        <strong>Starting at $350</strong>
+        <span>Final diagnostic price confirmed after a free 15-minute fit call.</span>
+        <a href="/contact?service=automation-health-check" class="btn btn-primary">Request a health check</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="services-section section-sunken">
+    <div class="container">
+      <div class="section-head section-head-center">
+        <p class="eyebrow">Need a new system?</p>
+        <h2>Start with two workflows. Add depth only when the work earns it.</h2>
+        <p class="muted">Each tier includes the work before it, so you can begin small and upgrade without paying twice for compatible completed work.</p>
+      </div>
+      <div class="service-ladder">
+        <ServiceCard service={tier1Setup} label="Tier 1 · Two workflows" featured />
+        <ServiceCard service={tier2Setup} label="Tier 2 · Four total workflows" />
+        <ServiceCard service={tier3Setup} label="Tier 3 · Six total workflows" />
+      </div>
+      <p class="upgrade-note">Compatible completed setup is credited when you move up a tier. New scope or remediation is quoted separately.</p>
     </div>
   </section>
 
   <section id="process" class="process-section">
-    <div class="container">
+    <div class="container process-grid">
       <div class="section-head">
-        <p class="eyebrow">How it works</p>
-        <h2>A clear path from repeated task to dependable system.</h2>
+        <p class="eyebrow">A direct path to clarity</p>
+        <h2>You do not need to know the technical answer before we talk.</h2>
+        <p class="muted">Bring the business problem. We will get to the core of what should change and tell you honestly when a build is not the right move.</p>
       </div>
       <ol class="process-list">
-        {processSteps.map(([number, title, body]) => (
-          <li><span>{number}</span><h3>{title}</h3><p>{body}</p></li>
+        {outcomes.map(([number, title, body]) => (
+          <li><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div></li>
         ))}
       </ol>
     </div>
   </section>
 
-  <section class="section-dark final-cta">
+  <section class="trust-section section-dark">
+    <div class="container trust-grid">
+      <div>
+        <p class="eyebrow">Built for real business consequences</p>
+        <h2>Useful enough to save effort. Controlled enough to trust.</h2>
+      </div>
+      <div class="trust-points">
+        <p><strong>You see the boundary.</strong> Every workflow states what starts it, what it prepares, and where a person reviews it.</p>
+        <p><strong>Access stays narrow.</strong> We request only the permissions needed for the agreed work.</p>
+        <p><strong>Delivery is testable.</strong> Scope, acceptance, support, and ownership are documented before launch.</p>
+        <a href="/trust">See how we protect your work →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="founder-section">
+    <div class="container founder-grid">
+      <div class="founder-mark" aria-hidden="true">BW</div>
+      <div>
+        <p class="eyebrow">Direct founder involvement</p>
+        <h2>You work with the person who studies, builds, and explains the system.</h2>
+        <p class="lede">Bryce Worthy built OriginsLynk around a simple standard: technology should make necessary work take less of your life, and you should understand what you are buying.</p>
+        <p class="muted">His background spans business operations, Microsoft 365 administration, field service, and hands-on systems engineering. Clients work directly with him from discovery through launch.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta section-cream">
     <div class="container final-cta-inner">
       <div>
-        <p class="eyebrow">Start with what repeats</p>
-        <h2>Find the work worth removing from your week.</h2>
+        <p class="eyebrow">The work will repeat again next week</p>
+        <h2>Make this the week you stop accepting it as normal.</h2>
       </div>
       <div>
-        <p class="lede">Tell us where the time goes. We will recommend a practical first step and put the scope, responsibilities, and price in writing.</p>
-        <div class="btn-row"><a href="/contact" class="btn btn-primary" data-analytics-event="consultation_click" data-analytics-location="home_final">Request a workflow review</a></div>
+        <p class="lede">Answer a few short questions. We will reply within one business day with the most useful next step.</p>
+        <div class="btn-row"><a href="/contact" class="btn btn-primary" data-analytics-event="consultation_click" data-analytics-location="home_final">Show me what to fix</a></div>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .hero { padding-block: clamp(4rem, 8vw, 7.5rem); position: relative; }
-  .hero::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: linear-gradient(90deg, transparent, var(--rule-strong), transparent); }
-  .hero-grid { display: grid; gap: var(--space-8); align-items: center; }
-  .hero-copy h1 { max-width: 13ch; }
-  .hero-copy h1 span { color: var(--accent); }
-  .hero-copy .lede { max-width: 58ch; margin-top: var(--space-5); }
-  .hero-note { color: var(--ink-faint); font-size: var(--text-xs); margin-top: var(--space-5); }
-  .hero-artifact { display: flex; justify-content: center; }
-
-  .commitment-strip { padding-block: var(--space-6); background: var(--ground-raised); }
-  .commitment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
-  .commitment-grid > div { display: flex; gap: var(--space-3); align-items: flex-start; }
-  .commitment-number { font-size: .68rem; color: var(--accent); font-weight: 720; padding-top: .2rem; }
-  .commitment-grid strong, .commitment-grid p span { display: block; }
-  .commitment-grid strong { font-size: var(--text-sm); }
-  .commitment-grid p span { color: var(--ink-faint); font-size: var(--text-xs); margin-top: .1rem; }
-
-  .before-grid { display: grid; gap: var(--space-8); align-items: center; }
-  .before-copy h2 { max-width: 15ch; }
-  .before-copy .muted { margin-top: var(--space-5); }
-  .founder-note { margin-top: var(--space-4); color: var(--ink-inverse); font-weight: 680; }
-  .founder-card { display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-5); border-top: var(--border-thin) solid var(--rule-inverse); }
-  .founder-mark { display: grid; place-items: center; width: 48px; height: 48px; border: var(--border-thin) solid rgba(255,255,255,.28); border-radius: 50%; color: var(--ink-inverse); font-size: var(--text-xs); font-weight: 720; letter-spacing: var(--tracking-wide); }
-  .founder-card p { color: var(--ink-inverse-muted); font-size: var(--text-sm); }
-  .founder-card p + p { margin-top: var(--space-3); }
-  .founder-card .founder-name { color: var(--ink-inverse); }
-  .founder-name strong, .founder-name span { display: block; }
-  .founder-name span { color: #aab3ad; font-size: var(--text-xs); margin-top: var(--space-1); }
-  .founder-card a { display: inline-block; margin-top: var(--space-4); color: #b7d2ad; text-decoration: none; font-size: var(--text-sm); font-weight: 680; }
-  .before-copy > a { display: inline-block; margin-top: var(--space-6); text-decoration: none; font-size: var(--text-sm); font-weight: 680; }
-  .comparison-board { display: grid; position: relative; gap: var(--space-3); }
-  .comparison-side { position: relative; min-height: 19rem; padding: var(--space-6); border-radius: var(--radius-lg); overflow: hidden; }
-  .before-side { background: #e7e3da; color: var(--ink); }
-  .after-side { background: #f8f6ef; color: var(--ink); }
-  .board-label { font-size: .68rem; font-weight: 720; letter-spacing: var(--tracking-wide); text-transform: uppercase; }
-  .comparison-side ul { list-style: none; padding: 0; margin-top: var(--space-5); position: relative; z-index: 1; }
-  .comparison-side li { font-size: var(--text-sm); padding-block: var(--space-2); border-bottom: 1px solid rgba(23,32,29,.1); }
-  .comparison-side svg { position: absolute; right: -2rem; bottom: 1rem; width: 75%; fill: none; stroke: #727a76; stroke-width: 1; opacity: .55; }
-  .after-side svg { stroke: var(--accent); }
-  .lynk-node { display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; width: 58px; height: 58px; border-radius: 50%; background: var(--accent); color: #fff; place-items: center; font-size: var(--text-xs); font-weight: 720; box-shadow: 0 0 0 8px var(--ground-inverse); }
-
+  .hero { position: relative; padding-block: clamp(4.5rem, 9vw, 8rem); background: radial-gradient(circle at 85% 15%, rgba(32,122,114,.12), transparent 30%), var(--ground-cream); }
+  .hero-grid { display: grid; align-items: center; gap: var(--space-8); }
+  .hero-copy h1 { max-width: 12ch; }
+  .hero-copy h1 em { color: var(--accent-text); font-style: normal; }
+  .hero-copy .lede { max-width: 54ch; margin-top: var(--space-5); }
+  .hero-trust { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); list-style: none; padding: 0; margin-top: var(--space-6); color: var(--ink-muted); font-size: var(--text-xs); }
+  .hero-trust li { position: relative; padding-left: var(--space-5); }
+  .hero-trust li::before { content: "✓"; position: absolute; left: 0; color: var(--secondary-dark); font-weight: 800; }
+  .clarity-card { padding: clamp(1.25rem, 4vw, var(--space-7)); border: 1px solid rgba(16,43,43,.12); border-radius: var(--radius-lg); background: rgba(255,254,250,.9); box-shadow: var(--shadow-lg); transform: rotate(1deg); }
+  .card-kicker { color: var(--secondary-dark); font-size: var(--text-xs); font-weight: 760; letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  .clarity-row { margin-top: var(--space-5); padding: var(--space-5); border-radius: var(--radius); }
+  .clarity-row span { display: block; margin-bottom: var(--space-2); font-size: var(--text-xs); font-weight: 760; text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+  .clarity-row p { font-size: var(--text-sm); font-weight: 620; }
+  .before-row { background: #ece9e1; color: var(--ink-muted); }
+  .after-row { background: var(--secondary-soft); color: var(--ink); border-left: 4px solid var(--secondary); }
+  .clarity-arrow { width: 2.25rem; height: 2.25rem; display: grid; place-items: center; margin: var(--space-3) auto calc(var(--space-3) * -1); border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; position: relative; z-index: 1; }
+  .clarity-note { margin-top: var(--space-5); color: var(--ink-muted); font-size: var(--text-xs); text-align: center; }
+  .signal-strip { padding-block: var(--space-5); background: var(--ground-inverse); color: var(--ink-inverse); }
+  .signal-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-6); }
+  .signal-inner p { font-size: var(--text-sm); }
+  .signal-inner p:last-child { color: var(--ink-inverse-muted); }
+  .pain-section .section-head h2 { max-width: 22ch; }
+  .pain-grid { display: grid; gap: var(--space-4); }
+  .pain-grid article { padding: var(--space-5); border-top: 1px solid var(--rule-strong); }
+  .pain-grid article > span { display: block; width: .65rem; height: .65rem; margin-bottom: var(--space-4); border-radius: 50%; background: var(--accent); }
+  .pain-grid h3 { font-size: var(--text-lg); }
+  .pain-grid p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-sm); }
+  .health-grid { display: grid; align-items: center; gap: var(--space-8); }
+  .health-grid h2 { max-width: 18ch; }
+  .health-grid .lede { margin-top: var(--space-5); }
+  .health-grid .checklist { margin-top: var(--space-6); }
+  .health-price { padding: clamp(1.5rem, 4vw, var(--space-7)); border-radius: var(--radius-lg); background: var(--ground-inverse); color: var(--ink-inverse); box-shadow: var(--shadow-lg); }
+  .health-price p { color: #9fd2cb; font-size: var(--text-xs); font-weight: 760; letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+  .health-price strong, .health-price span { display: block; }
+  .health-price strong { margin-top: var(--space-4); font-family: var(--heading-font); font-size: var(--text-3xl); line-height: var(--leading-tight); }
+  .health-price span { margin-top: var(--space-3); color: var(--ink-inverse-muted); font-size: var(--text-sm); }
+  .health-price .btn { width: 100%; margin-top: var(--space-6); }
   .service-ladder { display: grid; gap: var(--space-5); }
-  .care-strip { margin-top: var(--space-5); padding: var(--space-5); border-radius: var(--radius-lg); background: var(--accent); color: #fff; display: grid; gap: var(--space-4); align-items: center; }
-  .care-icon { width: 48px; height: 48px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; display: grid; place-items: center; }
-  .care-icon svg { width: 24px; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-  .care-strip .eyebrow { color: #d9e6d4; margin-bottom: var(--space-1); }
-  .care-strip h3 { font-size: var(--text-xl); }
-  .care-strip h3 span { font-size: var(--text-sm); font-weight: 500; }
-  .care-strip > p { color: #e2eadf; font-size: var(--text-sm); }
-  .care-strip .btn-secondary { border-color: rgba(255,255,255,.45); color: #fff; }
-  .care-strip .btn-secondary:hover { background: rgba(255,255,255,.1); }
-
-  .appliance-grid { display: grid; gap: var(--space-8); align-items: center; }
-  .appliance-copy h2 { max-width: 15ch; }
-  .appliance-copy .lede { margin-top: var(--space-5); }
-  .appliance-list { list-style: none; padding: 0; margin-block: var(--space-6); }
-  .appliance-list li { position: relative; padding-left: var(--space-6); margin-top: var(--space-3); color: var(--ink-inverse-muted); font-size: var(--text-sm); }
-  .appliance-list li::before { content: "✓"; position: absolute; left: 0; color: #a9c99e; }
-
-  .evidence-grid { display: grid; gap: var(--space-5); }
-  .evidence-grid article { padding-top: var(--space-5); border-top: var(--border-thin) solid var(--rule-strong); }
-  .evidence-grid article > span { color: var(--accent-text); font-size: var(--text-xs); font-weight: 720; }
-  .evidence-grid h3 { margin-top: var(--space-3); font-size: var(--text-lg); }
-  .evidence-grid p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-sm); }
-
-  .process-list { list-style: none; padding: 0; display: grid; gap: var(--space-6); }
-  .process-list li { position: relative; padding-top: var(--space-5); border-top: 1px solid var(--rule-strong); }
-  .process-list > li > span { display: block; color: var(--accent); font-size: var(--text-xs); font-weight: 720; margin-bottom: var(--space-3); }
+  .upgrade-note { margin: var(--space-5) auto 0; color: var(--ink-muted); font-size: var(--text-sm); text-align: center; }
+  .process-grid { display: grid; gap: var(--space-8); }
+  .process-list { list-style: none; padding: 0; display: grid; gap: var(--space-4); }
+  .process-list li { display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); padding: var(--space-5); border: 1px solid var(--rule); border-radius: var(--radius); background: var(--ground-raised); }
+  .process-list > li > span { color: var(--accent-text); font-weight: 800; font-size: var(--text-xs); }
   .process-list h3 { font-size: var(--text-lg); }
   .process-list p { margin-top: var(--space-2); color: var(--ink-muted); font-size: var(--text-sm); }
-
-  .final-cta-inner { display: grid; gap: var(--space-8); }
-  .final-cta h2 { max-width: 15ch; }
-
+  .trust-grid, .founder-grid, .final-cta-inner { display: grid; gap: var(--space-7); }
+  .trust-grid h2, .final-cta h2 { max-width: 16ch; }
+  .trust-points { display: grid; gap: var(--space-5); }
+  .trust-points p { color: var(--ink-inverse-muted); }
+  .trust-points strong { color: var(--ink-inverse); }
+  .founder-grid { align-items: start; }
+  .founder-mark { display: grid; place-items: center; width: 5.5rem; aspect-ratio: 1; border-radius: 50%; background: var(--secondary-soft); color: var(--secondary-dark); font-family: var(--heading-font); font-size: var(--text-xl); font-weight: 760; }
+  .founder-grid .lede, .founder-grid .muted { margin-top: var(--space-5); }
   @media (min-width: 42em) {
-    .comparison-board { grid-template-columns: 1fr 1fr; gap: var(--space-4); }
-    .lynk-node { display: grid; }
+    .pain-grid { grid-template-columns: repeat(2, 1fr); }
     .service-ladder { grid-template-columns: repeat(2, 1fr); }
-    .service-ladder > :last-child { grid-column: 1 / -1; }
-    .care-strip { grid-template-columns: auto auto 1fr; }
-    .care-strip .btn { grid-column: 3; justify-self: start; }
-    .evidence-grid { grid-template-columns: repeat(3, 1fr); }
-    .process-list { grid-template-columns: repeat(2, 1fr); }
   }
   @media (min-width: 64em) {
-    .hero-grid { grid-template-columns: .95fr 1.05fr; gap: var(--space-9); }
-    .commitment-grid { grid-template-columns: repeat(4, 1fr); }
-    .commitment-grid > div + div { border-left: 1px solid var(--rule); padding-left: var(--space-5); }
-    .before-grid { grid-template-columns: .7fr 1.3fr; }
+    .hero-grid { grid-template-columns: 1.05fr .95fr; gap: var(--space-9); }
+    .pain-grid { grid-template-columns: repeat(4, 1fr); }
+    .health-grid { grid-template-columns: 1.2fr .8fr; }
     .service-ladder { grid-template-columns: repeat(3, 1fr); }
-    .service-ladder > :last-child { grid-column: auto; }
-    .care-strip { grid-template-columns: auto auto 1fr auto; padding: var(--space-5) var(--space-6); }
-    .care-strip .btn { grid-column: auto; justify-self: end; }
-    .appliance-grid { grid-template-columns: 1fr 1fr; }
-    .process-list { grid-template-columns: repeat(5, 1fr); }
-    .final-cta-inner { grid-template-columns: .95fr 1.05fr; }
+    .process-grid, .trust-grid, .final-cta-inner { grid-template-columns: .9fr 1.1fr; }
+    .founder-grid { grid-template-columns: auto 1fr; }
   }
 </style>

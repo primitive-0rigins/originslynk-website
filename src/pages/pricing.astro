@@ -1,204 +1,85 @@
 ---
 import Base from '../layouts/Base.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import { managedAutomation, personalAgentSetup, roleAutomationSystem } from '../data/services';
-
-const comparison = [
-  {
-    service: personalAgentSetup.name,
-    boundary: personalAgentSetup.shortLabel,
-    operator: 'Client starts tasks, reviews work, and approves consequential actions.',
-    support: '14 days of setup support',
-    ongoing: 'No required OriginsLynk care plan',
-  },
-  {
-    service: roleAutomationSystem.name,
-    boundary: roleAutomationSystem.shortLabel,
-    operator: 'Client operates workflows, accounts, subscriptions, and output review.',
-    support: '30 days of setup support',
-    ongoing: 'Maintenance purchased separately if needed',
-  },
-  {
-    service: managedAutomation.name,
-    boundary: managedAutomation.shortLabel,
-    operator: 'OriginsLynk administers the appliance; client retains account and approval duties.',
-    support: '30-day launch stabilization',
-    ongoing: '$250 per month',
-  },
-];
-
-const monthlyIncludes = [
-  'Dedicated appliance rental',
-  'Automated monitoring',
-  'Backup verification',
-  'Routine maintenance',
-  'Failure investigation',
-  'Monthly service report',
-  'Business-hours support',
-  'Up to 30 minutes of minor workflow adjustments',
-];
-
-const monthlyExcludes = [
-  'New workflows or new integrations',
-  'Major workflow changes',
-  'Vendor migrations',
-  'Custom development',
-  'After-hours emergency response',
-  'Guaranteed uptime',
-  'Third-party subscriptions',
-  'Usage-based charges',
-];
+import { healthCheck, implementationServices } from '../data/services';
 ---
 
 <Base
   title="Pricing"
-  description="OriginsLynk pricing: $750 Personal AI Agent Setup, $1,200 Role Automation System, and Managed Automation Appliance setup from $2,800 plus $250 monthly care."
+  description="Transparent starting prices for the OriginsLynk Automation Health Check and Tier 1, Tier 2, and Tier 3 Intelligence Setup services."
 >
   <section class="section-cream page-hero">
     <div class="container container-narrow">
-      <p class="eyebrow">Pricing</p>
-      <h1>Clear prices with clear operating boundaries.</h1>
-      <p class="lede">
-        Choose a client-directed setup, a client-operated role system, or a dedicated
-        environment that OriginsLynk maintains. Scope is confirmed in writing before work begins.
-      </p>
+      <p class="eyebrow">Straightforward pricing</p>
+      <h1>Know the starting point before the sales call.</h1>
+      <p class="lede">You receive a written fixed scope and price before work begins. The right recommendation may be a small setup, a diagnostic, a larger system—or no build at all.</p>
     </div>
   </section>
 
-  <section class="section-sunken pricing-cards">
+  <section class="pricing-section">
     <div class="container">
       <div class="service-grid">
-        <ServiceCard service={personalAgentSetup} label="You direct it" featured details />
-        <ServiceCard service={roleAutomationSystem} label="You operate it" details />
-        <ServiceCard service={managedAutomation} label="We maintain it" details />
-      </div>
-      <aside class="outside-costs">
-        <strong>Outside costs are separate.</strong>
-        Required third-party subscriptions, account charges, message fees, storage fees,
-        and usage-based costs are paid by the client unless a written proposal states otherwise.
-      </aside>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">At a glance</p>
-        <h2>The operating difference between each service.</h2>
-      </div>
-      <div class="table-wrap">
-        <table aria-label="Service operating comparison">
-          <thead>
-            <tr>
-              <th scope="col">Service</th>
-              <th scope="col">Boundary</th>
-              <th scope="col">Day-to-day responsibility</th>
-              <th scope="col">Launch support</th>
-              <th scope="col">Ongoing care</th>
-            </tr>
-          </thead>
-          <tbody>
-            {comparison.map((row) => (
-              <tr>
-                <th scope="row">{row.service}</th>
-                <td><strong>{row.boundary}</strong></td>
-                <td>{row.operator}</td>
-                <td>{row.support}</td>
-                <td>{row.ongoing}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div class="comparison-cards" aria-label="Service operating comparison">
-        {comparison.map((row) => (
-          <article>
-            <h3>{row.service}</h3>
-            <p class="boundary">{row.boundary}</p>
-            <dl>
-              <div><dt>Day-to-day responsibility</dt><dd>{row.operator}</dd></div>
-              <div><dt>Launch support</dt><dd>{row.support}</dd></div>
-              <div><dt>Ongoing care</dt><dd>{row.ongoing}</dd></div>
-            </dl>
-          </article>
+        <ServiceCard service={healthCheck} label="Diagnose existing automation" featured />
+        {implementationServices.map((service, index) => (
+          <ServiceCard service={service} label={`${index + 1} · ${index === 0 ? 'Two workflows' : index === 1 ? 'Four total workflows' : 'Six total workflows'}`} />
         ))}
       </div>
     </div>
   </section>
 
+  <section class="section-sunken">
+    <div class="container price-details">
+      <div>
+        <p class="eyebrow">What changes the price</p>
+        <h2>Complexity is priced before it becomes your surprise.</h2>
+      </div>
+      <div class="factor-grid">
+        <article><h3>More workflows</h3><p>The $350 Health Check covers up to three workflows on one automation platform. Additional workflows start at $100 each.</p></article>
+        <article><h3>More platforms</h3><p>A second automation platform adds $200 to a Health Check. Multiple business accounts inside one workflow are evaluated during scope.</p></article>
+        <article><h3>Missing evidence</h3><p>Missing documentation or unusable run history may add $100–$250 because the system must first be reconstructed.</p></article>
+        <article><h3>Unusual risk or complexity</h3><p>Advanced branching, custom code, high volume, unfamiliar systems, or regulated information requires a custom quote or may be declined.</p></article>
+      </div>
+    </div>
+  </section>
+
   <section id="care-plan" class="section-dark care-section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Managed care</p>
-        <h2>$250 per month, with a defined scope.</h2>
-        <p class="muted">
-          Managed care begins after the launch stabilization period and continues while
-          the OriginsLynk-owned appliance remains in service. It is maintenance for the
-          agreed environment, not an open-ended development plan.
-        </p>
+    <div class="container care-grid">
+      <div>
+        <p class="eyebrow">Tier 3 ongoing care</p>
+        <h2>$250 per month</h2>
+        <p class="lede">The monthly plan pays for the dedicated appliance and the work required to keep the agreed environment maintained.</p>
       </div>
-      <div class="care-grid">
-        <article>
-          <h3>Included each month</h3>
-          <ul class="checklist">
-            {monthlyIncludes.map((item) => <li>{item}</li>)}
-          </ul>
-        </article>
-        <article>
-          <h3>Not included</h3>
-          <ul class="crosslist">
-            {monthlyExcludes.map((item) => <li>{item}</li>)}
-          </ul>
-        </article>
+      <div>
+        <h3>Included</h3>
+        <ul class="checklist">
+          <li>Appliance rental and remote administration</li>
+          <li>Automated monitoring and backup verification</li>
+          <li>Routine maintenance and failure investigation</li>
+          <li>Monthly service report and business-hours support</li>
+          <li>Up to 30 minutes of minor workflow adjustments each month</li>
+        </ul>
       </div>
-      <p class="small care-boundary">
-        Automated monitoring is configured to detect supported failure conditions.
-        OriginsLynk investigates detected failures during the support periods defined in
-        the service agreement. The service does not guarantee uninterrupted operation or
-        detection of every possible failure.
-      </p>
-    </div>
-  </section>
-
-  <section id="additional-work">
-    <div class="container">
-      <div class="additional-grid">
-        <article>
-          <p class="eyebrow">Established pattern</p>
-          <h2>Additional templated workflows from $300.</h2>
-          <p class="muted">
-            This starting price applies only when the workflow uses your existing
-            environment and supported integrations, follows an established OriginsLynk
-            implementation pattern, requires no major custom development, and is expected
-            to take about two to three implementation hours.
-          </p>
-        </article>
-        <article>
-          <p class="eyebrow">New or complex scope</p>
-          <h2>Custom work is quoted separately.</h2>
-          <p class="muted">
-            New systems, unsupported integrations, complex authentication, browser
-            automation, scraping, custom software, major redesigns, business-critical
-            migrations, and high-risk or regulated work require separate review and pricing.
-          </p>
-        </article>
+      <div>
+        <h3>Quoted separately</h3>
+        <ul class="crosslist">
+          <li>New workflows, integrations, or major changes</li>
+          <li>After-hours emergency response</li>
+          <li>Third-party subscriptions and usage charges</li>
+          <li>Guaranteed uptime or detection of every failure</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="section-sunken appliance-summary">
-    <div class="container container-narrow">
-      <p class="eyebrow">Appliance ownership</p>
-      <h2>The managed appliance is rented, dedicated, and returned at offboarding.</h2>
-      <p class="lede">
-        The small computer remains OriginsLynk property while it runs the agreed workflow
-        environment at your location. You provide power, internet, and reasonable access.
-        Your accounts and business data remain yours. Access removal, available exports,
-        and return of the appliance follow the signed service agreement.
-      </p>
-      <div class="btn-row">
-        <a href="/contact" class="btn btn-primary">Request a discovery consultation</a>
-        <a href="/services#managed-appliance" class="btn btn-secondary">Read the appliance explanation</a>
+  <section>
+    <div class="container upgrade-grid">
+      <div>
+        <p class="eyebrow">Upgrade without buying the same work twice</p>
+        <h2>Compatible completed setup is credited toward the next tier.</h2>
+      </div>
+      <div>
+        <p class="lede">A completed $750 Tier 1 setup can receive a $750 credit toward Tier 2 or Tier 3 after a compatibility review. Remediation, changed requirements, and new scope are quoted separately.</p>
+        <div class="btn-row"><a href="/contact" class="btn btn-primary">Request a service</a></div>
       </div>
     </div>
   </section>
@@ -206,45 +87,25 @@ const monthlyExcludes = [
 
 <style>
   .page-hero h1 { max-width: 16ch; }
-  .page-hero .lede { max-width: 60ch; margin-top: var(--space-5); }
-  .service-grid { display: grid; gap: var(--space-5); align-items: stretch; }
-  .outside-costs { margin-top: var(--space-6); padding: var(--space-5); border-left: var(--border-thick) solid var(--secondary); background: var(--ground-raised); color: var(--ink-muted); }
-  .outside-costs strong { color: var(--ink); }
-
-  .table-wrap { display: none; width: 100%; overflow-x: auto; border: var(--border-thin) solid var(--rule); border-radius: var(--radius-lg); background: var(--ground-raised); }
-  table { width: 100%; border-collapse: collapse; min-width: 60rem; }
-  th, td { padding: var(--space-4); text-align: left; border-bottom: var(--border-thin) solid var(--rule); vertical-align: top; }
-  thead th { color: var(--ink-faint); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
-  tbody th, tbody td { font-size: var(--text-sm); }
-  tbody td { color: var(--ink-muted); }
-  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
-
-  .comparison-cards { display: grid; gap: var(--space-4); }
-  .comparison-cards article { padding: var(--space-5); background: var(--ground-raised); border: var(--border-thin) solid var(--rule); border-radius: var(--radius-lg); }
-  .comparison-cards h3 { font-size: var(--text-lg); }
-  .comparison-cards .boundary { margin-top: var(--space-2); color: var(--accent-text); font-weight: 720; }
-  .comparison-cards dl { margin-top: var(--space-4); }
-  .comparison-cards dl > div { padding-block: var(--space-3); border-top: var(--border-thin) solid var(--rule); }
-  .comparison-cards dt { color: var(--ink-faint); font-size: var(--text-xs); font-weight: 680; }
-  .comparison-cards dd { margin-top: var(--space-1); color: var(--ink-muted); font-size: var(--text-sm); }
-
-  .care-grid, .additional-grid { display: grid; gap: var(--space-6); }
-  .care-grid article { padding: var(--space-6); border: var(--border-thin) solid var(--rule-inverse); border-radius: var(--radius-lg); }
-  .care-grid h3 { font-size: var(--text-xl); }
-  .care-grid .checklist, .care-grid .crosslist { margin-top: var(--space-5); }
-  .care-grid li { color: var(--ink-inverse-muted); }
-  .care-grid .checklist li::before { border-color: #a9c99e; }
-  .care-boundary { margin-top: var(--space-6); color: var(--ink-inverse-muted); }
-  .additional-grid article { padding-top: var(--space-5); border-top: var(--border-thick) solid var(--accent); }
-  .additional-grid .muted { margin-top: var(--space-4); }
-  .appliance-summary .lede { margin-top: var(--space-4); }
-
-  @media (min-width: 48em) {
-    .table-wrap { display: block; }
-    .comparison-cards { display: none; }
-    .care-grid, .additional-grid { grid-template-columns: 1fr 1fr; }
+  .page-hero .lede { margin-top: var(--space-5); }
+  .service-grid { display: grid; gap: var(--space-5); }
+  .price-details, .upgrade-grid { display: grid; gap: var(--space-8); }
+  .price-details h2, .upgrade-grid h2 { max-width: 16ch; }
+  .factor-grid { display: grid; gap: var(--space-4); }
+  .factor-grid article { padding-top: var(--space-5); border-top: 1px solid var(--rule-strong); }
+  .factor-grid h3 { font-size: var(--text-lg); }
+  .factor-grid p { margin-top: var(--space-3); color: var(--ink-muted); font-size: var(--text-sm); }
+  .care-grid { display: grid; gap: var(--space-7); }
+  .care-grid h3 { font-size: var(--text-lg); }
+  .care-grid .lede { margin-top: var(--space-4); }
+  .section-dark .checklist li, .section-dark .crosslist li { color: var(--ink-inverse-muted); }
+  .section-dark .checklist li::before { border-color: #8fd0c6; }
+  @media (min-width: 42em) {
+    .service-grid, .factor-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (min-width: 64em) {
-    .service-grid { grid-template-columns: repeat(3, 1fr); }
+    .service-grid { grid-template-columns: repeat(4, 1fr); }
+    .price-details, .upgrade-grid { grid-template-columns: .8fr 1.2fr; }
+    .care-grid { grid-template-columns: 1.15fr 1fr 1fr; }
   }
 </style>

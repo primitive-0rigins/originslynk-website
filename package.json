@@ -2,7 +2,7 @@
   "name": "originslynk-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Marketing site for OriginsLynk — role-specific automation systems by Primitive Origins.",
+  "description": "Marketing site for OriginsLynk — dependable workflow systems by Primitive Origins.",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

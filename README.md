@@ -1,6 +1,6 @@
 # originslynk.com
 
-The public marketing site for **OriginsLynk** — role-specific automation systems by
+The public marketing site for **OriginsLynk** — dependable workflow systems by
 Primitive Origins LLC.
 
 Astro 7, static output, no server runtime, and no third-party scripts.
@@ -68,7 +68,7 @@ prepared-email handoff if the Worker returns an error.
 src/
   layouts/Base.astro       shell, metadata, Open Graph, JSON-LD
   components/              navigation, workflow visuals, representative appliance, service card
-  data/services.ts         canonical tier names, pricing, scope, and responsibility boundaries
+  data/services.ts         canonical diagnostic and tier names, pricing, scope, and boundaries
   pages/                   marketing, pricing, discovery, trust, privacy, accessibility, and 404 routes
   styles/tokens.css        warm editorial design tokens
   styles/global.css        reset, typography, layout, components
@@ -80,14 +80,15 @@ design/og-source.svg       source for the Open Graph image
 ## Design system
 
 Everything visual comes from `src/styles/tokens.css`. The system uses warm white and
-cream grounds, graphite text, and a deep muted green accent. Charcoal sections create
-pace without turning the site into a dark dashboard. If a recurring color or spacing
-value is needed, add a token instead of scattering literals across pages.
+cream grounds, deep teal text and trust sections, and a restrained burnt-orange action
+color. Editorial system-serif headings add refinement without a webfont request or layout
+shift. If a recurring color or spacing value is needed, add a token instead of scattering
+literals across pages.
 
 ### Rules worth keeping
 
-- **Green carries actions and connection lines.** It is restrained elsewhere so the
-  workflow visuals remain operational instead of decorative.
+- **Orange carries primary actions; teal carries trust and structure.** Orange is kept
+  scarce so the request button remains the strongest visual decision on the page.
 - **Hardware stays honest.** `ApplianceVisual.astro` shows a representative form
   factor. The actual low-profile device is selected for each deployment, so the site
   does not promise a model or specification.
@@ -115,7 +116,7 @@ ops repo's `docs/CLOUDFLARE_CHECKLIST.md`.
 
 ## Public service model
 
-The canonical three-tier model and public-language rules are maintained in
+The canonical diagnostic offer, three-tier model, and public-language rules are maintained in
 `docs/WEBSITE-SERVICE-MODEL.md`. Update that file and `src/data/services.ts` together
 whenever an approved offer changes.
 
