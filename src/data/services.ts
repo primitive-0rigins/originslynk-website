@@ -25,7 +25,7 @@ export const healthCheck: Service = {
   bestFor:
     'A business that already has automated work but cannot confidently explain what works, what fails, or what should happen next.',
   builds:
-    'A plain-language inventory, evidence-based findings, and a prioritized keep, repair, rebuild, replace, or retire plan.',
+    'A plain-language inventory and workflow map, evidence-based findings, a cost review, and a prioritized keep, repair, rebuild, monitor, or retire plan.',
   includes: [
     'Review of up to three existing workflows on one automation platform',
     'One 60-minute discovery and screen-share session',
