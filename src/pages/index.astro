@@ -65,6 +65,25 @@ const outcomes = [
     </div>
   </section>
 
+  <section class="proof-section">
+    <div class="container proof-grid">
+      <div class="proof-context">
+        <p class="eyebrow">A client-reported 30-day result</p>
+        <p class="proof-stat">At least <strong>20 hours a week</strong> saved by the end of week two.</p>
+        <a href="/results">Read the full client result →</a>
+      </div>
+      <figure class="featured-quote">
+        <blockquote>
+          “I genuinely feel like I have accomplished a year’s worth of work in a single month.”
+        </blockquote>
+        <figcaption>
+          Director of Marketing, The Downing Group
+          <span>Customized Tier 1 implementation with operator training</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section class="pain-section">
     <div class="container">
       <div class="section-head">
@@ -201,6 +220,16 @@ const outcomes = [
   .signal-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-6); }
   .signal-inner p { font-size: var(--text-sm); }
   .signal-inner p:last-child { color: var(--ink-inverse-muted); }
+  .proof-section { background: var(--ground-raised); }
+  .proof-grid { display: grid; align-items: center; gap: var(--space-7); }
+  .proof-context { max-width: 25rem; }
+  .proof-stat { color: var(--ink-muted); font-size: var(--text-lg); line-height: var(--leading-snug); }
+  .proof-stat strong { color: var(--ink); }
+  .proof-context a { display: inline-block; margin-top: var(--space-5); font-size: var(--text-sm); font-weight: 720; }
+  .featured-quote { padding: clamp(1.5rem, 4vw, var(--space-7)); border-left: var(--border-thick) solid var(--accent); background: var(--ground-cream); box-shadow: var(--shadow-sm); }
+  .featured-quote blockquote { max-width: 28ch; color: var(--ink); font-family: var(--heading-font); font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: var(--heading-weight); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); }
+  .featured-quote figcaption { margin-top: var(--space-5); color: var(--ink); font-size: var(--text-sm); font-weight: 680; }
+  .featured-quote figcaption span { display: block; margin-top: var(--space-1); color: var(--ink-muted); font-weight: 500; }
   .pain-section .section-head h2 { max-width: 22ch; }
   .pain-grid { display: grid; gap: var(--space-4); }
   .pain-grid article { padding: var(--space-5); border-top: 1px solid var(--rule-strong); }
@@ -241,6 +270,7 @@ const outcomes = [
     .hero-grid { grid-template-columns: 1.05fr .95fr; gap: var(--space-9); }
     .pain-grid { grid-template-columns: repeat(4, 1fr); }
     .health-grid { grid-template-columns: 1.2fr .8fr; }
+    .proof-grid { grid-template-columns: .65fr 1.35fr; }
     .service-ladder { grid-template-columns: repeat(3, 1fr); }
     .process-grid, .trust-grid, .final-cta-inner { grid-template-columns: .9fr 1.1fr; }
     .founder-grid { grid-template-columns: auto 1fr; }
