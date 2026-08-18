@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node scripts/configure-headers.js",
     "preview": "astro preview",
     "check": "astro check",
     "test:contact-worker": "node workers/contact/test/worker.test.js"

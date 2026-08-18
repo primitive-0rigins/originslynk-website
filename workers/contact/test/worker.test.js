@@ -16,6 +16,18 @@ function request(fields = {}, requestOrigin = origin) {
   });
 }
 
+function rawRequest(body, headers = {}) {
+  return new Request('https://contact.example.test', {
+    method: 'POST',
+    headers: {
+      Origin: origin,
+      'Content-Type': 'application/x-www-form-urlencoded',
+      ...headers,
+    },
+    body,
+  });
+}
+
 function environment(
   send = async () => undefined,
   limit = async () => ({ success: true }),
@@ -84,6 +96,39 @@ test('silently accepts the honeypot without sending', async () => {
 
   assert.equal(result.status, 200);
   assert.equal(sends, 0);
+});
+
+test('rate limits invalid and honeypot submissions', async () => {
+  let limits = 0;
+  const env = environment(
+    async () => assert.fail('should not send'),
+    async () => {
+      limits += 1;
+      return { success: true };
+    },
+  );
+
+  assert.equal((await worker.fetch(request({ name: 'Incomplete' }), env)).status, 400);
+  assert.equal((await worker.fetch(request({ company_website: 'https://spam.example' }), env)).status, 200);
+  assert.equal(limits, 2);
+});
+
+test('enforces the actual body size without trusting Content-Length', async () => {
+  const oversized = new URLSearchParams({
+    ...validFields,
+    problem: 'x'.repeat(16_000),
+  }).toString();
+
+  for (const headers of [{}, { 'Content-Length': '100' }]) {
+    let sends = 0;
+    const result = await worker.fetch(
+      rawRequest(oversized, headers),
+      environment(async () => { sends += 1; }),
+    );
+
+    assert.equal(result.status, 413);
+    assert.equal(sends, 0);
+  }
 });
 
 test('sends a constrained plain-text message', async () => {

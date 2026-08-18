@@ -3,6 +3,8 @@ const allowedOrigins = new Set([
   'https://www.originslynk.com',
 ]);
 
+const maxRequestBytes = 15_000;
+
 const fields = [
   ['name', 'Name', 100],
   ['email', 'Work email', 160],
@@ -39,6 +41,37 @@ function validEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+async function readBody(request) {
+  const declaredLength = request.headers.get('Content-Length');
+  if (declaredLength !== null && Number(declaredLength) > maxRequestBytes) return null;
+
+  if (!request.body) return new Uint8Array();
+
+  const reader = request.body.getReader();
+  const chunks = [];
+  let length = 0;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    length += value.byteLength;
+    if (length > maxRequestBytes) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+
+  const body = new Uint8Array(length);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return body;
+}
+
 export default {
   async fetch(request, env) {
     if (request.method === 'GET') {
@@ -58,14 +91,29 @@ export default {
       return response({ ok: false, error: 'Method not allowed' }, 405, origin);
     }
 
-    const contentLength = Number(request.headers.get('Content-Length') || 0);
-    if (contentLength > 15_000) {
+    if (env.CONTACT_RATE_LIMITER) {
+      const rateKey = request.headers.get('CF-Connecting-IP') || 'unknown';
+      const { success } = await env.CONTACT_RATE_LIMITER.limit({ key: rateKey });
+      if (!success) {
+        return response(
+          { ok: false, error: 'Too many requests. Please try again in a minute.' },
+          429,
+          origin,
+          { 'Retry-After': '60' },
+        );
+      }
+    }
+
+    const body = await readBody(request);
+    if (body === null) {
       return response({ ok: false, error: 'Request too large' }, 413, origin);
     }
 
     let form;
     try {
-      form = await request.formData();
+      form = await new Response(body, {
+        headers: { 'Content-Type': request.headers.get('Content-Type') || '' },
+      }).formData();
     } catch {
       return response({ ok: false, error: 'Invalid form data' }, 400, origin);
     }
@@ -94,19 +142,6 @@ export default {
         400,
         origin,
       );
-    }
-
-    if (env.CONTACT_RATE_LIMITER) {
-      const rateKey = request.headers.get('CF-Connecting-IP') || values.email.toLowerCase();
-      const { success } = await env.CONTACT_RATE_LIMITER.limit({ key: rateKey });
-      if (!success) {
-        return response(
-          { ok: false, error: 'Too many requests. Please try again in a minute.' },
-          429,
-          origin,
-          { 'Retry-After': '60' },
-        );
-      }
     }
 
     const message = fields

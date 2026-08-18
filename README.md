@@ -42,15 +42,17 @@ is nowhere for a secret to hide. Anything in this build is public.
 | `PUBLIC_CONTACT_EMAIL` | Fallback contact address, shown in the footer. |
 
 Only set these in Cloudflare Pages when intentionally overriding the source defaults.
+The post-build step derives the CSP form/fetch origin from the same configured endpoint
+and rejects non-HTTPS endpoints, so an override cannot silently drift from `_headers`.
 
 ### Contact delivery Worker
 
 The public form posts to the separately deployed `originslynk-contact` Worker. Its
 private destination is stored in the `CONTACT_EMAIL` Worker secret and is not committed
 to this public repository. Visitors cannot select or change that recipient. The Worker
-validates the request origin and required fields, caps field sizes, uses the form's
-hidden spam trap, rate-limits valid submissions, sends plain text only, and never logs
-submitted field values.
+validates the request origin and required fields, caps the actual request body and field
+sizes, uses the form's hidden spam trap, rate-limits every allowed-origin POST before
+parsing, sends plain text only, and never logs submitted field values.
 
 ```bash
 npm run test:contact-worker

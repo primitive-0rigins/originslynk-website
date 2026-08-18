@@ -14,6 +14,9 @@ export default defineConfig({
     }),
   ],
   build: {
+    // Cloudflare Pages serves route.html at /route without redirecting to /route/.
+    // Keep the deployed paths aligned with canonical URLs and the sitemap.
+    format: 'file',
     // One stylesheet rather than per-page <style> blocks: the site is small enough
     // that a single cached file beats avoiding unused rules.
     inlineStylesheets: 'auto',

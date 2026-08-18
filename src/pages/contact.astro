@@ -1,8 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import { DEFAULT_FORM_ENDPOINT } from '../config/contact.js';
 
-const defaultEndpoint = 'https://originslynk-contact.primitive-origins.workers.dev';
-const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || defaultEndpoint;
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || DEFAULT_FORM_ENDPOINT;
 const email = import.meta.env.PUBLIC_CONTACT_EMAIL || 'bryce@originslynk.com';
 const configured = endpoint.length > 0;
 ---
