@@ -33,6 +33,7 @@ export const healthCheck: Service = {
     'Review of failures, access, duplicate tools, subscriptions, and data risk',
     'Written findings and prioritized action plan',
     'One 30-minute results meeting',
+    'Six total operator hours, with technical review stopping at cumulative hour five',
   ],
   clientResponsibilities: [
     'Provide authorized access, examples, and safe test data',
@@ -47,7 +48,7 @@ export const healthCheck: Service = {
     'Production repairs or changes',
     'New workflows, migrations, or custom development',
     'Security penetration testing or compliance certification',
-    'More than three workflows or more than one automation platform',
+    'More than three workflows or more than one automation platform without a revised quote',
   ],
   managed: false,
   diagnostic: true,
@@ -70,7 +71,7 @@ export const tier1Setup: Service = {
     'Business-specific instructions and examples',
     'One user and one client-owned computer',
     'Quick-start guide and client training',
-    '14 days of setup support',
+    '14 calendar days of defect stabilization and reasonable clarification',
   ],
   clientResponsibilities: [
     'Start every task',
@@ -79,7 +80,7 @@ export const tier1Setup: Service = {
   ],
   originsLynkResponsibilities: [
     'Complete the agreed setup and training',
-    'Correct setup defects during the 14-day support period',
+    'Correct in-scope setup defects reported during the 14-day stabilization period',
   ],
   excludes: [
     'Continuous operation or monitoring',
@@ -107,7 +108,7 @@ export const tier2Setup: Service = {
     'Supported account connections when included in scope',
     'Workflow instructions and documentation',
     'Testing and client training',
-    '30 days of setup support',
+    '30 calendar days of defect stabilization and reasonable clarification',
   ],
   clientResponsibilities: [
     'Operate the system',
@@ -116,11 +117,11 @@ export const tier2Setup: Service = {
   ],
   originsLynkResponsibilities: [
     'Deliver the agreed implementation',
-    'Test and stabilize it during the 30-day support period',
+    'Correct in-scope setup defects reported during the 30-day stabilization period',
   ],
   excludes: [
-    'Indefinite operation or monitoring',
-    'Ongoing maintenance unless separately purchased',
+    'OriginsLynk monitoring or routine operation',
+    'Recurring maintenance; later repair requests are assessed and quoted separately',
     'Dedicated managed infrastructure',
     'Guaranteed compatibility with every account or platform',
   ],
@@ -132,7 +133,7 @@ export const tier3Setup: Service = {
   name: 'Tier 3 Intelligence Setup',
   shortLabel: 'We maintain it.',
   price: 'Starting at $2,800',
-  priceNote: 'setup · plus $250/month',
+  priceNote: 'setup · required $250/month beginning day 31',
   positioning: 'Six total workflows in a dedicated business environment that OriginsLynk monitors and maintains.',
   bestFor:
     'A business with proven recurring work that needs a dedicated environment, ongoing monitoring, and defined maintenance.',
@@ -144,6 +145,7 @@ export const tier3Setup: Service = {
     'Dedicated OriginsLynk-owned business appliance',
     'Remote administration and automated monitoring',
     'Backup verification, routine maintenance, and failure investigation',
+    'Weekly review of appliance health, backup results, and workflow execution records',
     'Monthly service report and business-hours support',
     'Up to 30 minutes of minor workflow adjustments per month',
   ],

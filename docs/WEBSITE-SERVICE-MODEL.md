@@ -7,10 +7,10 @@ must not be copied into `public/` or a client-facing download.
 
 | Service | Public name | Price | Responsibility label | Operating boundary |
 |---|---|---:|---|---|
-| Diagnostic | Automation Health Check | Starting at $350 | Know what to fix first. | Up to three existing workflows on one automation platform. Findings and a prioritized plan are included; production repair is separately scoped and priced. |
-| Tier 1 | Tier 1 Intelligence Setup | $750 one-time | You direct it. | Two client-started workflows. The client starts tasks, reviews work, and approves consequential actions. OriginsLynk provides setup, training, and 14 days of setup support. |
-| Tier 2 | Tier 2 Intelligence Setup | $1,200 one-time | You operate it. | Tier 1 plus two scheduled or supported connected workflows, four total. The client operates the system and maintains subscriptions and authorization. OriginsLynk provides 30 days of setup support. |
-| Tier 3 | Tier 3 Intelligence Setup | Starting at $2,800 setup plus $250/month | We maintain it. | Tiers 1 and 2 plus up to two managed workflows, six total. OriginsLynk owns and remotely administers one dedicated on-site appliance. |
+| Diagnostic | Automation Health Check | Starting at $350 | Know what to fix first. | Up to three existing workflows on one automation platform and six operator hours, with technical review stopping at cumulative hour five. Findings and a prioritized plan are included; production repair is separately scoped and priced. |
+| Tier 1 | Tier 1 Intelligence Setup | $750 one-time | You direct it. | Two client-started workflows. The client starts tasks, reviews work, and approves consequential actions. OriginsLynk provides setup, training, and 14 calendar days of defect stabilization and reasonable clarification. |
+| Tier 2 | Tier 2 Intelligence Setup | $1,200 one-time | You operate it. | Tier 1 plus two scheduled or supported connected workflows, four total. The client operates the system and maintains subscriptions and authorization. OriginsLynk provides 30 calendar days of defect stabilization and reasonable clarification, with no monitoring or recurring maintenance. |
+| Tier 3 | Tier 3 Intelligence Setup | Starting at $2,800 setup plus required $250/month beginning day 31 | We maintain it. | Tiers 1 and 2 plus up to two managed workflows, six total. OriginsLynk owns and remotely administers one dedicated on-site appliance. |
 
 Tier 1 includes two client-started intelligence workflows for one user and one client-owned
 computer. It does not include continuous operation, monitoring, dedicated managed
@@ -18,21 +18,26 @@ infrastructure, or an unattended-workflow guarantee.
 
 Tier 2 is cumulative: everything in Tier 1 plus two scheduled or supported connected
 workflows, four total. It includes supported connections when in scope, documentation,
-testing, training, and 30 days of setup support. Ongoing maintenance is separate.
+testing, training, and 30 calendar days of defect stabilization and reasonable clarification.
+It includes no OriginsLynk monitoring or recurring maintenance. After stabilization, the
+client may report a problem for assessment and separately quoted repair work.
 
 Tier 3 is cumulative: everything in Tiers 1 and 2 plus up to two managed workflows, six total.
 It includes the dedicated OriginsLynk-owned appliance, isolated environment, remote administration, automated monitoring, backup
 verification, routine maintenance, failure investigation, a monthly service report,
+weekly review of appliance health, backup results, and workflow execution records,
 business-hours support, a 30-day launch stabilization period, and up to 30 minutes of minor
 workflow adjustments per month. The appliance is returned when managed service ends.
 
 ## Additional work
 
-Display: **Additional templated workflows from $300.**
+Display: **Additional workflow implementation starts at $125. Standard templated workflows
+are typically $125–$250 and include up to two supported app connections.**
 
-That price applies only when the work uses the existing environment and supported
-integrations, follows an established OriginsLynk pattern, requires no major custom
-development, and is expected to take about two to three implementation hours.
+That range applies only when the work uses the existing environment and supported
+integrations, follows an established OriginsLynk pattern, and requires no major custom
+development. Additional app connections and third-party subscription or usage charges are
+separate.
 
 New systems, unsupported integrations, complex authentication, browser automation,
 scraping, custom software development, major workflow redesign, business-critical
@@ -40,9 +45,10 @@ migration, and high-risk or regulated work are quoted separately.
 
 ## Monthly-plan boundaries
 
-The $250 monthly plan includes appliance rental, automated monitoring, backup verification,
-routine maintenance, failure investigation, a monthly service report, business-hours
-support, and up to 30 minutes of minor workflow adjustments.
+The required $250 monthly plan begins on day 31 and includes appliance rental, automated
+monitoring, backup verification, routine maintenance, failure investigation, weekly review
+of appliance health, backup results, and workflow execution records, a monthly service
+report, business-hours support, and up to 30 minutes of minor workflow adjustments.
 
 It excludes new workflows, new integrations, major workflow changes, vendor migrations,
 custom development, after-hours emergency response, guaranteed uptime, third-party
