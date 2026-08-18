@@ -56,7 +56,7 @@ export const healthCheck: Service = {
 
 export const tier1Setup: Service = {
   id: 'tier-1-intelligence-setup',
-  name: 'Tier 1 Intelligence Setup',
+  name: 'Core System',
   shortLabel: 'You direct it.',
   price: '$750',
   priceNote: 'one-time',
@@ -93,7 +93,7 @@ export const tier1Setup: Service = {
 
 export const tier2Setup: Service = {
   id: 'tier-2-intelligence-setup',
-  name: 'Tier 2 Intelligence Setup',
+  name: 'Expanded System',
   shortLabel: 'You operate it.',
   price: '$1,200',
   priceNote: 'one-time',
@@ -130,7 +130,7 @@ export const tier2Setup: Service = {
 
 export const tier3Setup: Service = {
   id: 'tier-3-intelligence-setup',
-  name: 'Tier 3 Intelligence Setup',
+  name: 'Managed System',
   shortLabel: 'We maintain it.',
   price: 'Starting at $2,800',
   priceNote: 'setup · required $250/month beginning day 31',
