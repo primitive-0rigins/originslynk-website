@@ -101,7 +101,13 @@ Approved general disclosure:
 - Keep human approval visible for consequential business actions.
 - State that client subscriptions and usage-based charges are separate unless a proposal says otherwise.
 - State that providers and required subscriptions are disclosed during proposal and onboarding.
-- Obtain appropriate review before adding future contract terms or service-disclaimer pages.
+- Keep public notices factual and consistent with actual practice. Obtain appropriate review
+  before adding contract terms, liability language, refund rules, dispute terms, or other
+  provisions that require legal judgment.
+
+The current `/terms` and `/ai-automation-notice` pages are baseline public information approved
+by the owner. They are not attorney-reviewed service contracts and do not replace the written
+scope and agreement for a client engagement. Attorney review remains a future business task.
 
 ## Page inventory
 
@@ -113,7 +119,10 @@ Approved general disclosure:
 | `/contact` | Short service-request form and direct-email fallback |
 | `/faq` | Buyer questions, ownership, providers, limitations, care and cancellation |
 | `/trust` | Approval, access, testing, monitoring, backups, limitations, offboarding |
+| `/legal` | Hub linking the public terms, privacy, AI notice, and trust information |
 | `/privacy` | Actual website collection, analytics, processors, retention, privacy requests |
+| `/terms` | Baseline website-use terms; not a client service agreement |
+| `/ai-automation-notice` | AI limitations, human review, operating responsibility, providers, data, and excluded uses |
 | `/accessibility` | Accessibility features and feedback route |
 | `/404` | Not-found response |
 
@@ -125,4 +134,5 @@ Approved general disclosure:
 4. Update the contact Worker and tests whenever form fields change.
 5. Run `npm run check`, `npm run test:contact-worker`, and `npm run build`.
 6. Link-check `dist/`, audit generated copy, and test desktop and 390px mobile layouts.
-7. Keep legal or contract language out of new pages until it has received appropriate review.
+7. Keep baseline notices factual. Do not add contract provisions requiring legal judgment
+   until they have received appropriate review.

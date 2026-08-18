@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Legal & notices"
+  description="OriginsLynk website terms, privacy notice, AI and automation notice, and trust and safety information."
+>
+  <section class="section-cream page-hero">
+    <div class="container container-narrow">
+      <p class="eyebrow">Legal &amp; notices</p>
+      <h1>Public terms and service boundaries in one place.</h1>
+      <p class="lede">
+        These pages explain how this website works and the general boundaries OriginsLynk
+        applies to its services. A written proposal and service agreement define the exact
+        scope, price, responsibilities, and terms for each client engagement.
+      </p>
+      <p class="small muted updated">Updated August 2026</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container notice-grid">
+      <article>
+        <p class="eyebrow">Website use</p>
+        <h2><a href="/terms">Website Terms</a></h2>
+        <p>Rules for using this site, submitting an inquiry, and understanding what public information does—and does not—promise.</p>
+      </article>
+
+      <article>
+        <p class="eyebrow">Information</p>
+        <h2><a href="/privacy">Privacy Notice</a></h2>
+        <p>What the website and service-request form collect, why that information is used, and how to make a privacy request.</p>
+      </article>
+
+      <article>
+        <p class="eyebrow">AI boundaries</p>
+        <h2><a href="/ai-automation-notice">AI &amp; Automation Notice</a></h2>
+        <p>How AI and automation may be used, where human review remains required, and which outcomes are not guaranteed.</p>
+      </article>
+
+      <article>
+        <p class="eyebrow">Operating safeguards</p>
+        <h2><a href="/trust">Trust &amp; Safety</a></h2>
+        <p>Human approval, account access, testing, monitoring, backups, service limits, and offboarding practices.</p>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero h1 { max-width: 18ch; }
+  .page-hero .lede { margin-top: var(--space-5); }
+  .updated { margin-top: var(--space-4); }
+  .notice-grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .notice-grid article { padding: var(--space-6); background: var(--ground-sunken); border-top: var(--border-thick) solid var(--accent); border-radius: var(--radius); }
+  .notice-grid h2 { margin-top: var(--space-3); font-size: var(--text-xl); }
+  .notice-grid p:last-child { margin-top: var(--space-4); color: var(--ink-muted); }
+</style>

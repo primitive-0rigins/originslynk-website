@@ -1,0 +1,118 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="AI & automation notice"
+  description="How OriginsLynk uses AI and automation, where human review remains required, and which results are not guaranteed."
+>
+  <section class="section-cream page-hero">
+    <div class="container container-narrow">
+      <p class="eyebrow">AI &amp; automation notice</p>
+      <h1>Useful systems still need defined limits.</h1>
+      <p class="lede">
+        OriginsLynk may use selected AI services, automation platforms, integrations, and
+        infrastructure to perform the work described in an approved workflow. The exact tools
+        depend on compatibility, security, availability, and the client’s requirements.
+      </p>
+      <p class="small muted updated">Effective August 2026</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container container-narrow legal-copy">
+      <article>
+        <h2>What these systems may do</h2>
+        <p>
+          Approved workflows may organize information, classify routine inputs, prepare drafts,
+          summarize material, create reports, schedule review-ready work, route exceptions, or
+          perform other specifically documented steps. Every workflow has a defined trigger,
+          source boundary, output, owner, approval point, and failure path before production use.
+        </p>
+      </article>
+
+      <article>
+        <h2>AI can be wrong</h2>
+        <p>
+          AI-generated content and automated decisions may be incomplete, inaccurate, biased,
+          delayed, or unsuitable for the intended situation. Testing reduces known risks but
+          does not make a system infallible. Important facts, calculations, commitments, and
+          customer-facing outputs must be reviewed by the designated person.
+        </p>
+      </article>
+
+      <article>
+        <h2>Human approval remains the default</h2>
+        <p>
+          Consequential messages, publication, money movement, signatures, deletion, permanent
+          record changes, and business commitments remain human-approved unless a signed
+          workflow specification expressly defines a narrower authorized process and its
+          safeguards. Clients remain responsible for deciding whether an output is used.
+        </p>
+      </article>
+
+      <article>
+        <h2>Operating responsibility depends on the service</h2>
+        <p>
+          Tier 1 and Tier 2 are client-operated and include no OriginsLynk monitoring or
+          recurring maintenance. Tier 3 includes only the monitoring, maintenance, backup, and
+          response duties stated in the managed-service agreement. No tier guarantees
+          uninterrupted availability or detection of every possible failure.
+        </p>
+      </article>
+
+      <article>
+        <h2>Third-party providers and charges</h2>
+        <p>
+          Connected providers may process approved workflow information under their own terms
+          and may change, restrict, suspend, or discontinue features. Required client-owned
+          subscriptions, API usage, message fees, storage, and other provider charges are
+          separate unless the written proposal states otherwise. Relevant providers are
+          disclosed during proposal and onboarding.
+        </p>
+      </article>
+
+      <article>
+        <h2>Data and credentials</h2>
+        <p>
+          OriginsLynk requests the minimum information and access needed for an approved
+          workflow. Clients enter credentials through the approved account or credential store;
+          passwords and access codes should never be sent through the public form or ordinary
+          email. See the <a href="/privacy">Privacy Notice</a> and the
+          <a href="/trust#data-handling">Trust &amp; Safety</a> page for more detail.
+        </p>
+      </article>
+
+      <article>
+        <h2>High-risk work is excluded by default</h2>
+        <p>
+          Standard OriginsLynk services are not intended for medical diagnosis or treatment,
+          legal advice, regulated financial or credit decisions, autonomous employment or
+          insurance decisions, emergency response, surveillance, payment-card storage, or
+          other safety-critical or regulated uses. Such requests require separate written
+          assessment and may be declined.
+        </p>
+      </article>
+
+      <article>
+        <h2>No guaranteed business outcome</h2>
+        <p>
+          Examples and estimates illustrate possible workflow improvements. OriginsLynk does
+          not guarantee revenue, leads, savings, productivity, accuracy, compatibility, or a
+          particular business result. Actual results depend on the process, source data, client
+          review, staff adoption, connected services, and operating conditions.
+        </p>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero h1 { max-width: 17ch; }
+  .page-hero .lede { margin-top: var(--space-5); }
+  .updated { margin-top: var(--space-4); }
+  .legal-copy { display: grid; gap: var(--space-7); }
+  .legal-copy article { padding-top: var(--space-5); border-top: var(--border-thin) solid var(--rule-strong); }
+  .legal-copy h2 { font-size: var(--text-xl); }
+  .legal-copy p { margin-top: var(--space-4); color: var(--ink-muted); }
+</style>

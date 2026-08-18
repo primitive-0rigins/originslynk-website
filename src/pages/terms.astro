@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL || 'bryce@originslynk.com';
+---
+
+<Base
+  title="Website terms"
+  description="Terms for using the OriginsLynk website and submitting a service inquiry."
+>
+  <section class="section-cream page-hero">
+    <div class="container container-narrow">
+      <p class="eyebrow">Website terms</p>
+      <h1>Plain boundaries for using this website.</h1>
+      <p class="lede">
+        These terms apply to originslynk.com and its service-request form. They do not replace
+        a written proposal or service agreement for paid work.
+      </p>
+      <p class="small muted updated">Effective August 2026</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container container-narrow legal-copy">
+      <article>
+        <h2>Who operates this site</h2>
+        <p>OriginsLynk is operated by Primitive Origins LLC in Anderson, South Carolina.</p>
+      </article>
+
+      <article>
+        <h2>Website information is not a service agreement</h2>
+        <p>
+          This site describes general services, starting prices, common boundaries, and
+          examples. An engagement begins only after the client and OriginsLynk agree to a
+          written scope and price and complete any stated acceptance and payment requirements.
+          The signed engagement documents control if they differ from general website copy.
+        </p>
+      </article>
+
+      <article>
+        <h2>Acceptable use</h2>
+        <p>You may use this site to learn about OriginsLynk and submit a genuine business inquiry. Do not:</p>
+        <ul class="crosslist">
+          <li>Interfere with the site, evade security controls, or probe it without written authorization</li>
+          <li>Use the form for spam, impersonation, harassment, unlawful activity, or malicious content</li>
+          <li>Submit passwords, private keys, payment-card details, health information, or confidential client records</li>
+          <li>Misrepresent website content or OriginsLynk services as your own</li>
+        </ul>
+      </article>
+
+      <article>
+        <h2>AI, automation, and professional judgment</h2>
+        <p>
+          AI-generated and automated outputs can be incomplete, inaccurate, delayed, or
+          unsuitable for a particular use. OriginsLynk provides workflow design and technical
+          implementation—not legal, tax, accounting, medical, financial, employment, or
+          regulatory advice. See the <a href="/ai-automation-notice">AI &amp; Automation Notice</a>
+          for the operating boundaries used across services.
+        </p>
+      </article>
+
+      <article>
+        <h2>Third-party services and availability</h2>
+        <p>
+          The website and client solutions may depend on hosting, email, internet access,
+          business accounts, AI services, integrations, and other third-party providers.
+          Providers may change or interrupt features outside OriginsLynk’s control. Required
+          subscriptions and usage charges are disclosed during proposal and onboarding and
+          remain the client’s responsibility unless the written proposal says otherwise.
+        </p>
+      </article>
+
+      <article>
+        <h2>Ownership of site content</h2>
+        <p>
+          Primitive Origins LLC owns the original text, design, graphics, and branding on this
+          site except for identified third-party material. You may view and share links to the
+          site when evaluating the services. Copying, republishing, selling, or presenting the
+          site content or branding as your own requires written permission.
+        </p>
+      </article>
+
+      <article>
+        <h2>Changes and contact</h2>
+        <p>
+          Website content and these terms may be updated as the services and operating
+          practices change. The effective date above identifies the current version. Questions
+          may be sent to <a href={`mailto:${email}?subject=Website%20terms%20question`}>{email}</a>.
+          Information submitted through the site is handled according to the
+          <a href="/privacy">Privacy Notice</a>.
+        </p>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero h1 { max-width: 18ch; }
+  .page-hero .lede { margin-top: var(--space-5); }
+  .updated { margin-top: var(--space-4); }
+  .legal-copy { display: grid; gap: var(--space-7); }
+  .legal-copy article { padding-top: var(--space-5); border-top: var(--border-thin) solid var(--rule-strong); }
+  .legal-copy h2 { font-size: var(--text-xl); }
+  .legal-copy p, .legal-copy ul { margin-top: var(--space-4); color: var(--ink-muted); }
+</style>
