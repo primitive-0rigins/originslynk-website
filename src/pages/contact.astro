@@ -152,7 +152,7 @@ const configured = endpoint.length > 0;
   legend { width: 100%; margin-bottom: var(--space-5); color: var(--ink); font-size: var(--text-sm); font-weight: 760; letter-spacing: var(--tracking-wide); text-transform: uppercase; }
   legend span { color: var(--accent-text); margin-right: var(--space-2); }
   .field-grid { display: grid; gap: var(--space-5); }
-  .field + .field, .field-grid + .field, .field + .field-grid { margin-top: var(--space-5); }
+  fieldset > .field + .field, fieldset > .field-grid + .field, fieldset > .field + .field-grid { margin-top: var(--space-5); }
   label { display: block; margin-bottom: var(--space-2); font-size: var(--text-sm); font-weight: 680; }
   .req { color: var(--accent-text); }
   .optional { color: var(--ink-faint); font-weight: 400; }
@@ -172,7 +172,11 @@ const configured = endpoint.length > 0;
   .form-status.is-error { border-left: var(--border-thick) solid var(--danger); }
   .direct-email { margin-top: var(--space-4); }
   .trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  @media (min-width: 42em) { .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 42em) {
+    .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .field-grid > .field { display: flex; flex-direction: column; }
+    .field-grid > .field > :is(input, textarea, select) { margin-top: auto; }
+  }
   @media (min-width: 64em) {
     .form-layout { grid-template-columns: .8fr 1.2fr; gap: var(--space-8); }
     .form-intro { position: sticky; top: calc(var(--space-8) + var(--space-5)); }
